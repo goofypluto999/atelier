@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture: two lines in colours made by color-mix and by relative colour syntax, both near the paper. Chromium computes them as oklab(...)
+     and oklch(...), not rgb(...); the audit reads every CSS colour form, so both lines FAIL contrast. -->
+<style>
+.mx { background: var(--paper); color: var(--ink); padding: 90px 80px; }
+.mx h1 { font: 650 96px/1.05 var(--disp); letter-spacing: -0.02em; }
+.mx p { margin-top: 60px; font: 500 40px/1.3 var(--body); }
+.mx .a { color: color-mix(in oklab, var(--paper) 85%, black); }
+.mx .b { color: oklch(from var(--paper) calc(l - 0.08) c h); }
+</style>
+<section class="page mx">
+  <h1 data-role="hook">Two lines nobody can read.</h1>
+  <p class="a">Mixed toward black by fifteen parts.</p>
+  <p class="b">Eight points darker than the paper.</p>
+</section>

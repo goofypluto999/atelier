@@ -1,0 +1,414 @@
+{
+ "_note": "Every stage is graded before the next one starts. Scores are 1 to 10 per criterion with a 'because' line quoting or locating evidence. Total = weighted mean after caps, one decimal, never rounded up. Below the threshold: recreate (a fresh deal) or revise, as the stage says. After max_attempts: escalate to the person with the best attempt and the reasons.",
+ "stages": {
+  "atoms": {
+   "threshold": 7.0,
+   "independent": false,
+   "on_fail": "revise",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "coverage",
+     "weight": 1,
+     "question": "Do the atoms cover the topic's facts, numbers, people or roles, objects, tensions and limits?",
+     "anchors": {
+      "3": "3 generic statements",
+      "6": "8 atoms, some vague",
+      "9": "10 to 12 specific atoms across all types"
+     },
+     "anchors_quick": {
+      "3": "3 generic statements",
+      "6": "3 or 4 atoms, some vague or all of one type",
+      "9": "5 atoms across 4 types"
+     }
+    },
+    {
+     "id": "specificity",
+     "weight": 1.5,
+     "question": "Is each atom concrete (a number, a name, a time, an object) rather than abstract?",
+     "anchors": {
+      "3": "abstract nouns",
+      "6": "mixed",
+      "9": "every atom could be photographed or counted"
+     }
+    },
+    {
+     "id": "sourced",
+     "weight": 1.5,
+     "question": "Does every factual atom have a source or a first-party file?",
+     "anchors": {
+      "3": "none",
+      "6": "most",
+      "9": "all, with quotes"
+     }
+    },
+    {
+     "id": "surprise",
+     "weight": 1,
+     "question": "Is there at least one atom a smart outsider would not know?",
+     "anchors": {
+      "3": "none",
+      "6": "one weak",
+      "9": "two or more genuinely surprising"
+     }
+    }
+   ],
+   "caps": [
+    {
+     "if": "sourced < 6",
+     "max_total": 5
+    }
+   ]
+  },
+  "lenses": {
+   "threshold": 6.5,
+   "independent": false,
+   "on_fail": "recreate",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "distinctness",
+     "weight": 1,
+     "question": "Do the three lenses see genuinely different things?",
+     "anchors": {
+      "3": "the same view three ways",
+      "6": "two differ",
+      "9": "three different truths"
+     }
+    },
+    {
+     "id": "insight",
+     "weight": 1.5,
+     "question": "Does at least one lens reveal something non-obvious?",
+     "anchors": {
+      "3": "nothing new",
+      "6": "a mild insight",
+      "9": "a real reframe"
+     }
+    }
+   ],
+   "caps": []
+  },
+  "angles": {
+   "threshold": 7.5,
+   "independent": true,
+   "on_fail": "recreate",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "novelty",
+     "weight": 1.5,
+     "question": "Is the angle new against the feed and against our own history (see compose.py's similarity score)?",
+     "anchors": {
+      "3": "the category's default take",
+      "6": "a fresh twist on a common take",
+      "9": "nobody else could have written this"
+     }
+    },
+    {
+     "id": "truth",
+     "weight": 1.5,
+     "question": "Is every claim inside it supported by the atoms' sources?",
+     "anchors": {
+      "3": "unsupported",
+      "6": "mostly",
+      "9": "fully"
+     }
+    },
+    {
+     "id": "relevance",
+     "weight": 1,
+     "question": "Does the audience see their own week in it, and would sharing it make them look sharp?",
+     "anchors": {
+      "3": "irrelevant",
+      "6": "relevant to some",
+      "9": "obviously theirs"
+     }
+    },
+    {
+     "id": "intrigue",
+     "weight": 1.5,
+     "question": "Does it open a gap the viewer wants closed?",
+     "anchors": {
+      "3": "no gap",
+      "6": "a mild gap",
+      "9": "an irresistible, closable gap"
+     }
+    },
+    {
+     "id": "tone",
+     "weight": 1,
+     "question": "Is it free of cringe, preachiness and selling?",
+     "anchors": {
+      "3": "a sin",
+      "6": "risky",
+      "9": "clean and confident"
+     }
+    }
+   ],
+   "caps": [
+    {
+     "if": "truth < 6",
+     "max_total": 5
+    },
+    {
+     "if": "tone < 5",
+     "max_total": 5
+    },
+    {
+     "if": "swap_test == fail",
+     "max_total": 6
+    }
+   ]
+  },
+  "genome": {
+   "threshold": 7.0,
+   "independent": false,
+   "on_fail": "recreate",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "coherence",
+     "weight": 1.5,
+     "question": "Do format, structure, direction, colour and register serve the angle together?",
+     "anchors": {
+      "3": "they fight",
+      "6": "mostly fit",
+      "9": "each choice strengthens the angle"
+     }
+    },
+    {
+     "id": "feasibility",
+     "weight": 1,
+     "question": "Can it be built well with the material we have?",
+     "anchors": {
+      "3": "no",
+      "6": "with gaps",
+      "9": "yes"
+     }
+    }
+   ],
+   "caps": []
+  },
+  "sections": {
+   "threshold": 7.5,
+   "independent": true,
+   "on_fail": "revise",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "one-job",
+     "weight": 1.5,
+     "question": "Does every section have exactly one job (claim, proof, turn, payoff)?",
+     "anchors": {
+      "3": "several jobs or none",
+      "6": "most",
+      "9": "every section"
+     }
+    },
+    {
+     "id": "proof",
+     "weight": 1.5,
+     "question": "Does every claim section carry its proof?",
+     "anchors": {
+      "3": "assertions",
+      "6": "some proof",
+      "9": "every claim proven"
+     }
+    },
+    {
+     "id": "momentum",
+     "weight": 1,
+     "question": "Does each section make the next one necessary?",
+     "anchors": {
+      "3": "a list",
+      "6": "some pull",
+      "9": "each section opens the next"
+     }
+    },
+    {
+     "id": "arc",
+     "weight": 1,
+     "question": "Do the peak and the end carry the takeaway?",
+     "anchors": {
+      "3": "flat",
+      "6": "one strong moment",
+      "9": "a clear peak and a memorable end"
+     }
+    }
+   ],
+   "caps": []
+  },
+  "copy": {
+   "threshold": 8.0,
+   "independent": true,
+   "on_fail": "revise",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "clarity",
+     "weight": 1,
+     "question": "Is every sentence clear on first read?",
+     "anchors": {
+      "3": "confusing",
+      "6": "mostly",
+      "9": "effortless"
+     }
+    },
+    {
+     "id": "voice",
+     "weight": 1,
+     "question": "Does it sound like a person who knows, with varied rhythm?",
+     "anchors": {
+      "3": "generated",
+      "6": "plain",
+      "9": "distinct and human"
+     }
+    },
+    {
+     "id": "sins",
+     "weight": 2,
+     "question": "Is it free of the five sins (references/copy.md)?",
+     "anchors": {
+      "3": "a sin",
+      "6": "a risky line",
+      "9": "clean"
+     }
+    }
+   ],
+   "caps": [
+    {
+     "if": "sins < 6",
+     "max_total": 3
+    }
+   ]
+  },
+  "visual": {
+   "threshold": 7.5,
+   "independent": true,
+   "on_fail": "revise",
+   "max_attempts": 3,
+   "criteria": [
+    {
+     "id": "idea",
+     "weight": 1.5,
+     "question": "Does the visual carry a material only this subject could fill?",
+     "anchors": {
+      "3": "generic",
+      "6": "partly",
+      "9": "only this subject"
+     }
+    },
+    {
+     "id": "hook",
+     "weight": 1.5,
+     "question": "At 360 px wide, is the hook read first?",
+     "anchors": {
+      "3": "no",
+      "6": "slowly",
+      "9": "instantly"
+     }
+    },
+    {
+     "id": "hierarchy",
+     "weight": 1,
+     "question": "One subject, one path, one accent per page?",
+     "anchors": {
+      "3": "chaotic",
+      "6": "mostly",
+      "9": "clear"
+     }
+    },
+    {
+     "id": "craft",
+     "weight": 1,
+     "question": "Alignment, spacing, sizes, nothing clipped or overlapping?",
+     "anchors": {
+      "3": "broken",
+      "6": "minor slips",
+      "9": "exact"
+     }
+    },
+    {
+     "id": "colour",
+     "weight": 1,
+     "question": "Does colour follow the plan (recipe, arc, proportion) and pass contrast and colour-vision checks?",
+     "anchors": {
+      "3": "off plan",
+      "6": "mostly",
+      "9": "exactly, and it carries the mood"
+     }
+    },
+    {
+     "id": "distinct",
+     "weight": 1,
+     "question": "Does it look different from recent pieces?",
+     "anchors": {
+      "3": "a copy",
+      "6": "related",
+      "9": "fresh"
+     }
+    }
+   ],
+   "caps": [
+    {
+     "if": "idea <= 5",
+     "max_total": 6
+    },
+    {
+     "if": "craft <= 4",
+     "max_total": 6
+    }
+   ]
+  },
+  "final": {
+   "threshold": 8.0,
+   "independent": true,
+   "on_fail": "revise",
+   "max_attempts": 2,
+   "criteria": [
+    {
+     "id": "depth",
+     "weight": 1.5,
+     "question": "Does it leave the viewer knowing something real they did not know?",
+     "anchors": {
+      "3": "nothing",
+      "6": "one thing",
+      "9": "a real insight"
+     }
+    },
+    {
+     "id": "intrigue",
+     "weight": 1.5,
+     "question": "Would the viewer stop, swipe to the end and remember it tomorrow?",
+     "anchors": {
+      "3": "scroll past",
+      "6": "maybe",
+      "9": "yes"
+     }
+    },
+    {
+     "id": "distinct",
+     "weight": 1,
+     "question": "Could it be mistaken for anyone else's work or our earlier work?",
+     "anchors": {
+      "3": "yes",
+      "6": "partly",
+      "9": "no"
+     }
+    },
+    {
+     "id": "craft",
+     "weight": 1,
+     "question": "Is every detail finished?",
+     "anchors": {
+      "3": "no",
+      "6": "mostly",
+      "9": "yes"
+     }
+    }
+   ],
+   "caps": []
+  }
+ }
+}

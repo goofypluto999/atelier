@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r5-pills): two pages. Page 1: a row of four pill-shaped tags (radius 999px). Page 2: three boxes with three different corner radii (6px, 14px, 28px). render.mjs --audit must exit 0 and print "4 pill-shaped tags" on page 1 and "3 different corner radii (28px, 14px, 6px)" on page 2 (later checks add their own; tests/test_composer.py r12 asserts these). -->
+<style>
+.pl { background: var(--paper); color: var(--ink); padding: 90px 84px; }
+.pl h1, .pl h2 { font: 600 96px/1.02 var(--disp); letter-spacing: -0.03em; max-width: 880px; }
+.chips { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 80px; }
+.chip { display: inline-block; border-radius: 999px; background: var(--paper-2); padding: 10px 30px; font: 500 36px/1.3 var(--body); }
+.box { margin-top: 36px; padding: 26px 32px; background: var(--paper-2); font: 500 38px/1.3 var(--body); }
+.r6 { border-radius: 6px; }
+.r14 { border-radius: 14px; }
+.r28 { border-radius: 28px; }
+.pl .fine { position: absolute; left: 84px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page pl">
+  <h1 data-role="hook">Four tags in a row.</h1>
+  <div class="chips"><span class="chip">Strategy</span><span class="chip">Design</span><span class="chip">Build</span><span class="chip">Ship</span></div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+<section class="page pl">
+  <h2 data-role="hook">Three corner radii.</h2>
+  <div class="box r6">The first box has a 6px radius.</div>
+  <div class="box r14">The second box has a 14px radius.</div>
+  <div class="box r28">The third box has a 28px radius.</div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: specimen-label. One object, drawn large, mounted like a museum piece; a catalogue label with the facts. -->
+<style>
+.sl { background: var(--paper-2); color: var(--ink); }
+.mount { position: absolute; left: 150px; top: 120px; width: 780px; height: 700px; background: var(--ink); display: grid; place-items: center; }
+.doc { width: 400px; height: 520px; background: var(--cream); transform: rotate(-4deg); position: relative; padding: 46px 40px; box-shadow: 0 2px 0 color-mix(in srgb, var(--ink) 9%, transparent); }
+.doc i { display: block; height: 12px; background: color-mix(in srgb, var(--ink) 20%, transparent); margin-bottom: 22px; border-radius: 2px; }
+.doc i.s { width: 60%; } .doc i.t { height: 22px; width: 70%; background: color-mix(in srgb, var(--ink) 38%, transparent); margin-bottom: 34px; }
+.pin { position: absolute; top: -18px; left: 50%; width: 30px; height: 30px; border-radius: 50%; background: var(--house); transform: translateX(-50%); }
+.label { position: absolute; left: 150px; right: 150px; top: 880px; background: var(--paper); padding: 34px 40px; border-left: 10px solid var(--house); }
+.label h1 { font: 650 64px/1.02 var(--disp); letter-spacing: -0.025em; text-wrap: balance; }
+.label p { font: 450 34px/1.3 var(--body); margin-top: 16px; color: var(--ink-2); }
+.label .no { font: 500 32px/1 var(--mono); margin-top: 22px; color: var(--ink-2); }
+.sl .logo { right: 70px; bottom: 56px; height: 32px; opacity: 0.75; }
+</style>
+<section class="page sl" data-allow="shadow">
+  <div class="mount" data-role="object"><div class="doc" data-allow="faint"><!-- the grey lines stand for text on the sheet: texture, not marks to read --><span class="pin"></span><i class="t"></i><i></i><i></i><i class="s"></i><i></i><i></i><i class="s"></i><i></i><i class="s"></i></div></div>
+  <div class="label">
+    <h1 data-role="hook">The&nbsp;spreadsheet that runs&nbsp;the&nbsp;company.</h1>
+    <p>Shared file, 2019. Fourteen tabs, three owners, one formula nobody will touch.</p>
+    <div class="no">Sample content · catalogue no. 001</div>
+  </div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

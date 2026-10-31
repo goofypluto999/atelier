@@ -1,0 +1,29 @@
+/* Your brand. Copy this file, fill every colour, and load it after tokens.css:
+   <link rel="stylesheet" href="../tokens.css"><link rel="stylesheet" href="../brands/yours.css">
+   Roles, not colours: every direction uses these names. Check contrast with render.mjs --audit.
+   The faces and the logo at the end are optional: remove the comment marks from a line to set it. */
+:root {
+  --night: #111111;   /* dark ground */
+  --deep: #000000;    /* deeper dark, panels on dark */
+  --cream: #f5f5f2;   /* text on dark */
+  --cream-2: #cccccc; /* secondary text on dark (keep 7:1 for body) */
+  --steel: #8a8a8a;   /* labels on dark, large only */
+  --paper: #f5f3ee;   /* light ground */
+  --paper-2: #e8e5dd; /* panels on light */
+  --ink: #222222;     /* text on light */
+  --ink-2: #4a4a4a;   /* secondary text on light */
+  --house: #1f4fd1;   /* the accent: one thing per page, under 5% of the area */
+  --teal: #3a63d6;    /* accent, lighter step */
+  --teal-lit: #8fb0ff;/* accent on dark */
+  --glow: #fff6e8;    /* warm highlight on dark */
+  --amber: #f2d9a6;   /* status highlight */
+
+  /* Faces. Leave these commented and compose.py scaffold sets the dealt type pairing. A face you declare here is kept: scaffold does not replace it. */
+  /* --disp: "Instrument Sans", system-ui, sans-serif; */ /* display face */
+  /* --body: "Archivo", system-ui, sans-serif; */         /* text face, numbers */
+  /* --mono: "JetBrains Mono", ui-monospace, monospace; */ /* real data, code, logs only */
+
+  /* Logo. A relative path is read against this brand file, not against the page. Scaffold puts the logo on the page; with no --logo it removes the logo slot. */
+  /* --logo: url(logo.svg); */                /* logo on a light ground */
+  /* --logo-on-dark: url(logo-light.svg); */  /* logo on a dark ground or a colour field; without it --logo is used everywhere */
+}

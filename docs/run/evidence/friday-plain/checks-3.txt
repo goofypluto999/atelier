@@ -1,0 +1,9 @@
+png: 1 page(s)
+audit page 1: 35 words, min 44px (40px with fine print), sizes 40/44/52/60/104/120, Outfit + Work Sans, accent paint 1%
+audit: PASS (no hard fails)
+== page-01.png
+   predicted order (share of the page's attention): object 41.9% > hook 31.7% > accent 18.4% > fine 2.0% > number 1.2% > number 0.2%
+   cover rule: the hook, the number or the object must win; winner is object (41.9%, best hook, number or object 41.9%)
+   peak at (484,820); overlay attention-01.png
+cvd: PASS
+layout memory: PASS against 1 remembered cover(s)

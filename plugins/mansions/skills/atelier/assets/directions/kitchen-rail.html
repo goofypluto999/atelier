@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: kitchen-rail. Order tickets clipped to a steel rail, each ticket a job; the one stuck is the story.
+     The four tickets fill the 920 px measure between the 80 px margins, 24 px apart; their words are set in the text face (mono is only for real data). -->
+<style>
+.kr { background: #1c1f22; color: var(--cream); }
+.kr h1 { position: absolute; left: 80px; right: 80px; top: 86px; font: 600 96px/0.98 var(--disp); letter-spacing: -0.03em; text-wrap: balance; }
+.rail { position: absolute; left: 0; right: 0; top: 440px; height: 26px; background: linear-gradient(#a3a9b0, #5d636a); }
+.t { position: absolute; top: 452px; width: 212px; min-height: 330px; background: #f6f3ec; color: #1d1c1a; padding: 44px 18px 26px; font: 500 36px/1.3 var(--body); font-stretch: 85%; }
+.t b { display: block; font: 800 40px/1.1 var(--body); font-stretch: 80%; margin-bottom: 10px; }
+.t .st { margin-top: 18px; border: 3px solid #1d1c1a; padding: 4px 8px; display: inline-block; font-weight: 700; }
+.t.late { background: var(--amber); }
+.kr .note { position: absolute; left: 80px; right: 80px; top: 900px; font: 450 38px/1.3 var(--body); color: var(--cream-2); }
+.kr .logo { right: 80px; bottom: 56px; }
+</style>
+<section class="page kr" data-allow="gradient">
+  <h1 data-role="hook">Four tickets on&nbsp;the&nbsp;rail. One has waited since&nbsp;Monday.</h1>
+  <div class="rail"></div>
+  <div class="t" style="left:80px"><b>#1041</b>invoice<br>to ledger<div class="st">DONE</div></div>
+  <div class="t" style="left:316px"><b>#1042</b>report<br>to inbox<div class="st">DONE</div></div>
+  <div class="t late" style="left:552px;transform:rotate(-2deg)" data-role="accent"><b>#1038</b>approval<br>to manager<div class="st">WAIT</div></div>
+  <div class="t" style="left:788px"><b>#1043</b>backup<br>to storage<div class="st">DONE</div></div>
+  <p class="note">Sample content. Every automated ticket clears overnight; the one that needs a person is the one that waits.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

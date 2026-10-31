@@ -1,0 +1,69 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="<skill>/assets/tokens.css">
+<!-- Composition start for the direction "timetable" on the paper ground. Not the specimen: the grid, the dealt type and the palette.css roles, each page set up for its dealt layout word.
+     Read the specimen for the grammar's rules (<skill>/assets/directions/timetable.html); do not repeat its frame (the headline top left; a ruled table of four rows across the full width, one cell filled; a note at the foot) or its stock parts unchanged (04-genome.md lists them): draw the device as your object. Word budget: 45 words a page, the hook 8 or fewer (references/copy.md). -->
+<style>
+/* the grid (references/composition.md): one left margin at 80 px, 88 px at the top, 104 px at the foot, gaps on an 8 px scale */
+.st { display: grid; gap: 40px; padding: 88px 80px 104px; background: var(--ground, var(--paper)); color: var(--text, var(--ink)); }
+.st > * { margin: 0; min-width: 0; }
+.st > :is(h1, h2) { grid-area: hook; font: 650 calc(var(--hook, 100px) * var(--hook-scale, 1))/0.98 var(--disp); letter-spacing: -0.03em; text-wrap: balance; }
+.st > .num { grid-area: number; align-self: end; font: 700 400px/0.8 var(--disp); letter-spacing: -0.05em; }
+.st > .object { grid-area: object; border: 3px dashed var(--text-2, var(--ink)); padding: 32px; font: 500 40px/1.3 var(--body); color: var(--text-2, var(--ink)); }
+.st > .proof { grid-area: proof; font: 450 40px/1.3 var(--body); text-wrap: pretty; }
+.st > .fine { grid-area: fine; align-self: end; max-width: 760px; font: 500 36px/1.3 var(--body); }
+.st > .logo { right: 80px; bottom: 48px; }
+/* one arrangement per layout word; change the sizes to fit the material, keep the arrangement */
+.st.stack { grid-template-rows: auto 1fr auto auto; grid-template-areas: "hook" "object" "proof" "fine"; }
+.st.split { --hook: 84px; grid-template-columns: 7fr 5fr; grid-template-rows: auto auto 1fr; grid-template-areas: "hook object" "proof object" "fine object"; }
+.st.bleed { grid-template-rows: 1fr auto auto auto; grid-template-areas: "." "hook" "proof" "fine"; }
+.st.bleed > .object { grid-area: auto; position: absolute; left: 300px; top: -80px; width: 880px; height: 800px; display: flex; align-items: flex-end; }
+.st.grid { --hook: 88px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr) auto auto auto; grid-template-areas: ". object object object" ". object object object" ". object object object" "hook hook hook ." "proof proof proof ." "fine fine fine fine"; }
+.st.table { grid-template-rows: 1fr auto auto auto; grid-template-areas: "object" "hook" "proof" "fine"; }
+.st.table > h1, .st.table > h2 { border-top: 8px double var(--text, var(--ink)); padding-top: 24px; }
+.st.map { --hook: 88px; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr auto; grid-template-areas: ". hook" ". proof" ". ." "fine fine"; }
+.st.map > .object { grid-area: auto; position: absolute; inset: 56px 40px 200px; display: flex; align-items: flex-end; }
+.st.diagram { --hook: 84px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "object" "hook" "proof" "fine"; }
+.st.quote { --hook: 120px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "hook" "object" "proof" "fine"; }
+.st.quote > h1, .st.quote > h2 { align-self: end; }
+.st.number { --hook: 72px; grid-template-columns: 7fr 5fr; grid-template-rows: 1fr auto auto; grid-template-areas: "number number" "hook proof" "fine fine"; }
+.st.artefact { --hook: 84px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "." "hook" "proof" "fine"; }
+.st.artefact > .object { grid-area: auto; position: absolute; left: 80px; top: 88px; width: 1060px; height: 700px; }
+.st.sequence { --hook: 84px; grid-template-columns: 5fr 7fr; grid-template-rows: 1fr auto auto; grid-template-areas: "object object" "proof hook" "fine fine"; }
+.st.field { --hook: 120px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "." "hook" "proof" "fine"; }
+</style>
+<!-- atelier scaffold for friday-warm: direction timetable, format i-poster, 1 page(s). Layout rhythm: sequence. Field page: none. Replace the sample content. -->
+<link rel="stylesheet" href="<run>/friday-warm/palette.css">
+<style>/* the direction's colour tokens follow the palette.css roles (data/directions.json) */
+.page { --paper: var(--ground); --ink: var(--text); --ink-2: var(--text-2); --house: var(--accent); --cream: var(--ground); }
+
+</style>
+<link rel="stylesheet" href="<skill>/assets/fonts/library/library.css">
+<style>:root { --disp: "Nothing You Could Do", system-ui, sans-serif; --body: "Work Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace; }</style>
+<style>
+.tt { background: var(--ground); color: var(--text); }
+.tt .rl { position: absolute; left: 80px; margin: 0; font: 500 40px/1 var(--body); }
+.tt .run { position: absolute; left: 80px; width: 900px; height: 28px; }
+.tt .run .ln { position: absolute; left: 0; right: 0; top: 11px; height: 6px; background: var(--text); }
+.tt .run i { position: absolute; top: 2px; width: 24px; height: 24px; background: var(--text); }
+.tt .run .end { position: absolute; right: 0; top: -10px; width: 8px; height: 48px; background: var(--text); }
+.tt .fri .ln { top: 7px; height: 14px; background: var(--accent); }
+.tt .fri i { top: -2px; width: 32px; height: 32px; background: var(--accent); }
+.tt .fri .end { background: var(--accent); width: 12px; }
+.tt .stp { position: absolute; width: 312px; margin: 0; font: 700 48px/1.05 var(--body); }
+.tt .stp .nm { display: block; min-height: 101px; font-style: normal; }
+.tt .stp span { display: block; margin-top: 10px; font: 500 40px/1.15 var(--body); }
+.tt h1 { position: absolute; left: 80px; top: 452px; width: 920px; margin: 0; font: 400 96px/1 var(--disp); letter-spacing: 0; }
+.tt .scope { position: absolute; left: 80px; top: 760px; margin: 0; font: 500 40px/1.2 var(--body); }
+.tt .obj { width: 920px; height: 1040px; margin: 150px 0 0 80px; }
+.tt .fine { position: absolute; left: 80px; bottom: 80px; margin: 0; font: 500 40px/1.2 var(--body); }
+</style>
+<section class="page tt pg-1">
+  <div class="obj" data-role="object">
+  <p class="rl" style="top:150px">WHO checklist</p>
+<div class="run thr" style="top:216px"><div class="ln"></div><i style="left:0px"></i><i style="left:320px"></i><i style="left:640px"></i><b class="end"></b></div><p class="stp" style="left:80px;top:264px">Sign in<span>7 checks</span></p><p class="stp" style="left:400px;top:264px">Time out<span>7 checks</span></p><p class="stp" style="left:720px;top:264px">Sign out<span>5 checks</span></p>
+  <p class="rl" style="top:850px">Friday release</p>
+<div class="run fri" data-role="accent" style="top:916px"><div class="ln"></div><i style="left:0px"></i><i style="left:320px"></i><i style="left:640px"></i><b class="end"></b></div><p class="stp" style="left:80px;top:966px"><em class="nm">Before the change</em><span>rollout staged</span></p><p class="stp" style="left:400px;top:966px"><em class="nm">At go&#8209;live</em><span>faults watched</span></p><p class="stp" style="left:720px;top:966px"><em class="nm">Before you leave</em><span>rollback tried</span></p>
+  </div>
+  <h1 data-role="hook">15 deaths in 1,000 operations became&nbsp;8.</h1>
+  <p class="scope">8 hospitals, NEJM 2009.</p>
+  <p class="fine" data-role="fine">Google SRE book, 2016.</p>
+</section>

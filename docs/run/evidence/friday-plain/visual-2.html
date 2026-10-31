@@ -1,0 +1,75 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="<skill>/assets/tokens.css">
+<!-- Composition start for the direction "transit-map" on the paper ground. Not the specimen: the grid, the dealt type and the palette.css roles, each page set up for its dealt layout word.
+     Read the specimen for the grammar's rules (<skill>/assets/directions/transit-map.html); do not repeat its frame (the headline top left; the line diagram across the middle, stations on its left and branches on its right; a note at the foot) or its stock parts unchanged (04-genome.md lists them): draw the device as your object. Word budget: 45 words a page, the hook 8 or fewer (references/copy.md). -->
+<style>
+/* the grid (references/composition.md): one left margin at 80 px, 88 px at the top, 104 px at the foot, gaps on an 8 px scale */
+.st { display: grid; gap: 40px; padding: 88px 80px 104px; background: var(--ground, var(--paper)); color: var(--text, var(--ink)); }
+.st > * { margin: 0; min-width: 0; }
+.st > :is(h1, h2) { grid-area: hook; font: 650 calc(var(--hook, 100px) * var(--hook-scale, 1))/0.98 var(--disp); letter-spacing: -0.03em; text-wrap: balance; }
+.st > .num { grid-area: number; align-self: end; font: 700 400px/0.8 var(--disp); letter-spacing: -0.05em; }
+.st > .object { grid-area: object; border: 3px dashed var(--text-2, var(--ink)); padding: 32px; font: 500 40px/1.3 var(--body); color: var(--text-2, var(--ink)); }
+.st > .proof { grid-area: proof; font: 450 40px/1.3 var(--body); text-wrap: pretty; }
+.st > .fine { grid-area: fine; align-self: end; max-width: 760px; font: 500 36px/1.3 var(--body); }
+.st > .logo { right: 80px; bottom: 48px; }
+/* one arrangement per layout word; change the sizes to fit the material, keep the arrangement */
+.st.stack { grid-template-rows: auto 1fr auto auto; grid-template-areas: "hook" "object" "proof" "fine"; }
+.st.split { --hook: 84px; grid-template-columns: 7fr 5fr; grid-template-rows: auto auto 1fr; grid-template-areas: "hook object" "proof object" "fine object"; }
+.st.bleed { grid-template-rows: 1fr auto auto auto; grid-template-areas: "." "hook" "proof" "fine"; }
+.st.bleed > .object { grid-area: auto; position: absolute; left: 300px; top: -80px; width: 880px; height: 800px; display: flex; align-items: flex-end; }
+.st.grid { --hook: 88px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr) auto auto auto; grid-template-areas: ". object object object" ". object object object" ". object object object" "hook hook hook ." "proof proof proof ." "fine fine fine fine"; }
+.st.table { grid-template-rows: 1fr auto auto auto; grid-template-areas: "object" "hook" "proof" "fine"; }
+.st.table > h1, .st.table > h2 { border-top: 8px double var(--text, var(--ink)); padding-top: 24px; }
+.st.map { --hook: 88px; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr auto; grid-template-areas: ". hook" ". proof" ". ." "fine fine"; }
+.st.map > .object { grid-area: auto; position: absolute; inset: 56px 40px 200px; display: flex; align-items: flex-end; }
+.st.diagram { --hook: 84px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "object" "hook" "proof" "fine"; }
+.st.quote { --hook: 120px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "hook" "object" "proof" "fine"; }
+.st.quote > h1, .st.quote > h2 { align-self: end; }
+.st.number { --hook: 72px; grid-template-columns: 7fr 5fr; grid-template-rows: 1fr auto auto; grid-template-areas: "number number" "hook proof" "fine fine"; }
+.st.artefact { --hook: 84px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "." "hook" "proof" "fine"; }
+.st.artefact > .object { grid-area: auto; position: absolute; left: 80px; top: 88px; width: 1060px; height: 700px; }
+.st.sequence { --hook: 84px; grid-template-columns: 5fr 7fr; grid-template-rows: 1fr auto auto; grid-template-areas: "object object" "proof hook" "fine fine"; }
+.st.field { --hook: 120px; grid-template-rows: 1fr auto auto auto; grid-template-areas: "." "hook" "proof" "fine"; }
+</style>
+<!-- atelier scaffold for friday-plain: direction transit-map, format i-chart, 1 page(s). Layout rhythm: table. Field page: none. Replace the sample content. -->
+<link rel="stylesheet" href="<run>/friday-plain/palette.css">
+<style>/* the direction's colour tokens follow the palette.css roles (data/directions.json) */
+.page { --paper: var(--ground); --ink: var(--text); --ink-2: var(--text-2); }
+.tm path[stroke='#1c1e23'] { stroke: var(--text); }
+.tm path[stroke='#2f5bc2'] { stroke: var(--accent-2, var(--accent)); }
+.tm path[stroke='#8d939b'] { stroke: var(--text-2); }
+.tm path[stroke='#143ca1'] { stroke: var(--accent); }
+.tm g[fill='#f1f2f4'] { fill: var(--ground); stroke: var(--text); }
+.tm rect[fill='#f1f2f4'] { fill: var(--ground); stroke: var(--accent); }
+</style>
+<link rel="stylesheet" href="<skill>/assets/fonts/library/library.css">
+<style>:root { --disp: "Outfit", system-ui, sans-serif; --body: "Work Sans", system-ui, sans-serif; --mono: "DM Mono", ui-monospace, monospace; }</style>
+<style>
+.tm { background: var(--ground); color: var(--text); }
+.tm .tbl { position: absolute; left: 80px; top: 96px; width: 920px; border-top: 8px solid var(--text); }
+.tm .hd { display: flex; justify-content: flex-end; padding: 20px 0 16px; font: 500 40px/1 var(--body); color: var(--text); }
+.tm .r { position: relative; height: 196px; border-top: 4px solid var(--text); }
+.tm .r .lab { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 340px; margin: 0; font: 700 48px/1.08 var(--disp); }
+.tm .r .n { position: absolute; right: 0; top: 50%; transform: translateY(-50%); margin: 0; font: 700 120px/1 var(--disp); font-variant-numeric: tabular-nums; }
+.tm .oth .n { font-size: 60px; color: var(--text-2); }
+.tm .stop { position: absolute; left: 388px; top: calc(50% - 40px); width: 16px; height: 80px; background: var(--text); }
+.tm .stop b { position: absolute; left: -8px; bottom: 92px; white-space: nowrap; font: 700 40px/1 var(--disp); }
+.tm .line { position: absolute; left: 404px; top: calc(50% - 9px); height: 18px; }
+.tm .line i { position: absolute; top: -13px; width: 44px; height: 44px; border-radius: 50%; margin-left: -22px; }
+.tm .chg .line { background: var(--accent); }
+.tm .chg .line i { background: var(--accent); }
+.tm .oth .line { background: var(--text-2); }
+.tm .oth .line i { background: var(--text-2); }
+.tm h1 { position: absolute; left: 80px; top: 672px; width: 920px; margin: 0; padding-top: 28px; border-top: 8px double var(--text); font: 700 104px/1 var(--disp); letter-spacing: -0.025em; text-wrap: balance; }
+.tm .rule { position: absolute; left: 80px; top: 1064px; width: 920px; margin: 0; font: 600 52px/1.1 var(--disp); }
+.tm .fine { position: absolute; left: 80px; bottom: 80px; margin: 0; font: 500 40px/1.2 var(--body); }
+</style>
+<section class="page tm pg-1">
+  <div class="tbl" data-role="object">
+    <div class="hd">In 10 outages, roughly:</div>
+    <div class="r chg" style="height:236px"><p class="lab">A change to a live system</p><div class="stop"><b>Friday list</b></div><div class="line" data-role="accent" style="width:376px"><i style="left:40px"></i><i style="left:96px"></i><i style="left:152px"></i><i style="left:208px"></i><i style="left:264px"></i><i style="left:320px"></i><i style="left:376px"></i></div><p class="n" data-role="number">7</p></div>
+    <div class="r oth"><p class="lab">Everything else</p><div class="line" style="width:152px"><i style="left:40px"></i><i style="left:96px"></i><i style="left:152px"></i></div><p class="n" data-role="number">3</p></div>
+  </div>
+  <h1 data-role="hook">Seven in ten outages start with a&nbsp;change.</h1>
+  <p class="rule">The Friday list stops before&nbsp;it.</p>
+  <p class="fine" data-role="fine">Google SRE book, Introduction.</p>
+</section>

@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: index-card. A library catalogue card: typed heading, definition, cross references, a stamped date. For glossary posts. -->
+<style>
+.ic { background: var(--house); }
+.card { position: absolute; left: 90px; right: 90px; top: 210px; height: 860px; background: #fbf8f1; color: var(--ink); padding: 70px 70px;
+  background-image: linear-gradient(color-mix(in srgb, var(--house) 53%, transparent) 3px, transparent 3px), linear-gradient(color-mix(in srgb, var(--house) 13%, transparent) 2px, transparent 2px); background-size: 100% 190px, 100% 64px; background-position: 0 0, 0 190px; transform: rotate(-1.2deg); }
+.card .hole { position: absolute; left: 50%; bottom: 40px; width: 30px; height: 30px; border-radius: 50%; background: color-mix(in srgb, var(--house) 80%, black); box-shadow: inset 0 3px 0 color-mix(in srgb, var(--house) 50%, black); transform: translateX(-50%); }
+.card .term { font: 800 50px/1.1 var(--body); font-stretch: 88%; letter-spacing: 0.02em; margin-top: 30px; }
+.card h1 { font: 500 64px/1.12 var(--disp); letter-spacing: -0.02em; margin-top: 40px; text-wrap: balance; }
+.card .see { font: 500 32px/1.5 var(--mono); color: var(--ink-2); margin-top: 46px; }
+.stamp { position: absolute; right: 70px; top: 44px; border: 3px solid color-mix(in srgb, var(--house) 60%, transparent); color: color-mix(in srgb, var(--house) 80%, transparent); padding: 10px 16px; font: 700 32px/1 var(--mono); transform: rotate(4deg); }
+.ic .logo { left: 90px; bottom: 70px; height: 32px; opacity: 0.7; }
+</style>
+<section class="page ic" data-allow="gradient shadow">
+  <div class="card" data-role="object">
+    <div class="stamp">SAMPLE</div>
+    <div class="term">HANDOFF, n.</div>
+    <h1 data-role="hook">The&nbsp;moment the&nbsp;work belongs&nbsp;to&nbsp;nobody.</h1>
+    <div class="see">See also: owner; queue; the email nobody answered.</div>
+    <span class="hole"></span>
+  </div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Format: a 9:16 story or reel cover (1080x1920). Render with --size 1080x1920 and audit with --safe reels:
+     no text in the top 220 px, the bottom 320 px or the right 140 px, where the apps put their buttons. -->
+<style>
+.page.st916 { width: 1080px; height: 1920px; background: var(--night); color: var(--cream); }
+.st916 h1 { position: absolute; left: 80px; right: 160px; top: 300px; font: 650 116px/0.98 var(--disp); letter-spacing: -0.035em; text-wrap: balance; }
+.st916 .n { position: absolute; left: 60px; top: 700px; font: 900 700px/0.8 var(--body); font-stretch: 62%; color: var(--teal-lit); }
+.st916 p { position: absolute; left: 80px; right: 160px; top: 1330px; font: 450 44px/1.3 var(--body); color: var(--cream-2); }
+.st916 .logo { left: 80px; top: 1500px; }
+</style>
+<section class="page st916">
+  <h1 data-role="hook">Rows rejected last&nbsp;night:</h1>
+  <div class="n" data-role="number">0</div>
+  <p>Sample content. 4,812 rows from 14 sources, synced at 06:00.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

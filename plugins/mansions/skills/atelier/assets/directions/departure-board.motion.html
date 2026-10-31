@@ -1,0 +1,67 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css"><script src="../lib/motion.js"></script>
+<!-- Motion specimen: departure-board, 8 s. Pure function of time: window.seek(t). Render:
+     node scripts/motion.mjs assets/directions/departure-board.motion.html --seconds 8 --sub 2 --poster 7
+     Direction: departure-board. Split-flap tiles for statuses, queues and handoffs. In motion the flaps flip (one row at a time). -->
+<style>
+.db { background: var(--night); color: var(--cream); padding: 90px 70px; }
+.db h1 { font: 600 104px/0.98 var(--disp); letter-spacing: -0.03em; max-width: 900px; text-wrap: balance; }
+.board { position: absolute; left: 50px; right: 50px; top: 430px; background: #000; padding: 34px 28px; border-radius: 10px; }
+.bh { display: grid; grid-template-columns: 298px 334px 1fr; column-gap: 26px; font: 700 36px/1 var(--body); font-stretch: 80%; color: var(--steel); letter-spacing: 0.06em; padding: 0 6px 20px; }
+.br { display: grid; grid-template-columns: 298px 334px 1fr; column-gap: 26px; margin-bottom: 22px; }
+.flaps { display: flex; gap: 4px; }
+.f { width: 33px; height: 76px; background: #17191c; border-radius: 5px; position: relative; display: grid; place-items: center;
+  font: 700 40px/1 var(--mono); color: var(--glow); }
+.f::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: #000; }
+.f.e { color: transparent; }
+.f.lit { color: var(--glow); }
+.f.off { color: #111; background: var(--amber); }
+.db .note { opacity: 0;  position: absolute; left: 70px; right: 200px; top: 960px; font: 450 38px/1.3 var(--body); color: var(--cream-2); }
+.db .logo { right: 70px; bottom: 60px; }
+</style>
+<section class="page db">
+  <h1 data-role="hook">Three jobs left. One is still&nbsp;waiting.</h1>
+  <div class="board">
+    <div class="bh"><span>SERVICE</span><span>ROUTE</span><span>STATUS</span></div>
+    <div class="br" id="rows"></div>
+  </div>
+  <p class="note">Sample content. The automated jobs ran overnight. The one that needs a person is the one that waits.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>
+<script>
+// Frame 0 already shows the hook (muted autoplay). Rows flip in one after another; the last tile
+// to settle is the accent (NONE). Something new every 1 to 2 s; final hold from 6 s.
+const rows = [["INVOICES","LEDGER","DONE","lit"],["REPORT","INBOX","DONE","lit"],["BACKUP","STORAGE","DONE","lit"],["APPROVAL","MANAGER","WAIT","off"]];
+const W = [8, 9, 6], ABC = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789->";
+const tiles = [];
+const board = document.querySelector(".board");
+document.getElementById("rows").remove();
+rows.forEach((row, r) => {
+  const br = document.createElement("div"); br.className = "br";
+  row.slice(0, 3).forEach((txt, g) => {
+    const fl = document.createElement("div"); fl.className = "flaps";
+    [...(txt + " ".repeat(W[g])).slice(0, W[g])].forEach((ch, i) => {
+      const f = document.createElement("div"); f.className = "f"; fl.appendChild(f);
+      const k = r * 23 + g * 9 + i;
+      tiles.push({ f, ch, settle: 0.5 + r * 1.25 + (g * 9 + i) * 0.035 + M.hash(k) * 0.15, k, acc: g === 2 && row[3] === "off" && ch !== " " });
+    });
+    br.appendChild(fl);
+  });
+  board.appendChild(br);
+});
+const note = document.querySelector(".note");
+window.POSTER_T = 7;
+window.seek = (t) => {
+  for (const s of tiles) {
+    const left = s.settle - t;
+    let c = s.ch;
+    if (left > 0) c = left > 0.9 ? " " : ABC[(Math.floor(left * 24) + s.k) % ABC.length];
+    s.f.textContent = c === " " ? "\u00a0" : c;
+    s.f.classList.toggle("off", s.acc && left <= 0);
+    s.f.style.transform = left > 0 && left <= 0.9 ? `scaleY(${0.86 + 0.14 * Math.abs(Math.cos(left * 24 * Math.PI))})` : "";
+  }
+  const p = M.spring(t - 5.4, 120, 22);
+  note.style.opacity = M.clamp(p);
+  note.style.transform = `translateY(${(1 - p) * 30}px)`;
+};
+window.seek(0);
+</script>

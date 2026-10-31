@@ -1,0 +1,63 @@
+[
+ {
+  "page": 1,
+  "texts": 11,
+  "words": 35,
+  "minFont": 40,
+  "minAll": 36,
+  "sizes": [
+   36,
+   40,
+   48,
+   60,
+   64,
+   128
+  ],
+  "families": [
+   "Instrument Sans",
+   "Archivo"
+  ],
+  "fails": [],
+  "warns": [],
+  "boxes": [
+   {
+    "role": "hook",
+    "x": 80,
+    "y": 92,
+    "w": 920,
+    "h": 369
+   },
+   {
+    "role": "object",
+    "x": 80,
+    "y": 560,
+    "w": 920,
+    "h": 340
+   },
+   {
+    "role": "number",
+    "x": 476,
+    "y": 560,
+    "w": 358,
+    "h": 64
+   },
+   {
+    "role": "accent",
+    "x": 812,
+    "y": 636,
+    "w": 12,
+    "h": 264
+   },
+   {
+    "role": "fine",
+    "x": 80,
+    "y": 1207,
+    "w": 920,
+    "h": 47
+   }
+  ],
+  "accent": 0.2,
+  "rawColours": 0,
+  "centred": 0
+ }
+]

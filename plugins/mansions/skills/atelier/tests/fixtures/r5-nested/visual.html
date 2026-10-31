@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r5-nested): a box with a fill, holding a box with a border, holding a box with its own fill: three panels deep. render.mjs --audit must exit 0 and print the warning "nested panels: 1 box(es) sit three deep" (later checks add their own; tests/test_composer.py r12 asserts it). -->
+<style>
+.np { background: var(--paper); color: var(--ink); padding: 90px 84px; }
+.np h1 { font: 600 96px/1.02 var(--disp); letter-spacing: -0.03em; max-width: 880px; }
+.a { margin-top: 70px; padding: 36px; background: var(--paper-2); font: 500 38px/1.3 var(--body); }
+.b { margin-top: 26px; padding: 30px; border: 4px solid var(--ink); }
+.c { margin-top: 20px; padding: 24px 28px; background: var(--house); color: var(--cream); font: 600 40px/1.25 var(--body); }
+.np .fine { position: absolute; left: 84px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page np">
+  <h1 data-role="hook">A box in a box in a box.</h1>
+  <div class="a">The outer box holds a field.
+    <div class="b">The middle box holds a frame.
+      <div class="c">The inner box holds the point.</div>
+    </div>
+  </div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

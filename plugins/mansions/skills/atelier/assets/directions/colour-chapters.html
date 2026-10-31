@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: colour-chapters. Each page is one full field; the change of field marks the chapter. Neighbouring
+     fields differ in lightness, not only in hue. The cover shows the three fields as a stack. -->
+<style>
+.cc { background: var(--house); color: var(--cream); }
+.cc .f { position: absolute; left: 0; right: 0; }
+.cc .f1 { top: 0; height: 600px; background: var(--house); }
+.cc .f2 { top: 600px; height: 380px; background: var(--paper); }
+.cc .f3 { top: 980px; height: 370px; background: var(--night); }
+.cc h1 { position: absolute; left: 80px; right: 80px; top: 90px; font: 650 104px/0.98 var(--disp); letter-spacing: -0.035em; text-wrap: balance; }
+.cc .c2 { position: absolute; left: 80px; top: 660px; font: 600 54px/1.1 var(--disp); color: var(--ink); }
+.cc .c2 small, .cc .c3 small { display: block; font: 500 32px/1.3 var(--body); margin-top: 12px; color: var(--ink-2); }
+.cc .c3 { position: absolute; left: 80px; top: 1040px; font: 600 54px/1.1 var(--disp); color: var(--cream); }
+.cc .c3 small { color: var(--cream-2); }
+.cc .logo { right: 80px; bottom: 56px; }
+</style>
+<section class="page cc">
+  <div class="f f1"></div><div class="f f2"></div><div class="f f3"></div>
+  <h1 data-role="hook">Three chapters of&nbsp;one&nbsp;week.</h1>
+  <div class="c2">Monday: the numbers<small>Sample content: one claim per chapter.</small></div>
+  <div class="c3">Friday: the decision<small>The ground changes; the type stays.</small></div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

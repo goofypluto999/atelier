@@ -1,0 +1,251 @@
+{
+ "slug": "friday-plain",
+ "topic": "what a Friday release checklist really needs",
+ "topic_key": [
+  "checklist",
+  "friday",
+  "needs",
+  "really",
+  "release",
+  "what"
+ ],
+ "medium": "image",
+ "scope": "quick",
+ "created": "2026-10-30T18:20:24",
+ "stages": {
+  "atoms": {
+   "status": "passed",
+   "grades": [
+    {
+     "at": "2026-10-30T18:20:24",
+     "by": "self",
+     "scores": {
+      "coverage": 9.0,
+      "specificity": 9.0,
+      "sourced": 9.0,
+      "surprise": 8.0
+     },
+     "total": 8.8,
+     "capped": [],
+     "passed": true,
+     "notes": "coverage: 5 atoms across 4 types (number x2, mechanism, limit, object): the risk, the answer, the form, the outcome\nspecificity: each atom carries a figure or a named thing: 70%, 5 to 9 items, 19 items in three pauses of 7, 7 and 5, 1.5% to 0.8% in 8 hospitals\nsourced: every row names a published work: the Google SRE book introduction, Gawande ch. 6, the WHO checklist, Haynes et al. NEJM 2009\nsurprise: atom 4 is not about software at all: a surgical checklist built around three stops, which a release list can borrow\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "lenses": {
+   "status": "skipped"
+  },
+  "angles": {
+   "status": "passed",
+   "deals": [
+    [
+     "cost-of-not",
+     "failure-first",
+     "provocation"
+    ]
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T18:20:41",
+     "by": "self",
+     "scores": {
+      "novelty": 8.0,
+      "truth": 9.0,
+      "relevance": 8.0,
+      "intrigue": 8.0,
+      "tone": 8.0
+     },
+     "total": 8.2,
+     "capped": [],
+     "passed": true,
+     "notes": "novelty: operator 1 (the cost of not) prices the missing stop with atom 1, where piece 1 borrowed the surgical form; similar reports the overlap\ntruth: roughly 70% of outages come from changes in a live system (Google SRE book, Introduction); the answers are rollouts, detection, rollback\nrelevance: a Friday list usually checks the code and the tests; the change itself is where the outage starts, so that is the stop it needs\nintrigue: seven of ten is a large share, and the gap is where most Friday lists put no stop at all\ntone: plain; it states the share as roughly 70% as the source does and does not warn or tell the reader what to do\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "genome": {
+   "status": "passed",
+   "deals": [
+    {
+     "register": "craft-pride",
+     "direction": "transit-map",
+     "format": "i-chart",
+     "hook": "comparison",
+     "close": "rule",
+     "harmony": "split",
+     "arc": "steady",
+     "type": "geometric",
+     "motion": "none",
+     "operator": "cost-of-not",
+     "operator_family": "invert",
+     "lens": "",
+     "ground": "paper",
+     "layout_rhythm": [
+      "table"
+     ],
+     "field_page": "none"
+    }
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T18:21:57",
+     "by": "self",
+     "scores": {
+      "coherence": 7.0,
+      "feasibility": 9.0
+     },
+     "total": 7.8,
+     "capped": [],
+     "passed": true,
+     "notes": "coherence: transit-map lends lines and stations; the table layout sets the two causes as ruled rows and the comparison hook as the last row\nfeasibility: one page, local fonts (Outfit, Work Sans), own palette from palette.py, the drawing is two lines of solid stations\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "sections": {
+   "status": "skipped"
+  },
+  "copy": {
+   "status": "skipped"
+  },
+  "visual": {
+   "status": "escalated",
+   "grades": [
+    {
+     "at": "2026-10-30T18:27:14",
+     "by": "critic",
+     "scores": {
+      "idea": 5.0,
+      "hook": 7.0,
+      "hierarchy": 6.0,
+      "craft": 6.0,
+      "colour": 8.0,
+      "distinct": 6.0
+     },
+     "total": 6.0,
+     "capped": [
+      "idea <= 5"
+     ],
+     "passed": false,
+     "notes": "idea: critic idea 5 (cap): the dots count outages, so the drawing is a plain 7 in 10 unit chart and fails the swap test; no stop is drawn\nhook: critic hook 7: the headline is plain words, but the 7 and 3 above it have no unit until \"outages\" at y 683\nhierarchy: critic hierarchy 6: the 3 is as large as the 7 and both sit near the headline's size, so three masses compete\ncraft: critic craft 6: numerals top-aligned while the dots sit on the first label line, three anchors per row\ncolour: critic colour 8: matches colour-plan.md, one accent hue at 0.9% of the page, cvd PASS\ndistinct: critic distinct 6: like friday-brand, rows of countable marks with right-aligned numerals and a source at the foot\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-plain-r1.md",
+      "sha256": "e21e0a78216a1d8d4ced9c7fdff6512a97ddc317255923da5b4810f159f2fc48",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 5.0,
+       "hook": 7.0,
+       "hierarchy": 6.0,
+       "craft": 6.0,
+       "colour": 8.0,
+       "distinct": 6.0
+      },
+      "total": 6.0
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-plain\\attempts\\visual-1"
+    },
+    {
+     "at": "2026-10-30T18:31:05",
+     "by": "critic",
+     "scores": {
+      "idea": 6.0,
+      "hook": 7.0,
+      "hierarchy": 6.0,
+      "craft": 7.0,
+      "colour": 7.0,
+      "distinct": 6.0
+     },
+     "total": 6.5,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic idea 6: the two-second read is \"bead chart\"; any 7 in 10 figure fits it, only the buffer stop belongs to this subject\nhook: critic hook 7: the headline reads in plain words, under a chart band that is read first by attention.py (object 45.7%)\nhierarchy: critic hierarchy 6: four horizontal rules cut three items into ledger bands, the broadsheet cluster in tells.md\ncraft: critic craft 7: the Friday list label sits 7 px left of its bar; the band under row 2 is uneven\ncolour: critic colour 7: one green accent at 0.8% of the area, same green ink family as friday-brand\ndistinct: critic distinct 6: layout and palette echo friday-brand: row labels left, marks in the middle, a big numeral right\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-plain-r2.md",
+      "sha256": "54d689a96044c582ab7adac899d350c90ccbd4a640b86c93599d7411b7436eec",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 6.0,
+       "hook": 7.0,
+       "hierarchy": 6.0,
+       "craft": 7.0,
+       "colour": 7.0,
+       "distinct": 6.0
+      },
+      "total": 6.5
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-plain\\attempts\\visual-2"
+    },
+    {
+     "at": "2026-10-30T18:34:07",
+     "by": "critic",
+     "scores": {
+      "idea": 6.0,
+      "hook": 7.0,
+      "hierarchy": 6.0,
+      "craft": 6.0,
+      "colour": 7.0,
+      "distinct": 6.0
+     },
+     "total": 6.3,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic idea 6: without the transit dressing the page is a 10-dot tally; the stop bar sits at the line's origin and reads as start\nhook: critic hook 7: \"Seven in ten outages start with a change.\" reads first in plain words above the map\nhierarchy: critic hierarchy 6: four bold lines at 44 to 52 px compete at one level; the key sits 350 px above its dots\ncraft: critic craft 6: two faces at nearly one size and weight stacked at y 465 and 588; the stop bar is the weakest element\ncolour: critic colour 7: sage ground with one green accent on one line, per the colour plan, cvd PASS\ndistinct: critic distinct 6: judged against friday-brand and the transit-map specimen; read as a transit tally\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-plain-r3.md",
+      "sha256": "fad104f8dc40d92ec61087a654ed8f5023813969d4112bf996251b655e364053",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 6.0,
+       "hook": 7.0,
+       "hierarchy": 6.0,
+       "craft": 6.0,
+       "colour": 7.0,
+       "distinct": 6.0
+      },
+      "total": 6.3
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-plain\\attempts\\visual-3"
+    }
+   ],
+   "attempts": 3
+  },
+  "final": {
+   "status": "skipped"
+  }
+ },
+ "seeds": {
+  "angles": [
+   9992023601811488856
+  ],
+  "genome": [
+   6849700981448078789
+  ]
+ },
+ "angle": {
+  "n": 1,
+  "operator": "cost-of-not",
+  "lens": "",
+  "one_line": "Roughly seven in ten outages start with a change, so a Friday list that does not stop before the change leaves most of the risk unchecked"
+ },
+ "genome": {
+  "register": "craft-pride",
+  "direction": "transit-map",
+  "format": "i-chart",
+  "hook": "comparison",
+  "close": "rule",
+  "harmony": "split",
+  "arc": "steady",
+  "type": "geometric",
+  "motion": "none",
+  "operator": "cost-of-not",
+  "operator_family": "invert",
+  "lens": "",
+  "ground": "paper",
+  "layout_rhythm": [
+   "table"
+  ],
+  "field_page": "none"
+ },
+ "visual_html": "<run>\\friday-plain\\visual.html"
+}

@@ -1,0 +1,78 @@
+name: check
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          npm i -D playwright@1.63.0 && npx playwright install --with-deps chromium
+          pip install pillow
+          npm i -g @anthropic-ai/claude-code
+      - name: Plugin and marketplace are valid
+        run: claude plugin validate . && claude plugin validate ./plugins/mansions
+      - name: Every specimen passes the audit
+        run: |
+          S=plugins/mansions/skills/atelier
+          for f in $S/assets/directions/*.html; do
+            case "$f" in
+              *.motion.html) continue ;;
+              *slide-16x9.html) X="--size 1920x1080" ;;
+              *story-9x16.html) X="--size 1080x1920 --safe reels" ;;
+              *) X="" ;;
+            esac
+            node $S/scripts/render.mjs "$f" --audit $X
+          done
+          node $S/scripts/render.mjs $S/examples/ledger-carousel/visual.html --audit
+      - name: The checks still catch the planted flaws
+        run: |
+          S=plugins/mansions/skills/atelier
+          if node $S/scripts/render.mjs $S/evals/anchors/src/bad-clipped.html --audit; then echo "::error::bad-clipped was not caught"; exit 1; fi
+          if node $S/scripts/render.mjs $S/evals/anchors/src/bad-overlap.html --audit; then echo "::error::bad-overlap was not caught"; exit 1; fi
+          if node $S/scripts/render.mjs $S/evals/anchors/src/bad-tiny-text.html --audit; then echo "::error::bad-tiny-text was not caught"; exit 1; fi
+          if python $S/scripts/copy_lint.py $S/evals/anchors/src/bad-salesy-copy.html; then echo "::error::bad-salesy-copy was not caught"; exit 1; fi
+          node $S/scripts/render.mjs $S/tests/fixtures/logo-vanish/visual.html --audit
+          node $S/scripts/render.mjs $S/tests/fixtures/logo-vanish/visual.html
+          if python $S/scripts/attention.py $S/tests/fixtures/logo-vanish; then echo "::error::logo-vanish was not caught"; exit 1; fi
+      - name: huashu-design's checker agrees with the audit and catches template habits
+        run: |
+          pip install playwright==1.63.0
+          S=plugins/mansions/skills/atelier
+          L="python $S/vendor/huashu-design/scripts/design_lint.py check --min-body 22 --min-label 22"
+          for f in $S/assets/directions/*.html $S/examples/ledger-carousel/visual.html; do
+            case "$f" in
+              *.motion.html) continue ;;
+              *slide-16x9.html) V=1920x1080 ;;
+              *story-9x16.html) V=1080x1920 ;;
+              *) V=1080x1350 ;;
+            esac
+            $L "$f" --viewport $V
+          done
+          if $L $S/evals/anchors/src/bad-tiny-text.html --viewport 1080x1350; then echo "::error::design_lint missed bad-tiny-text"; exit 1; fi
+          $L $S/evals/anchors/src/bad-template-chrome.html --viewport 1080x1350 | grep -q "卡片套件"
+      - name: Composer behaves (same topic twice never repeats; grades gate; caps; escalation)
+        run: python plugins/mansions/skills/atelier/tests/test_composer.py
+      - name: Diversity holds at scale
+        run: python plugins/mansions/skills/atelier/tests/test_diversity.py 20
+      - name: Colour plans pass contrast and colour-vision checks
+        run: |
+          S=plugins/mansions/skills/atelier/scripts
+          for r in wonder dry craft-pride relief unease-to-control curiosity warmth rigour play; do
+            python $S/palette.py --register $r --harmony analogous --arc dawn --pages 6 --out /tmp/pal-$r
+            for g in dark paper field; do
+              for arc in steady cooldown single-flash chapters; do
+                python $S/palette.py --register $r --harmony split --arc $arc --pages 6 --ground $g --out /tmp/pal-$r-$g > /dev/null
+              done
+            done
+          done
+          python $S/palette.py --taste white-link-blue --register curiosity --harmony complementary --pages 3 --out /tmp/pal-taste
+      - name: Python scripts compile
+        run: python -m py_compile plugins/mansions/skills/atelier/scripts/*.py plugins/mansions/skills/atelier/vendor/huashu-design/scripts/design_lint.py

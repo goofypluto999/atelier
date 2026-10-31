@@ -1,0 +1,283 @@
+{
+ "slug": "friday-motion",
+ "topic": "what a Friday release checklist really needs",
+ "topic_key": [
+  "checklist",
+  "friday",
+  "needs",
+  "really",
+  "release",
+  "what"
+ ],
+ "medium": "video",
+ "scope": "quick",
+ "created": "2026-10-30T19:23:54",
+ "stages": {
+  "atoms": {
+   "status": "passed",
+   "grades": [
+    {
+     "at": "2026-10-30T19:24:13",
+     "by": "self",
+     "scores": {
+      "coverage": 8.0,
+      "specificity": 8.0,
+      "sourced": 9.0,
+      "surprise": 7.0
+     },
+     "total": 8.1,
+     "capped": [],
+     "passed": true,
+     "notes": "coverage: five atoms across number, mechanism, limit and object: the 70% outage share, three answers, 5 to 9 items, WHO 19 in 7/7/5, 1.5% to 0.8%\nspecificity: each atom carries a figure or a named object: 19 items as 7, 7 and 5; 1.5% to 0.8% across 8 hospitals; 5 to 9 items\nsourced: every row names a published source with a URL or chapter: SRE book Introduction, Gawande ch. 6, WHO 2009, Haynes NEJM 2009\nsurprise: a surgical list stops three times with no pause over nine checks; most release lists are one long page before go-live\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "lenses": {
+   "status": "skipped"
+  },
+  "angles": {
+   "status": "passed",
+   "deals": [
+    [
+     "adversary",
+     "single-shape",
+     "domain-analogy"
+    ]
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T19:24:40",
+     "by": "self",
+     "scores": {
+      "novelty": 7.0,
+      "truth": 9.0,
+      "relevance": 8.0,
+      "intrigue": 7.0,
+      "tone": 8.0
+     },
+     "total": 7.7,
+     "capped": [],
+     "passed": true,
+     "notes": "novelty: one sheet that splits into three cards on camera, no cut in the film; round 12 pieces were still pages of rows and stops\ntruth: 19 checks in 7, 7 and 5 is the WHO 2009 list; 5 to 9 per pause is Gawande ch. 6; the Friday pauses map to the SRE book's three answers\nrelevance: a release owner reads a Friday list before go-live; the film shows where its checks belong in time\nintrigue: the long sheet at frame 0 is visibly too long for one stop, and the viewer waits to see how it breaks apart\ntone: it states counts and sources only, with no advice voice and no selling; the close is the three counts on three cards\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "genome": {
+   "status": "passed",
+   "deals": [
+    {
+     "register": "craft-pride",
+     "direction": "type-only",
+     "format": "v-draw",
+     "hook": "image",
+     "close": "image",
+     "harmony": "monochrome",
+     "arc": "dawn",
+     "type": "house",
+     "motion": "taste:carried-picture",
+     "operator": "single-shape",
+     "operator_family": "constrain",
+     "lens": "",
+     "ground": "dark",
+     "layout_rhythm": [
+      "bleed",
+      "split",
+      "grid",
+      "map",
+      "grid"
+     ],
+     "field_page": "none"
+    },
+    {
+     "register": "craft-pride",
+     "direction": "kitchen-rail",
+     "format": "v-kinetic",
+     "hook": "contradiction",
+     "close": "image",
+     "harmony": "split",
+     "arc": "cooldown",
+     "type": "house",
+     "motion": "taste:rolling-figures",
+     "operator": "single-shape",
+     "operator_family": "constrain",
+     "lens": "",
+     "ground": "dark",
+     "layout_rhythm": [
+      "artefact",
+      "diagram",
+      "stack",
+      "artefact",
+      "table"
+     ],
+     "field_page": "none"
+    }
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T19:25:02",
+     "by": "self",
+     "scores": {
+      "coherence": 8.0,
+      "feasibility": 8.0
+     },
+     "total": 8.0,
+     "capped": [],
+     "passed": true,
+     "notes": "coherence: kitchen-rail lends the rail and stamped tickets; one long ticket of 19 checks cut into three tickets of 7, 7 and 5 is the angle itself\nfeasibility: one 10 s film at 1080x1350 on the dark ground: a canvas rail, three tickets, ticks, a camera glide; the hook in HTML at frame 0\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "sections": {
+   "status": "skipped"
+  },
+  "copy": {
+   "status": "skipped"
+  },
+  "visual": {
+   "status": "escalated",
+   "grades": [
+    {
+     "at": "2026-10-30T19:45:44",
+     "by": "critic",
+     "scores": {
+      "idea": 7.0,
+      "hook": 7.0,
+      "hierarchy": 7.0,
+      "craft": 4.0,
+      "colour": 5.0,
+      "distinct": 7.0
+     },
+     "total": 6.0,
+     "capped": [
+      "craft <= 4"
+     ],
+     "passed": false,
+     "notes": "idea: critic: one tall ticket cut into three ticked one pause at a time, 19 = 7 + 7 + 5, reads as checklist tickets\nhook: critic: the headline drops \"at most\" and claims nine over tickets of 7, 7 and 5; surgical and release never on screen\nhierarchy: critic: the headline then the tickets read in order; the salmon bracket shares the 19 label and the 9 is unmarked\ncraft: critic: labels smear in the camera moves and clip at the left edge at 6 s and 7 s; a tone step crosses the long ticket\ncolour: critic: accent paint 0% at frame 0 and the poster; the plan's accent never reaches the thing to remember\ndistinct: critic: a rail of hanging tickets that splits on camera departs from the specimen and the three earlier still pieces\n",
+     "evidence": {
+      "path": "<run>\\verdicts\\friday-motion-1.md",
+      "sha256": "3c7c061c5684098c199dfefc39a324e192cc8858eb3eedbd01b36fbd5bfec6e8",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 7.0,
+       "hook": 7.0,
+       "hierarchy": 7.0,
+       "craft": 4.0,
+       "colour": 5.0,
+       "distinct": 7.0
+      },
+      "total": 6.0
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-motion\\attempts\\visual-1"
+    },
+    {
+     "at": "2026-10-30T19:59:21",
+     "by": "critic",
+     "scores": {
+      "idea": 7.0,
+      "hook": 8.0,
+      "hierarchy": 7.0,
+      "craft": 6.0,
+      "colour": 7.0,
+      "distinct": 7.0
+     },
+     "total": 7.0,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic: only this subject fills the 19-check ticket cut into 7, 7 and 5; the squiggles and no Friday release word weaken it\nhook: critic: \"Nineteen checks. Nine at most per pause.\" reads first at phone size, with the ticket header \"19 checks\"\nhierarchy: critic: the headline then the ticket row read in order; the last 3 s hold a small ticked poster over an empty band\ncraft: critic: the ticket titles are about 28 px drawn, 9 px on a phone; the third ticket overlaps the second mid-drop at 3 s\ncolour: critic: the counts turn mint at 9 s, an accent step of 0.033 the colour check flags; the coral bracket reads well\ndistinct: critic: palette, ticks and the 19-to-7/7/5 cut depart from the specimen, though the poster layout sits close to it\n",
+     "evidence": {
+      "path": "<run>\\verdicts\\friday-motion-2.md",
+      "sha256": "e9223f93dc875a574f1c62c5bd72956312bfe7a25ac0e2d1bcb438d7d8c08a68",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 7.0,
+       "hook": 8.0,
+       "hierarchy": 7.0,
+       "craft": 6.0,
+       "colour": 7.0,
+       "distinct": 7.0
+      },
+      "total": 7.0
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-motion\\attempts\\visual-2"
+    },
+    {
+     "at": "2026-10-31T10:51:23",
+     "by": "critic",
+     "scores": {
+      "idea": 7.0,
+      "hook": 7.0,
+      "hierarchy": 7.0,
+      "craft": 6.0,
+      "colour": 7.0,
+      "distinct": 6.0
+     },
+     "total": 6.7,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic: the 19-check ticket cut into 7, 7 and 5 is only this subject, but the cut at 3 s is the least readable frame\nhook: critic: \"Nineteen checks. Nine at most per pause.\" reads first; the headline names no subject at phone size\nhierarchy: critic: headline, then the rail, then the counts read in order; the bracket is gone by the hold\ncraft: critic: the stamps cover row 4 and its squiggle strikes \"7 of 7\"; the pieces overlap with a grey bar at 3 s\ncolour: critic: coral for the 9 then green for the counts follows colour-plan.md; text 12.9:1 and cvd pass\ndistinct: critic: departs from the three still pieces but keeps the kitchen-rail specimen skeleton of rail, clips and stamps\n",
+     "evidence": {
+      "path": "<run>\\verdicts\\friday-motion-3.md",
+      "sha256": "a899ed4f0eb9aa7ecb9afdc8412ed2a2b15f6eeb40df6e6cc62e50989321aa0d",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 7.0,
+       "hook": 7.0,
+       "hierarchy": 7.0,
+       "craft": 6.0,
+       "colour": 7.0,
+       "distinct": 6.0
+      },
+      "total": 6.7
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-motion\\attempts\\visual-3"
+    }
+   ],
+   "attempts": 3
+  },
+  "final": {
+   "status": "skipped"
+  }
+ },
+ "seeds": {
+  "angles": [
+   5014850994976019444
+  ],
+  "genome": [
+   6824274174161674057,
+   3838518981355510259
+  ]
+ },
+ "angle": {
+  "n": 2,
+  "operator": "single-shape",
+  "lens": "",
+  "one_line": "One long Friday list splits into three short ones on camera, 19 checks read 7, 7 and 5 at a time, as the surgical checklist does."
+ },
+ "genome": {
+  "register": "craft-pride",
+  "direction": "kitchen-rail",
+  "format": "v-kinetic",
+  "hook": "contradiction",
+  "close": "image",
+  "harmony": "split",
+  "arc": "cooldown",
+  "type": "house",
+  "motion": "taste:rolling-figures",
+  "operator": "single-shape",
+  "operator_family": "constrain",
+  "lens": "",
+  "ground": "dark",
+  "layout_rhythm": [
+   "artefact",
+   "diagram",
+   "stack",
+   "artefact",
+   "table"
+  ],
+  "field_page": "none"
+ },
+ "visual_html": "<run>\\friday-motion\\visual.html"
+}

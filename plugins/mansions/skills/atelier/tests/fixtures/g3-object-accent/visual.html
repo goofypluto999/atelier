@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/g3-object-accent): a drawing (the object) and a filled accent block of about the same share of the page, both far above a 72px hook. The accent is a hair ahead of the object. attention.py must PASS this cover with a note: the accent is compared with the best hook, number or object (not the hook alone), so it leads the object by about 1.0x, under 1.5x. render.mjs --audit passes because the hook is the biggest type. -->
+<style>
+.oa { background: var(--paper); color: var(--ink); padding: 90px 84px; }
+.oa h1 { font: 600 72px/1.05 var(--disp); letter-spacing: -0.03em; max-width: 700px; }
+.oa svg { position: absolute; left: 84px; top: 330px; }
+.oa .a { position: absolute; left: 84px; top: 900px; width: 520px; height: 280px; background: var(--house); color: var(--cream); padding: 40px; font: 800 64px/1 var(--body); font-stretch: 75%; }
+.oa .fine { position: absolute; left: 84px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page oa">
+  <h1 data-role="hook">One step waits for a person.</h1>
+  <svg width="912" height="520" viewBox="0 0 912 520" data-role="object">
+    <g fill="#2e2c28" stroke="#2e2c28" stroke-width="8"><rect x="20" y="130" width="220" height="260"/><rect x="346" y="130" width="220" height="260"/><rect x="672" y="130" width="220" height="260"/></g>
+    <g fill="none" stroke="#2e2c28" stroke-width="12"><path d="M240 260 H346 M566 260 H672"/></g>
+    <g font-family="Archivo" font-weight="800" font-size="48" fill="#f7f4ee"><text x="50" y="270">queue</text><text x="376" y="270">worker</text><text x="702" y="270">sign</text></g>
+  </svg>
+  <div class="a" data-role="accent">Waiting</div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

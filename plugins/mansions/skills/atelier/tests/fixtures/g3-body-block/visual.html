@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/g3-body-block): a 72px hook above a large dark block of body type. The block holds far more of the page's saliency than the hook (about 59% against 13%), but body type is to be read, not to lead. attention.py must PASS this cover and still print the body share: a block labelled data-role="body" takes no part in the cover race, so labelling less is not rewarded. render.mjs --audit passes because the hook is the biggest type. -->
+<style>
+.bb { background: var(--paper); color: var(--ink); padding: 90px 84px; }
+.bb h1 { font: 600 72px/1.05 var(--disp); letter-spacing: -0.03em; max-width: 700px; }
+.bb .b { position: absolute; left: 84px; right: 84px; top: 400px; bottom: 150px; background: var(--ink); color: var(--cream); padding: 56px 60px; font: 450 40px/1.4 var(--body); }
+.bb .fine { position: absolute; left: 84px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page bb">
+  <h1 data-role="hook">Hours of reporting, every month.</h1>
+  <div class="b" data-role="body">
+    <p>Someone exports the numbers from five tools, chases the owners, cleans the columns, merges the sheets and checks the totals by hand.</p>
+    <p style="margin-top:30px">The work is not hard. It is long.</p>
+  </div>
+  <p class="fine" data-role="fine">Sample content and numbers.</p>
+</section>

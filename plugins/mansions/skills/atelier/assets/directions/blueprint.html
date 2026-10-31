@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: blueprint. A drafting sheet at night: construction lines, dimension marks, a title block, one lit part. For designs not yet built. -->
+<style>
+.bp { background: #0b1c26; color: #dfe8ee; }
+.bp h1 { position: absolute; left: 80px; right: 80px; top: 86px; font: 600 94px/0.98 var(--disp); letter-spacing: -0.03em; text-wrap: balance; }
+.bp svg { position: absolute; left: 0; top: 330px; }
+.bp .lbl { font: 500 32px var(--mono); fill: #9fb4c2; }
+.bp .lit { font: 650 34px var(--body); fill: var(--glow); }
+.tb { position: absolute; right: 80px; bottom: 120px; width: 470px; border: 3px solid #9fb4c2; display: grid; grid-template-columns: 1fr 1fr; font: 500 32px/1.25 var(--mono); color: #dfe8ee; }
+.tb div { padding: 14px 18px; border-right: 3px solid #9fb4c2; border-bottom: 3px solid #9fb4c2; }
+.tb div:nth-child(2n) { border-right: 0; } .tb div:nth-last-child(-n+2) { border-bottom: 0; }
+.bp .logo { left: 80px; bottom: 56px; }
+</style>
+<section class="page bp">
+  <h1 data-role="hook">A&nbsp;queue, a&nbsp;worker and&nbsp;one person who&nbsp;signs.</h1>
+  <svg width="1080" height="640" viewBox="0 0 1080 640" data-role="object">
+    <g stroke="#9fb4c233" stroke-width="2"><path d="M0 120 H1080 M0 300 H1080 M0 480 H1080 M180 0 V640 M540 0 V640 M900 0 V640"/></g>
+    <g fill="none" stroke="#9fb4c2" stroke-width="4"><rect x="90" y="200" width="220" height="200"/><rect x="430" y="200" width="220" height="200"/><path d="M310 300 H430"/><path d="M650 300 H770"/></g>
+    <rect x="770" y="200" width="220" height="200" fill="#fff6e81a" stroke="#fff6e8" stroke-width="6"/>
+    <g stroke="#9fb4c2" stroke-width="2"><path d="M90 450 V490 M310 450 V490 M90 470 H310"/><path d="M400 300 l20 -8 v16z" fill="#9fb4c2"/><path d="M740 300 l20 -8 v16z" fill="#9fb4c2"/></g>
+    <text class="lbl" x="118" y="306">queue</text><text class="lbl" x="466" y="306">worker</text><text class="lit" x="800" y="310">sign-off</text>
+    <text class="lbl" x="150" y="530">sample: 220 px</text>
+  </svg>
+  <div class="tb"><div>SHEET</div><div>A-01</div><div>SCALE</div><div>none</div><div>STATUS</div><div>design</div></div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

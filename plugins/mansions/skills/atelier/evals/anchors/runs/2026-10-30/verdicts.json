@@ -1,0 +1,12 @@
+{
+  "01": {"verdict": "PASS", "flaws": []},
+  "02": {"verdict": "FAIL", "flaws": ["craft", "legibility"]},
+  "03": {"verdict": "FAIL", "flaws": ["hierarchy", "generic-idea"]},
+  "04": {"verdict": "PASS", "flaws": []},
+  "05": {"verdict": "FAIL", "flaws": ["tells", "generic-idea", "copy"]},
+  "06": {"verdict": "FAIL", "flaws": ["tells", "generic-idea", "copy"]},
+  "07": {"verdict": "PASS", "flaws": []},
+  "08": {"verdict": "FAIL", "flaws": ["craft"]},
+  "09": {"verdict": "FAIL", "flaws": ["copy"]},
+  "10": {"verdict": "FAIL", "flaws": ["legibility", "tells", "craft"]}
+}

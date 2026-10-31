@@ -1,0 +1,699 @@
+[
+ {
+  "id": "reverse",
+  "family": "invert",
+  "name": "Reverse the direction",
+  "recipe": "Tell it from the end back to the start, or from the effect back to the cause.",
+  "example": "Start with the report nobody read, end with the export that started it.",
+  "risk": "can feel like a gimmick if the order adds nothing",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "TRIZ: the other way round"
+ },
+ {
+  "id": "invert-belief",
+  "family": "invert",
+  "name": "Turn over a real belief",
+  "recipe": "Name a belief the audience really holds (sourced), then show the evidence that turns it over. Never a straw man.",
+  "example": "'More tools means more insight' against a count of tools nobody opens.",
+  "risk": "preachy if the belief is invented or the tone gloats",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "de Bono: reversal"
+ },
+ {
+  "id": "failure-first",
+  "family": "invert",
+  "name": "Failure first",
+  "recipe": "Open on the moment it broke, then the mechanism, then the change.",
+  "example": "The night the sync failed silently, then why, then the alert that replaced it.",
+  "risk": "cringe if it fishes for sympathy",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "cost-of-not",
+  "family": "invert",
+  "name": "The cost of not",
+  "recipe": "Price what happens when nothing is done: hours, errors, money, attention.",
+  "example": "Fifteen hours a month, every month, for a report read in twenty minutes.",
+  "risk": "preachy if it becomes a warning to the reader",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "zoom-in",
+  "family": "scale",
+  "name": "Zoom in to one atom",
+  "recipe": "Tell the whole topic through ONE row, ONE message, ONE number, ONE minute.",
+  "example": "One invoice line, followed through twelve steps.",
+  "risk": "shallow if the atom is not typical",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "zoom-out",
+  "family": "scale",
+  "name": "Zoom out to the system",
+  "recipe": "Show the whole system the atom lives in: every part, its flows, the one weak joint.",
+  "example": "Fourteen sources, one dashboard, one manual step in the middle.",
+  "risk": "bland if no joint is singled out",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "ten-x",
+  "family": "scale",
+  "name": "At ten times",
+  "recipe": "What breaks, or becomes possible, if the volume is ten times larger?",
+  "example": "At 10x the orders, the one manual step becomes a full-time job.",
+  "risk": "speculative: label it as a projection",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "scale shift"
+ },
+ {
+  "id": "tenth",
+  "family": "scale",
+  "name": "At a tenth",
+  "recipe": "What if it were a tenth of the size, cost or time? What would you remove?",
+  "example": "If the report took 9 minutes, which three steps would be gone?",
+  "risk": "speculative: label it as a projection",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "scale shift"
+ },
+ {
+  "id": "time-travel",
+  "family": "time",
+  "name": "Then and now",
+  "recipe": "Put the same task in another time: twenty years ago, or five years ahead.",
+  "example": "The same reconciliation done with a ledger book in 2005 and with an agent now.",
+  "risk": "nostalgia or hype; keep both ends factual",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "slow-motion",
+  "family": "time",
+  "name": "Slow motion",
+  "recipe": "Stretch one second or one step into a full story, beat by beat.",
+  "example": "The 400 ms between a webhook arriving and a row being written.",
+  "risk": "boring if the beats are not surprising",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "timelapse",
+  "family": "time",
+  "name": "Timelapse",
+  "recipe": "Compress a long period into a sequence of frames.",
+  "example": "A month of report weeks as 30 frames, 4 of them dark.",
+  "risk": "fits motion best",
+  "fits": [
+   "video",
+   "carousel"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "genre-swap",
+  "family": "transfer",
+  "name": "Borrow a genre",
+  "recipe": "Tell it in the grammar of another genre: a recipe, a weather report, a field guide entry, a court transcript, an airline safety card. Keep the facts exact.",
+  "example": "The month-end close as a weather forecast with fronts and pressure.",
+  "risk": "cringe if the genre is a joke on the audience; the genre must carry information",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "Koestler: bisociation"
+ },
+ {
+  "id": "domain-analogy",
+  "family": "transfer",
+  "name": "An old idea from another field",
+  "recipe": "Find the field that solved this first (aviation checklists, kitchen tickets, double-entry bookkeeping, queueing theory, epidemiology) and show the transfer.",
+  "example": "Kitchen ticket rails as the model for an approval queue.",
+  "risk": "shallow if the analogy is decorative; show what transfers and what does not",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "Koestler: bisociation; analogy transfer"
+ },
+ {
+  "id": "nature",
+  "family": "transfer",
+  "name": "A mechanism from nature",
+  "recipe": "Explain the system through a natural mechanism with the same shape (ant trails, immune memory, river deltas).",
+  "example": "Error alerts as an immune response: remember the pathogen, react faster next time.",
+  "risk": "twee if forced; one paragraph at most",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "artefact",
+  "family": "artefact",
+  "name": "Let the artefact speak",
+  "recipe": "Show the real document: the log, the config line, the receipt, the form, the email. Annotate it, do not paraphrase it.",
+  "example": "The actual diff that moved the approval to the merge.",
+  "risk": "needs permission and anonymising",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "anatomy",
+  "family": "artefact",
+  "name": "Anatomy plate",
+  "recipe": "Take one thing apart and label every part, like a textbook plate.",
+  "example": "The parts of one automated report, from source to alert.",
+  "risk": "dry if labels are jargon",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "before-after",
+  "family": "artefact",
+  "name": "Before and after",
+  "recipe": "Two states of the same thing, side by side, same scale.",
+  "example": "The same week, two timetables.",
+  "risk": "samey if overused; vary the device (diff, ledger, map)",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "one-number",
+  "family": "measure",
+  "name": "The one number",
+  "recipe": "Find the single number that carries the topic and build everything around it.",
+  "example": "0 rows rejected.",
+  "risk": "misleading if the number lacks its comparison",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "ratio",
+  "family": "measure",
+  "name": "The ratio",
+  "recipe": "Put two numbers into one ratio that surprises.",
+  "example": "45 to 1: hours of assembly to minutes of reading.",
+  "risk": "needs both sources",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "price-tag",
+  "family": "measure",
+  "name": "Put a price on it",
+  "recipe": "Turn an invisible cost into money or hours, with the working shown.",
+  "example": "Retries: $0.19 a run, nobody looked.",
+  "risk": "salesy if it turns into 'we save you X'",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "count",
+  "family": "measure",
+  "name": "Count what nobody counts",
+  "recipe": "Count something taken for granted: clicks, handoffs, tabs, copies.",
+  "example": "Seven of twelve steps are copying.",
+  "risk": "needs a real count",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "stakeholder-swap",
+  "family": "stakeholder",
+  "name": "Somebody else's chair",
+  "recipe": "Tell it from the view of a person rarely asked: the intern, the auditor, the night shift, the customer's customer.",
+  "example": "The report week as the junior analyst sees it.",
+  "risk": "presumptuous if you put words in a real person's mouth; use roles, not quotes",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "object-speaks",
+  "family": "stakeholder",
+  "name": "The object's point of view",
+  "recipe": "Give the object agency, without cuteness: what it waits for, who touches it, where it gets lost.",
+  "example": "A row of data waits two days for a human to copy it.",
+  "risk": "twee if it talks in the first person; describe, do not ventriloquise",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "adversary",
+  "family": "stakeholder",
+  "name": "Ask the sceptic",
+  "recipe": "Put the strongest objection first and answer it with evidence.",
+  "example": "'Automation breaks silently.' Here is the alert that fires.",
+  "risk": "preachy if the answer is smug",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "expert-eye",
+  "family": "stakeholder",
+  "name": "What a specialist would notice",
+  "recipe": "Ask what an accountant, a pilot, a chef or a librarian would notice first about this system.",
+  "example": "A librarian would ask: where is the catalogue?",
+  "risk": "cringe if the specialist is a costume",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "constraint-one-word",
+  "family": "constrain",
+  "name": "One-word pages",
+  "recipe": "Each page or shot may carry one word plus its proof.",
+  "example": "WAIT. Then the ticket that has waited since Monday.",
+  "risk": "can feel like drama formatting; keep proof on every page",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "Oulipo: writing under constraint"
+ },
+ {
+  "id": "no-adjectives",
+  "family": "constrain",
+  "name": "No adjectives",
+  "recipe": "Write the piece with no adjectives; only nouns, verbs and numbers.",
+  "example": "'Fourteen sources. One sync. Zero rejected.'",
+  "risk": "flat if rhythm is not varied",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "Oulipo: writing under constraint"
+ },
+ {
+  "id": "only-numbers",
+  "family": "constrain",
+  "name": "Numbers only",
+  "recipe": "Tell the story in numbers with minimal words between them.",
+  "example": "6, 2, 7: 15 hours. 20 minutes of reading.",
+  "risk": "needs a strong arc in the numbers",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "single-shape",
+  "family": "constrain",
+  "name": "One shape, never cut",
+  "recipe": "In motion, one element morphs through every state of the story.",
+  "example": "A ticket becomes a row becomes a chart becomes the report.",
+  "risk": "fits motion",
+  "fits": [
+   "video"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "glossary",
+  "family": "decompose",
+  "name": "Define the word",
+  "recipe": "Define one term so precisely that the definition reframes the problem.",
+  "example": "Handoff, n.: the moment the work belongs to nobody.",
+  "risk": "pedantic if the term is obvious",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "taxonomy",
+  "family": "decompose",
+  "name": "Sort into kinds",
+  "recipe": "Sort the subject into 3 to 6 kinds, each with a sign and a cost (a field guide).",
+  "example": "Four kinds of manual step and how to spot each.",
+  "risk": "listicle risk: each kind needs evidence",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "threshold",
+  "family": "decompose",
+  "name": "Find the threshold",
+  "recipe": "Find the point where quantity changes quality: when does X become Y?",
+  "example": "At about 5 sources, copying turns from a chore into a risk.",
+  "risk": "needs evidence for the threshold or label it as an estimate",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "question-behind",
+  "family": "decompose",
+  "name": "The question behind the question",
+  "recipe": "Find what people really ask when they ask the obvious question.",
+  "example": "'Can it automate reports?' means 'Can I trust numbers I did not assemble?'",
+  "risk": "preachy if it lectures the asker",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "hidden-constraint",
+  "family": "decompose",
+  "name": "The hidden constraint",
+  "recipe": "Find the rule nobody wrote down that shapes everything.",
+  "example": "The report is late because finance closes on day 3.",
+  "risk": "needs a real source",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "second-order",
+  "family": "decompose",
+  "name": "The effect after the effect",
+  "recipe": "Follow the change one step further than the obvious.",
+  "example": "Faster reports moved the Monday meeting to Friday.",
+  "risk": "speculative unless observed",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "combine",
+  "family": "combine",
+  "name": "Combine two atoms",
+  "recipe": "Put two unrelated facts from the topic side by side until they explain each other.",
+  "example": "The failed export and the late meeting are the same story.",
+  "risk": "forced if the link is weak",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "SCAMPER: combine"
+ },
+ {
+  "id": "eliminate",
+  "family": "combine",
+  "name": "Take one thing away",
+  "recipe": "Remove one part and show what happens to the whole.",
+  "example": "Remove the copying step: three days disappear.",
+  "risk": "speculative: label it",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "SCAMPER: eliminate"
+ },
+ {
+  "id": "repurpose",
+  "family": "combine",
+  "name": "Put to another use",
+  "recipe": "Show the tool or data doing a job it was not designed for.",
+  "example": "The error log used as a map of where work waits.",
+  "risk": "needs a real case or a labelled sketch",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "SCAMPER: put to other use"
+ },
+ {
+  "id": "provocation",
+  "family": "provoke",
+  "name": "A provocation",
+  "recipe": "State a deliberately extreme 'what if' as a thinking tool, then extract the useful idea from it. Label it.",
+  "example": "What if the report wrote itself and nobody read it? Then what is it for?",
+  "risk": "cringe if presented as a hot take",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "de Bono: provocation (PO)"
+ },
+ {
+  "id": "random-entry",
+  "family": "provoke",
+  "name": "Random entry",
+  "recipe": "Pick a random concrete word (seeded) and force a link to the topic; keep the link only if it reveals something true.",
+  "example": "'Lighthouse': the one alert that must never fail.",
+  "risk": "nonsense if forced; discard freely",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "de Bono: random entry"
+ },
+ {
+  "id": "the-duet",
+  "family": "narrative",
+  "name": "Two voices",
+  "recipe": "Two roles disagree in good faith; the piece lets the evidence settle it.",
+  "example": "The analyst and the auditor on whether automation hides errors.",
+  "risk": "straw-man risk",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "scene",
+  "family": "narrative",
+  "name": "A real scene",
+  "recipe": "Place the viewer at a time and place where the topic happens, with real details only.",
+  "example": "06:00, the sync runs; 09:00, the report is read.",
+  "risk": "invented details are lies; first-party only",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "puzzle",
+  "family": "narrative",
+  "name": "The puzzle",
+  "recipe": "State an anomaly as fact, then solve it.",
+  "example": "One number never matched. Here is why.",
+  "risk": "needs a real anomaly",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ },
+ {
+  "id": "handover",
+  "family": "narrative",
+  "name": "A note to the next person",
+  "recipe": "Write it as a note to whoever maintains this next: what to check, what not to touch, why.",
+  "example": "Before you change the sync: check the failed-export alert first.",
+  "risk": "imperative tone is allowed here; it is a handover, not advice to the reader",
+  "fits": [
+   "carousel",
+   "image",
+   "video",
+   "text",
+   "slide"
+  ],
+  "source": "own"
+ }
+]

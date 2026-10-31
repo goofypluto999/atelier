@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r9-display-breaks): two display lines the 30 Oct 2026 critics marked. The hook leaves "undo." alone on its
+     last line and the claim breaks after "of". The audit passes and must warn on both. -->
+<style>
+.db2 { background: var(--paper); color: var(--ink); padding: 90px 80px; }
+.db2 h1 { font: 650 148px/0.98 var(--disp); letter-spacing: -0.03em; width: 900px; }
+.db2 h2 { margin-top: 80px; font: 650 72px/1.05 var(--disp); letter-spacing: -0.02em; width: 900px; }
+.db2 .fine { position: absolute; left: 80px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page db2">
+  <h1 data-role="hook">Line 3 is the<br>undo.</h1>
+  <h2>About 70% of<br>outages come from changes.</h2>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

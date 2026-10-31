@@ -1,0 +1,164 @@
+{
+ "wonder": {
+  "feeling": "awe at a precise capability",
+  "colour": {
+   "recipe": "deep-ground-luminous-accent",
+   "chroma": "high on one element",
+   "lightness": "dark ground, bright accent"
+  },
+  "motion": {
+   "tempo": "slow then sudden",
+   "spring_k": [
+    90,
+    140
+   ]
+  },
+  "type": "large, light-to-regular weight, generous space",
+  "pairings": ["house", "geometric", "italic-voice", "classic-serif", "art-deco", "bookish"],
+  "words": "plain nouns, one surprising number"
+ },
+ "dry": {
+  "feeling": "deadpan amusement",
+  "colour": {
+   "recipe": "restricted-neutral",
+   "chroma": "low; one small accent",
+   "lightness": "paper or mid"
+  },
+  "motion": {
+   "tempo": "precise, minimal",
+   "spring_k": [
+    250,
+    400
+   ]
+  },
+  "type": "tight, sober, one condensed voice",
+  "pairings": ["house", "condensed-poster", "technical", "geometric", "classic-serif"],
+  "words": "understatement, flat delivery of a big fact"
+ },
+ "craft-pride": {
+  "feeling": "quiet satisfaction in a clean mechanism",
+  "colour": {
+   "recipe": "tight-value-precise-accent",
+   "chroma": "medium accent",
+   "lightness": "tight value range"
+  },
+  "motion": {
+   "tempo": "measured, settles cleanly",
+   "spring_k": [
+    170,
+    260
+   ]
+  },
+  "type": "grid-true, tabular numbers",
+  "pairings": ["house", "technical", "geometric", "condensed-poster", "grotesk-character"],
+  "words": "exact verbs, named parts"
+ },
+ "relief": {
+  "feeling": "a problem that stops hurting",
+  "colour": {
+   "recipe": "dawn-arc",
+   "chroma": "rising across pages",
+   "lightness": "dark to light across the piece"
+  },
+  "motion": {
+   "tempo": "tension then release",
+   "spring_k": [
+    120,
+    180
+   ]
+  },
+  "type": "heavier at the start, lighter at the end",
+  "pairings": ["house", "geometric", "grotesk-character", "editorial-serif", "italic-voice", "classic-serif"],
+  "words": "before in short sentences, after in calm ones"
+ },
+ "unease-to-control": {
+  "feeling": "a risk named, then contained",
+  "colour": {
+   "recipe": "warm-to-cool-arc",
+   "chroma": "high early, low late",
+   "lightness": "contrast high early, calm late"
+  },
+  "motion": {
+   "tempo": "quick early, still at the end",
+   "spring_k": [
+    200,
+    320
+   ]
+  },
+  "type": "condensed warnings, then plain text",
+  "pairings": ["condensed-poster", "technical", "heavy-display", "house", "outdoors"],
+  "words": "the risk in numbers, the control in one rule"
+ },
+ "curiosity": {
+  "feeling": "a puzzle you want solved",
+  "colour": {
+   "recipe": "neutral-with-one-complement",
+   "chroma": "one unexpected complementary accent",
+   "lightness": "mid"
+  },
+  "motion": {
+   "tempo": "withholds, then reveals",
+   "spring_k": [
+    140,
+    220
+   ]
+  },
+  "type": "one oversized clue",
+  "pairings": ["heavy-display", "condensed-poster", "crisp-serif", "italic-voice", "grotesk-character", "art-deco"],
+  "words": "a stated anomaly, never a question to the reader"
+ },
+ "warmth": {
+  "feeling": "people and care",
+  "colour": {
+   "recipe": "warm-neutrals",
+   "chroma": "low to medium, warm temperature",
+   "lightness": "light"
+  },
+  "motion": {
+   "tempo": "gentle",
+   "spring_k": [
+    90,
+    130
+   ]
+  },
+  "type": "humanist or serif text face, softer weights",
+  "pairings": ["editorial-serif", "bookish", "classic-serif", "italic-voice", "outdoors", "handnote"],
+  "words": "roles and moments, never names without permission"
+ },
+ "rigour": {
+  "feeling": "trust from method",
+  "colour": {
+   "recipe": "monochrome-scale",
+   "chroma": "very low",
+   "lightness": "full value scale"
+  },
+  "motion": {
+   "tempo": "orderly, drawn",
+   "spring_k": [
+    200,
+    300
+   ]
+  },
+  "type": "strict grid, tabular figures",
+  "pairings": ["house", "technical", "geometric", "condensed-poster"],
+  "words": "source, method, limit"
+ },
+ "play": {
+  "feeling": "a light, clever turn",
+  "colour": {
+   "recipe": "split-complement-small",
+   "chroma": "brighter accents, small areas",
+   "lightness": "light"
+  },
+  "motion": {
+   "tempo": "bouncy only within 2% overshoot",
+   "spring_k": [
+    180,
+    260
+   ]
+  },
+  "type": "a characterful display face from the library",
+  "pairings": ["grotesk-character", "heavy-display", "art-deco", "handnote", "outdoors", "editorial-serif", "condensed-poster", "crisp-serif"],
+  "words": "one wordplay at most, never a pun on the audience"
+ }
+}

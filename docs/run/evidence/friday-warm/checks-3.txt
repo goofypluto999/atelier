@@ -1,0 +1,9 @@
+png: 1 page(s)
+audit page 1: 40 words, min 40px, sizes 40/48/84, Work Sans + Nothing You Could Do, accent paint 1%
+audit: PASS (no hard fails)
+== page-01.png
+   predicted order (share of the page's attention): object 73.6% > hook 16.7% > accent 11.7% > fine 1.0%
+   cover rule: the hook, the number or the object must win; winner is object (73.6%, best hook, number or object 73.6%)
+   peak at (416,908); overlay attention-01.png
+cvd: PASS
+layout memory: PASS against 1 remembered cover(s)

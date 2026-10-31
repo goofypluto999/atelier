@@ -1,0 +1,123 @@
+[
+ {
+  "id": "house",
+  "display": "Instrument Sans",
+  "text": "Archivo",
+  "mono": "JetBrains Mono",
+  "character": "the house set: calm, technical, wide range",
+  "source": "local"
+ },
+ {
+  "id": "condensed-poster",
+  "display": "Big Shoulders",
+  "text": "Work Sans",
+  "mono": "DM Mono",
+  "character": "condensed display for numbers and boards",
+  "source": "local"
+ },
+ {
+  "id": "editorial-serif",
+  "display": "Young Serif",
+  "text": "Work Sans",
+  "mono": "IBM Plex Mono",
+  "character": "editorial warmth with a modern text face",
+  "source": "local",
+  "serif": true,
+  "hook_scale": 0.94
+ },
+ {
+  "id": "bookish",
+  "display": "Libre Baskerville",
+  "text": "Lora",
+  "mono": "IBM Plex Mono",
+  "character": "literary, long-form, quiet authority",
+  "source": "local",
+  "serif": true,
+  "hook_scale": 0.9
+ },
+ {
+  "id": "crisp-serif",
+  "display": "Gloock",
+  "text": "Instrument Sans",
+  "mono": "Geist Mono",
+  "character": "high-contrast serif headline, clean text",
+  "source": "local",
+  "serif": true
+ },
+ {
+  "id": "grotesk-character",
+  "display": "Bricolage Grotesque",
+  "text": "Work Sans",
+  "mono": "Red Hat Mono",
+  "character": "characterful grotesk, friendly but sharp",
+  "source": "local"
+ },
+ {
+  "id": "geometric",
+  "display": "Outfit",
+  "text": "Work Sans",
+  "mono": "DM Mono",
+  "character": "geometric clarity, product-like",
+  "source": "local"
+ },
+ {
+  "id": "italic-voice",
+  "display": "Instrument Serif",
+  "text": "Instrument Sans",
+  "mono": "JetBrains Mono",
+  "character": "an italic serif voice for one line, sans for the rest",
+  "source": "local",
+  "serif": true
+ },
+ {
+  "id": "technical",
+  "display": "Tektur",
+  "text": "IBM Plex Serif",
+  "mono": "IBM Plex Mono",
+  "character": "technical display over a readable serif",
+  "source": "local",
+  "hook_scale": 0.96
+ },
+ {
+  "id": "heavy-display",
+  "display": "Boldonse",
+  "text": "Work Sans",
+  "mono": "Geist Mono",
+  "character": "one loud word, quiet text",
+  "source": "local",
+  "hook_scale": 0.76
+ },
+ {
+  "id": "classic-serif",
+  "display": "Crimson Pro",
+  "text": "Work Sans",
+  "mono": "IBM Plex Mono",
+  "character": "classic book serif with a neutral sans",
+  "source": "local",
+  "serif": true
+ },
+ {
+  "id": "art-deco",
+  "display": "Poiret One",
+  "text": "Lora",
+  "mono": "DM Mono",
+  "character": "decorative display for one short word, sparingly",
+  "source": "local"
+ },
+ {
+  "id": "outdoors",
+  "display": "National Park",
+  "text": "Work Sans",
+  "mono": "Red Hat Mono",
+  "character": "signage feel, places and journeys",
+  "source": "local"
+ },
+ {
+  "id": "handnote",
+  "display": "Nothing You Could Do",
+  "text": "Work Sans",
+  "mono": "IBM Plex Mono",
+  "character": "a handwritten note for one annotation only",
+  "source": "local"
+ }
+]

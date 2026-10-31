@@ -1,0 +1,13 @@
+{
+  "name": "atelier",
+  "version": "1.2.0",
+  "description": "Designs social carousels, single images, posters, slides and short videos in HTML, renders them on your machine, checks them with scripts and a critic agent, and remembers past pieces so the next one differs.",
+  "author": {
+    "name": "The Mansions Agency",
+    "url": "https://themansions.agency"
+  },
+  "homepage": "https://github.com/goofypluto999/atelier",
+  "repository": "https://github.com/goofypluto999/atelier",
+  "license": "MIT",
+  "keywords": ["design", "carousel", "motion", "art-direction", "critique", "typography", "accessibility", "linkedin", "instagram", "reels"]
+}

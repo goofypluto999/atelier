@@ -1,0 +1,23 @@
+/* Shared tokens for the art directions. Each direction file adds its own grammar on top.
+   Default: a neutral palette that belongs to no brand. Graphite and a cool white paper carry the page; one ultramarine
+   is the accent, with a signal amber for status. To use your brand, copy brands/TEMPLATE.css, fill it and load it after
+   this file (or pass it with compose.py new --brand). A theme in themes/ loads the same way (themes/mansions.css is one).
+   Fonts are local and variable: Archivo (weight 100 to 900, width 62% to 125%),
+   Instrument Sans (400 to 700, width 75% to 100%), JetBrains Mono (data, code, logs only). */
+@import url("fonts/fonts-local.css");
+:root {
+  --night: #181b20; --deep: #0e1014; --cream: #f3f4f6; --cream-2: #c9ccd1; --steel: #8d939b;
+  --teal: #2f5bc2; --house: #143ca1; --teal-lit: #75a3f9; --glow: #fff6e8; --amber: #f8c153;
+  --paper: #f1f2f4; --paper-2: #e1e3e5; --ink: #1c1e23; --ink-2: #464a51;
+  --disp: "Instrument Sans", system-ui, sans-serif;
+  --body: "Archivo", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@page { size: 1080px 1350px; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--night); }
+body { font-family: var(--body); -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+.page { position: relative; width: 1080px; height: 1350px; overflow: hidden; page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.logo { position: absolute; height: 40px; }
+.fine { font: 400 24px/1.35 var(--body); }

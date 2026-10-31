@@ -1,0 +1,20 @@
+/* Shared tokens for the art directions. Each direction file adds its own grammar on top.
+   Default brand: The Mansions Agency (themansions.agency). Replace the :root values with yours, or load a file from brands/ after this one. Fonts are local and variable: Archivo (weight 100 to 900, width 62% to 125%),
+   Instrument Sans (400 to 700, width 75% to 100%), JetBrains Mono (data, code, logs only). */
+@import url("fonts/fonts-local.css");
+:root {
+  --night: #0d0e10; --deep: #060708; --cream: #f7f4ee; --cream-2: #c9ccd1; --steel: #8d939b;
+  --teal: #206b6f; --house: #075055; --teal-lit: #5fb3b6; --glow: #fff6e8; --amber: #f2d9a6;
+  --paper: #f4f1ea; --paper-2: #e9e4d8; --ink: #2e2c28; --ink-2: #4a463e;
+  --disp: "Instrument Sans", system-ui, sans-serif;
+  --body: "Archivo", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@page { size: 1080px 1350px; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--night); }
+body { font-family: var(--body); -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+.page { position: relative; width: 1080px; height: 1350px; overflow: hidden; page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+.logo { position: absolute; height: 40px; }
+.fine { font: 400 24px/1.35 var(--body); }

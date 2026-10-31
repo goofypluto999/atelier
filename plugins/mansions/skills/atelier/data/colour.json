@@ -1,0 +1,386 @@
+{
+ "_note": "Colour decisions for the composer and palette.py. Connotation is mostly carried by lightness, chroma and temperature (strong evidence), not by hue clichés (weak, cultural). Brand hues stay; the recipe moves lightness, chroma and proportion. \"clusters\" are the two colour clusters of references/tells.md (ground as an OKLab distance from a hex, with an OKLCH hue range and minimum chroma when the cluster's ground is tinted; accent as an OKLCH hue range with a minimum chroma); ground_alone means the ground by itself puts a plan near the cluster, because palette.py cannot see the type face.",
+ "dimensions": [
+  {
+   "id": "lightness",
+   "effect": "brighter colours are rated more pleasant; darker more dominant and serious",
+   "evidence": "Valdez and Mehrabian 1994, J Exp Psych: General; strong for lightness-pleasure",
+   "use": "ground and accent lightness set the mood before hue does"
+  },
+  {
+   "id": "chroma",
+   "effect": "more saturated colours are rated more arousing",
+   "evidence": "Valdez and Mehrabian 1994; medium",
+   "use": "raise chroma for energy on one element; lower it for calm and rigour"
+  },
+  {
+   "id": "temperature",
+   "effect": "warm hues read as near, active, human; cool hues as far, calm, technical",
+   "evidence": "long design tradition; experimental support mixed; treat as convention",
+   "use": "shift temperature across a piece to move from tension to calm or the reverse"
+  },
+  {
+   "id": "contrast-range",
+   "effect": "wide value range reads as dramatic and serious; narrow as gentle and quiet",
+   "evidence": "design convention, consistent with fluency research",
+   "use": "set the value span per register"
+  }
+ ],
+ "hue_associations": {
+  "_caveat": "Associations vary by culture, context and brand. Jonauskaite et al. 2020 (Psychological Science, 30 nations) found shared patterns, shaped further by language and geography. Use as hints, never as rules; the brand teaches its own meaning.",
+  "red": [
+   "arousal",
+   "urgency",
+   "danger or love by context"
+  ],
+  "orange": [
+   "energy",
+   "warmth"
+  ],
+  "yellow": [
+   "attention",
+   "joy",
+   "caution"
+  ],
+  "green": [
+   "nature",
+   "go",
+   "growth",
+   "money in some markets"
+  ],
+  "teal": [
+   "calm technical",
+   "clarity"
+  ],
+  "blue": [
+   "calm",
+   "trust (weak evidence)",
+   "technical"
+  ],
+  "purple": [
+   "luxury",
+   "the cliché of AI gradients"
+  ],
+  "pink": [
+   "care",
+   "play"
+  ],
+  "brown": [
+   "material",
+   "earth"
+  ],
+  "black": [
+   "authority",
+   "luxury",
+   "night"
+  ],
+  "white": [
+   "clarity",
+   "space"
+  ],
+  "grey": [
+   "neutral",
+   "rigour"
+  ]
+ },
+ "harmonies": [
+  {
+   "id": "monochrome",
+   "hues": [
+    0
+   ],
+   "when": "rigour, calm, strong brands",
+   "risk": "flat without a lightness range"
+  },
+  {
+   "id": "analogous",
+   "hues": [
+    -30,
+    0,
+    30
+   ],
+   "when": "warmth, gentle arcs",
+   "risk": "muddy if all at the same lightness"
+  },
+  {
+   "id": "complementary",
+   "hues": [
+    0,
+    180
+   ],
+   "when": "curiosity, one strong contrast",
+   "risk": "vibration if both are saturated and large"
+  },
+  {
+   "id": "split",
+   "hues": [
+    0,
+    150,
+    210
+   ],
+   "when": "play, variety with balance",
+   "risk": "busy beyond one accent per page"
+  },
+  {
+   "id": "triadic",
+   "hues": [
+    0,
+    120,
+    240
+   ],
+   "when": "data with three series, posters",
+   "risk": "toy-like at high chroma"
+  }
+ ],
+ "recipes": {
+  "deep-ground-luminous-accent": {
+   "ground": "dark",
+   "ground_L": [
+    0.12,
+    0.2
+   ],
+   "accent_L": [
+    0.75,
+    0.9
+   ],
+   "accent_C": "max in gamut",
+   "harmony": "monochrome",
+   "accent_share": "< 5%"
+  },
+  "restricted-neutral": {
+   "ground": "paper",
+   "ground_L": [
+    0.93,
+    0.97
+   ],
+   "accent_C": [
+    0.03,
+    0.08
+   ],
+   "harmony": "monochrome",
+   "accent_share": "< 3%"
+  },
+  "tight-value-precise-accent": {
+   "ground": "paper or dark",
+   "value_span": "narrow",
+   "accent_C": [
+    0.08,
+    0.14
+   ],
+   "harmony": "monochrome"
+  },
+  "dawn-arc": {
+   "arc": "dark to light across pages",
+   "harmony": "analogous",
+   "accent_C": "rising"
+  },
+  "warm-to-cool-arc": {
+   "arc": "warm accent early, cool late",
+   "harmony": "complementary",
+   "accent_C": "falling"
+  },
+  "neutral-with-one-complement": {
+   "ground": "mid or paper",
+   "harmony": "complementary",
+   "accent_share": "< 3%, on the clue"
+  },
+  "warm-neutrals": {
+   "ground": "paper, warmed",
+   "harmony": "analogous",
+   "accent_C": [
+    0.05,
+    0.1
+   ],
+   "temperature": "warm"
+  },
+  "monochrome-scale": {
+   "ground": "any",
+   "harmony": "monochrome",
+   "value_span": "full",
+   "accent_C": [
+    0.0,
+    0.06
+   ]
+  },
+  "split-complement-small": {
+   "ground": "paper",
+   "harmony": "split",
+   "accent_share": "< 6% total across two accents"
+  }
+ },
+ "arcs": [
+  {
+   "id": "steady",
+   "pages": "same ground throughout",
+   "when": "short sets, strong brand"
+  },
+  {
+   "id": "dawn",
+   "pages": "dark to light",
+   "when": "relief, problem to solution"
+  },
+  {
+   "id": "cooldown",
+   "pages": "warm accent to cool",
+   "when": "unease to control"
+  },
+  {
+   "id": "single-flash",
+   "pages": "neutral pages, one page in a full accent field",
+   "when": "one peak moment"
+  },
+  {
+   "id": "chapters",
+   "pages": "one field per chapter",
+   "when": "multi-part stories"
+  }
+ ],
+ "clusters": [
+  {
+   "id": 1,
+   "name": "warm cream ground, high-contrast serif display, clay accent",
+   "ground": {
+    "hex": "#f4f1ea",
+    "de": 0.03,
+    "hue": [
+     60,
+     110
+    ],
+    "min_c": 0.005
+   },
+   "accent": [
+    {
+     "hue": [
+      30,
+      55
+     ],
+     "min_c": 0.08
+    }
+   ],
+   "ground_alone": true,
+   "also": "a serif display face and a terracotta accent"
+  },
+  {
+   "id": 2,
+   "name": "near-black ground, one acid-green or vermilion accent",
+   "ground": {
+    "hex": "#0b0b0b",
+    "de": 0.06
+   },
+   "accent": [
+    {
+     "hue": [
+      115,
+      150
+     ],
+     "min_c": 0.15
+    },
+    {
+     "hue": [
+      20,
+      45
+     ],
+     "min_c": 0.15
+    }
+   ],
+   "ground_alone": false,
+   "also": "an acid-green or vermilion accent"
+  }
+ ],
+ "own": {
+  "_note": "The palette of a piece with no --brand (palette.py own_brand). The register gives the accent a hue band (OKLCH degrees) and a base chroma, and the neutrals a hue and a chroma; the dealt harmony and arc choose the place in the band, and the neutrals' hue moves with it. The bands keep clear of the specimens' ultramarine (about 265 deg), of the clay accent of cluster 1 (30 to 55 deg) and of the amber the dark specimens use (about 80 deg). palette.py then steps each neutral away from the specimen palette and turns each accent away from the specimen accents, so these are starting points, not final colours. warm is the hue of the warm family a cooldown arc starts from. The hues are design judgement, not measured.",
+  "warm": 25,
+  "registers": {
+   "wonder": {
+    "accent": [
+     192,
+     214
+    ],
+    "C": 0.16,
+    "neutral": 222,
+    "neutral_C": 0.02,
+    "why": "a luminous cyan over a deep blue-green night"
+   },
+   "dry": {
+    "accent": [
+     100,
+     122
+    ],
+    "C": 0.06,
+    "neutral": 45,
+    "neutral_C": 0.012,
+    "why": "a muted olive on a warm putty grey"
+   },
+   "craft-pride": {
+    "accent": [
+     146,
+     164
+    ],
+    "C": 0.11,
+    "neutral": 118,
+    "neutral_C": 0.014,
+    "why": "a ledger green on a pale khaki stock"
+   },
+   "relief": {
+    "accent": [
+     352,
+     6
+    ],
+    "C": 0.12,
+    "neutral": 15,
+    "neutral_C": 0.014,
+    "why": "a dawn rose on a rose-grey"
+   },
+   "unease-to-control": {
+    "accent": [
+     216,
+     234
+    ],
+    "C": 0.12,
+    "neutral": 240,
+    "neutral_C": 0.012,
+    "why": "a steel cyan on a blue-grey, reached from a warm red-orange on a cooldown"
+   },
+   "curiosity": {
+    "accent": [
+     322,
+     338
+    ],
+    "C": 0.14,
+    "neutral": 145,
+    "neutral_C": 0.014,
+    "why": "one magenta clue on its complement, a sage grey"
+   },
+   "warmth": {
+    "accent": [
+     16,
+     28
+    ],
+    "C": 0.09,
+    "neutral": 58,
+    "neutral_C": 0.014,
+    "why": "a madder red on a warm buff, both on the warm side as the recipe asks"
+   },
+   "rigour": {
+    "accent": [
+     172,
+     190
+    ],
+    "C": 0.05,
+    "neutral": 300,
+    "neutral_C": 0.01,
+    "why": "a low-chroma slate teal on a graphite grey, a value scale"
+   },
+   "play": {
+    "accent": [
+     340,
+     354
+    ],
+    "C": 0.15,
+    "neutral": 190,
+    "neutral_C": 0.014,
+    "why": "a bright raspberry on a pale aqua grey"
+   }
+  }
+ }
+}

@@ -1,0 +1,32 @@
+<!doctype html><meta charset="utf-8">
+<!-- tests/test_motion.py: a 2 s drawn film at 360x450. Five marks on the page's ground, the middle one in the accent; the camera
+     pushes in on it from 0.3 s and settles by 0.9 s; seeded tilt; film finish "soft". The square at the top left is HTML over the canvas. -->
+<style>
+body { margin: 0; }
+.page { position: relative; width: 360px; height: 450px; overflow: hidden; --ground: #e3d8d1; --text: #32261d; --text-2: #52463d; --accent: #864448; }
+.page .block { position: absolute; left: 20px; top: 20px; width: 40px; height: 40px; background: var(--text); }
+</style>
+<section class="page"><div class="block"></div></section>
+<script src="../../../vendor/huashu-art-motion/lib/util.js"></script>
+<script src="../../../vendor/huashu-art-motion/lib/motion.js"></script>
+<script src="../../../vendor/huashu-art-motion/lib/camera.js"></script>
+<script src="../../../vendor/huashu-art-motion/lib/palettes.js"></script>
+<script src="../../../vendor/huashu-art-motion/lib/finish.js"></script>
+<script src="../../../assets/lib/art-motion.js"></script>
+<script>
+const rng = U.rng(7), tilt = [0, 1, 2, 3, 4].map(() => (rng() - 0.5) * 0.3);
+const shots = [{ at: 0.3, kind: "push", k: 1, x: 180, y: 225, dur: 0.6 }];
+ART.film({
+  duration: 2, theme: "page", finish: "soft",
+  draw(c, t, pal) {
+    c.fillStyle = pal.bg; c.fillRect(0, 0, 360, 450);
+    CAM.with(c, CAM.track({ x: 180, y: 225, z: 1 }, shots, t), (g) => {
+      [60, 120, 180, 240, 300].forEach((x, i) => {
+        g.save(); g.translate(x, 225); if (i !== 2) g.rotate(tilt[i]);
+        g.fillStyle = i === 2 ? pal.accent : pal.ink; g.fillRect(-20, -20, 40, 40);
+        g.restore();
+      });
+    });
+  },
+});
+</script>

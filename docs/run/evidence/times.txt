@@ -1,0 +1,21 @@
+friday-brand new: 18:10:44
+friday-brand critic 1 sent: 18:14:02
+friday-brand grade 1: 18:16:27 FAIL 7.2
+friday-brand critic 2 sent: 18:17:18
+friday-brand grade 2: 18:20:15 PASS 7.5
+friday-brand deliver: 18:20:16
+friday-plain new: 18:20:24
+friday-plain critic 1 sent: 18:23:51
+friday-plain grade 1: 18:27:14 FAIL 6.0 (capped: idea 5)
+friday-plain critic 2 sent: 18:28:01
+friday-plain grade 2: 18:31:05 FAIL 6.5
+friday-plain critic 3 sent: 18:31:45
+friday-plain grade 3: 18:34:07 FAIL 6.3
+friday-warm new: 18:34:15
+friday-warm critic 1 sent: 18:36:08
+friday-warm grade 1: 18:38:35 FAIL 6.7
+friday-warm critic 2 sent: 18:40:03
+friday-warm grade 2: 18:42:48 FAIL 6.8
+friday-warm critic 3 sent: 18:43:44
+friday-warm grade 3: 18:48:10 PASS 7.5
+friday-warm deliver: 18:48:10

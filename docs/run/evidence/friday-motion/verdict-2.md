@@ -1,0 +1,16 @@
+## friday-motion
+reads as: checklist tickets
+contact.png seen: "Nineteen checks. Nine at most per pause."
+phone.png seen: "Nineteen checks. Nine at most per pause."
+frame0.png seen: "Nineteen checks. Nine at most per pause." (ticket header "19 checks")
+poster.png seen: "Nineteen checks. Nine at most per pause." (counts "7 before the change", "7 at go-live", "5 before you leave")
+flaws: [legibility, motion, craft, repeat]
+1. 7 s to 10 s (phone.png frames 7, 8, 9) and poster y 1080 to 1350: the ticks end at about 7 s (frames 7 and 8 match), and the only later change is the three counts turning mint at 9 s (accent step 0.033, flagged WARN by the colour check). The headline is fixed for all 10 s and the lowest 270 px stays empty, so the last 3 s reads as a small ticked poster with a colour shift, not an object action (rule: references/art-motion.md says to end on an object action) -> after the last tick, stamp or lift each ticket off the rail in turn, 0.3 s apart. Scale the ticket row up about 20% into the empty lower band. Hold 1.5 s at the end.
+2. Ticket titles, 4 s to 10 s, poster y 485 to 505: "rollout staged?", "faults watched?", "rollback tried?" are about 28 px at 1080, which is 9 px at 360, under the 36 px floor the audit applies (rule). They are drawn on canvas, so the audit (14 words, min 36px) never measured them, and they are the only on-film link from the surgery list to a release -> raise them to 36 px or more by widening the tickets into the unused band, or set them as HTML words so the audit counts them.
+3. 0 s to 3 s, idea (judgement): the 19 checks are squiggles and the ticket runs off the bottom edge in frames 0 to 2, so the viewer can neither count 19 nor read one check. "Friday" and "release" appear nowhere on the film, so the switch from the WHO list to release tickets at 3 s is implied, not shown -> put "Friday release" in the sub line (the post carries it) and show the whole 19-row ticket once, at the pull back near 3 s, so 19 can be counted.
+4. Could improve: at 3 s the third ticket and its grey clip overlap the second ticket mid-drop, and at 2 s a lone coral dash sits left of the ticket between rows 7 and 8, a second unexplained accent beside the 9 bracket -> stagger the three drops 0.15 s apart, and draw the dash as a full dashed cut line or remove it. The poster layout (rail at y 430, cream clipped tickets under a bold left headline) is close to the kitchen-rail specimen. Palette, ticks and the 19-to-7/7/5 cut depart from it, and the three earlier stills differ clearly (light grounds, no objects).
+keep: the one tall 19-check ticket cut into 7, 7 and 5. The "9" bracket spans exactly 9 rows, 7 + 7 + 5 = 19 is drawn, and only this subject fills it.
+strongest case to reject: about 7 s of real action, then a 3 s small ticked poster with 9 px titles and empty ground below it.
+alive: yes, frames 0 s to 1 s (push on the ticket), 1 s to 2 s (bracket and 9 drawn), 3 s (cut into three tickets), 5 s, 6 s, 7 s (each ticket ticked in turn), 9 s (counts turn mint); weak spot: 7 s and 8 s look identical, so the last 3 s is mostly a hold.
+verdict: FAIL
+scores: idea 7, hook 8, hierarchy 7, craft 6, colour 7, distinct 7  total 7.0 (capped: no)

@@ -1,0 +1,48 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: task-card. An aircraft maintenance task card, the home of Simplified Technical English.
+     Real material: the rule as a task with a WARNING, steps and a sign-off box. Paper ground, ink rules, one accent bar.
+     What this page keeps, and a page built from it keeps: every block inside the card starts on one inner edge (28px); the accent
+     paints only the WARNING bar, far under 5% of the page; mono only for real data (the task id, the version, the config line);
+     labels 40px condensed; the source line 32px in the text colour; a balanced headline with no small word at a line end. -->
+<style>
+.tc { background: var(--paper); color: var(--ink); padding: 84px 80px; }
+.tc h1 { font: 650 98px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 900px; text-wrap: balance; }
+.card { position: absolute; left: 80px; right: 80px; top: 430px; bottom: 150px; border: 4px solid var(--ink); display: grid;
+  grid-template-rows: auto auto 1fr auto; }
+.row { display: grid; border-bottom: 3px solid var(--ink); }
+.r1 { grid-template-columns: 1fr 1.5fr 1fr; }
+.r1 div { padding: 16px 28px 18px; border-right: 3px solid var(--ink); font: 450 34px/1.2 var(--body); }
+.r1 div:last-child { border-right: 0; }
+.tc b { display: block; font: 800 40px/1.1 var(--body); font-stretch: 75%; letter-spacing: 0.02em; }
+.tc .id { font: 500 34px/1.2 var(--mono); }
+.warn { margin: 28px 28px 0; border: 3px solid var(--ink); border-left: 16px solid var(--house); padding: 18px 28px 20px;
+  display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: baseline; }
+.warn b { color: var(--house); }
+.warn span { font: 500 36px/1.25 var(--body); }
+ol { list-style: none; padding: 30px 28px 0; counter-reset: s; }
+li { counter-increment: s; display: grid; grid-template-columns: 64px 1fr; font: 450 36px/1.28 var(--body); margin-bottom: 22px; }
+li::before { content: counter(s) "."; font: 800 36px/1.28 var(--body); font-stretch: 75%; }
+code { font: 500 34px var(--mono); background: var(--paper-2); padding: 0 8px; }
+.sign { border-top: 3px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; }
+.sign div { padding: 16px 28px 20px; border-right: 3px solid var(--ink); font: 450 34px/1.25 var(--body); }
+.sign div:last-child { border-right: 0; position: relative; }
+.stamp { position: absolute; right: 28px; top: 24px; border: 5px solid var(--ink); color: var(--ink); font: 800 40px/1 var(--body);
+  font-stretch: 80%; padding: 12px 18px; transform: rotate(-6deg); letter-spacing: 0.06em; }
+.tc .logo { right: 80px; bottom: 50px; }
+.tc .fine { position: absolute; left: 80px; bottom: 54px; font-size: 32px; color: var(--ink); }
+</style>
+<section class="page tc">
+  <h1 data-role="hook">Sign off the&nbsp;line that&nbsp;ships.</h1>
+  <div class="card" data-role="object">
+    <div class="row r1"><div><b>TASK</b><span class="id">REL-04</span></div><div><b>APPLIES TO</b>every release</div><div><b>SINCE</b><span class="id">v2.3</span></div></div>
+    <div class="warn" data-role="accent"><b>WARNING</b><span>The wiki says releases are manual. The config says <code>deploy: auto</code>.</span></div>
+    <ol>
+      <li><span>Open the config file itself.</span></li>
+      <li><span>Find the line that ships: <code>deploy: auto</code></span></li>
+      <li><span>Put the sign-off on that line.</span></li>
+    </ol>
+    <div class="sign"><div><b>SIGNED</b>a person, before release</div><div><b>STATUS</b><span class="stamp">GATED</span></div></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content. Replace with your facts.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

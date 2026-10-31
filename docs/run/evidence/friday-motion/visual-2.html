@@ -1,0 +1,132 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="<skill>/assets/tokens.css">
+<link rel="stylesheet" href="<run>/friday-motion/palette.css">
+<link rel="stylesheet" href="<skill>/assets/fonts/library/library.css">
+<style>:root { --disp: "Instrument Sans", system-ui, sans-serif; --body: "Archivo", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace; }</style>
+<!-- friday-motion: kitchen-rail as a drawn film (ART.film). One long ticket of 19 checks hangs from the rail; a bracket in the
+     accent marks the 9 one pause can hold; the ticket is cut after checks 7 and 14 and the three tickets hang apart at the release's
+     three pauses; the camera holds one wide framing while each is ticked. On this page, the WHO checklist's 19 items become
+     kitchen-rail tickets, drawn as one ticket cut into 7, 7 and 5, not as four equal numbered tickets.
+     Attempt 2: only the fixes of verdict 1 (one wide hold from the split on, labels in after their move stops, the ticket as one layer,
+     "9" on the bracket and "19" on the ticket's header, the new hook and source, the arc's last accent on 7, 7 and 5 from 9 s,
+     the row inside the 80 px margin, one real check line on each ticket). -->
+<style>
+.page.film { background: var(--ground); color: var(--text); }
+.film h1 { position: absolute; left: 80px; top: 72px; width: 940px; margin: 0; font: 700 84px/1.02 var(--disp); letter-spacing: -0.025em; }
+.film .src { position: absolute; left: 80px; top: 268px; width: 920px; margin: 0; font: 500 36px/1.2 var(--body); color: var(--text-2); }
+.film .lab, .film .hd, .film .nine { position: absolute; left: 0; top: 0; margin: 0; transform-origin: 0 0; visibility: hidden; }
+.film .lab { width: 300px; font: 600 48px/1.08 var(--body); color: var(--text); }
+.film .lab b { display: block; font: 700 76px/1 var(--disp); }
+.film .hd { width: 300px; white-space: nowrap; font: 700 36px/1 var(--body); color: var(--ground); }
+.film .nine { font: 700 72px/1 var(--disp); color: var(--accent); }
+</style>
+<section class="page film pg-1">
+  <h1 data-role="hook">Nineteen checks.<br>Nine at most per pause.</h1>
+  <p class="src" data-role="fine">WHO surgical checklist, 2009. Gawande, 2009.</p>
+  <p class="hd" id="hdL" data-role="number">19 checks</p>
+  <p class="nine" id="nine">9</p>
+  <p class="hd" id="hd0">rollout staged?</p>
+  <p class="hd" id="hd1">faults watched?</p>
+  <p class="hd" id="hd2">rollback tried?</p>
+  <p class="lab" id="lab0"><b>7</b>before the change</p>
+  <p class="lab" id="lab1"><b>7</b>at go-live</p>
+  <p class="lab" id="lab2"><b>5</b>before you leave</p>
+  <i class="pg-5" id="arcEnd" style="display:none"></i>
+</section>
+<script src="<skill>/vendor/huashu-art-motion/lib/util.js"></script>
+<script src="<skill>/vendor/huashu-art-motion/lib/motion.js"></script>
+<script src="<skill>/vendor/huashu-art-motion/lib/camera.js"></script>
+<script src="<skill>/vendor/huashu-art-motion/lib/palettes.js"></script>
+<script src="<skill>/vendor/huashu-art-motion/lib/finish.js"></script>
+<script src="<skill>/assets/lib/art-motion.js"></script>
+<script>
+// World units are page pixels at zoom 1. Rows of the long ticket: 19 checks, 64 px each, under an 84 px header.
+const ROW = 64, HEAD = 84, PAD = 22, W = 340, RAIL = 520, TOP = 548;
+const GROUPS = [[0, 7], [7, 14], [14, 19]], CX = [160, 540, 920], TICK_AT = [4.4, 5.6, 6.8];
+const groupOf = (r) => (r < 7 ? 0 : r < 14 ? 1 : 2);
+const shots = [
+  { at: 0.9, kind: "to", x: 600, y: 820, z: 1.1, dur: 1.2 },           // slow push to read the bracket
+  { at: 2.7, kind: "to", x: 540, y: 820, z: 0.82, dur: 1.1 },          // pull back as the ticket splits, then hold to the end
+];
+const base = { x: 540, y: 675, z: 1 };
+const split = (t) => MO.spring(t - 3.0, { duration: 0.9, bounce: 0.08 });   // 0 = one ticket, 1 = three tickets hung apart
+function rowPos(r, s) {   // where row r sits: on the long ticket, or on its own group's ticket
+  const g = groupOf(r), i = r - GROUPS[g][0];
+  const lag = MO.lagged(g, 3, U.clamp(s), 0.15);
+  return [U.lerp(540, CX[g], lag), U.lerp(TOP + HEAD + r * ROW, TOP + HEAD + i * ROW, lag), lag];
+}
+function tick(c, x, y, p) {   // a check mark drawn on from p = 0 to 1
+  if (p <= 0) return;
+  const pts = [[x - 13, y + 1], [x - 3, y + 11], [x + 16, y - 13]], a = Math.min(1, p * 2), b = Math.max(0, p * 2 - 1);
+  c.beginPath(); c.moveTo(...pts[0]);
+  c.lineTo(U.lerp(pts[0][0], pts[1][0], a), U.lerp(pts[0][1], pts[1][1], a));
+  if (b > 0) c.lineTo(U.lerp(pts[1][0], pts[2][0], b), U.lerp(pts[1][1], pts[2][1], b));
+  c.stroke();
+}
+const $ = (id) => document.getElementById(id);
+const labs = [$("lab0"), $("lab1"), $("lab2")], heads = [$("hd0"), $("hd1"), $("hd2")];
+const arcEnd = getComputedStyle($("arcEnd")).getPropertyValue("--accent").trim();
+ART.film({
+  duration: 10, theme: "page", finish: "soft",
+  draw(c, t, pal) {
+    const cam = CAM.track(base, shots, t), s = split(t), one = s <= 0.001;
+    c.fillStyle = pal.bg; c.fillRect(0, 0, 1080, 1350);
+    const boxes = [];
+    CAM.with(c, cam, (g) => {
+      g.fillStyle = PAL.mix(pal.bg, pal.ink, 0.42); g.fillRect(-500, RAIL - 6, 2100, 12);
+      g.fillStyle = PAL.mix(pal.bg, pal.ink, 0.62); g.fillRect(-500, RAIL - 6, 2100, 4);
+      // the paper: one layer while the ticket is whole; one box per group once it is cut
+      const paper = (x, top, bottom, head) => {
+        g.fillStyle = PAL.alpha("#000000", 0.28); g.fillRect(x + 10, top + 12, W, bottom - top);
+        g.fillStyle = pal.ink; g.fillRect(x, top, W, bottom - top);
+        g.fillStyle = PAL.mix(pal.bg, pal.ink, 0.62); g.fillRect(x + W / 2 - 22, RAIL - 4, 44, Math.max(10, top - RAIL + 22));
+        g.fillStyle = pal.bg; g.beginPath(); g.arc(x + W / 2, top + 12, 7, 0, U.TAU); g.fill();
+        if (head > 4) { g.fillStyle = PAL.mix(pal.ink, pal.bg, 0.55); g.fillRect(x + 24, top + head - 6, W - 48, 3); }
+      };
+      if (one) paper(540 - W / 2, TOP, TOP + HEAD + 19 * ROW + PAD, HEAD);
+      for (let k = 0; k < 3; k++) {
+        const [a, b] = GROUPS[k], first = rowPos(a, s), last = rowPos(b - 1, s), head = k === 0 ? HEAD : HEAD * first[2];
+        const x = first[0] - W / 2, top = first[1] - head;
+        if (!one) paper(x, top, last[1] + ROW + PAD, head);
+        boxes[k] = [x, top, last[1] + ROW + PAD];
+        for (let r = a; r < b; r++) {
+          const [rx, ry] = rowPos(r, s), lx = rx - W / 2;
+          g.strokeStyle = pal.bg; g.lineWidth = 4; g.strokeRect(lx + 28, ry + 14, 36, 36);
+          g.strokeStyle = PAL.mix(pal.ink, pal.bg, 0.55); g.lineWidth = 4; g.beginPath();   // a written line, not a grey bar
+          for (let q = 0, n = 190 - ((r * 37) % 70); q <= n; q += 6) g.lineTo(lx + 92 + q, ry + 32 + 5 * Math.sin(q * 0.21 + r * 1.7) * (0.6 + 0.4 * U.hash(r, q)));
+          g.stroke();
+          const p = MO.smooth(MO.seg(t, TICK_AT[k] + (r - a) * 0.11, TICK_AT[k] + (r - a) * 0.11 + 0.22));
+          g.strokeStyle = pal.bg; g.lineWidth = 7; g.lineCap = "round"; g.lineJoin = "round"; tick(g, lx + 47, ry + 32, p);
+        }
+      }
+      const cut = MO.smooth(MO.seg(t, 2.35, 2.95)) * (1 - MO.seg(t, 3.0, 3.2));   // the cut lines after checks 7 and 14
+      if (cut > 0) for (const r of [7, 14]) {
+        const y = TOP + HEAD + r * ROW;
+        g.strokeStyle = pal.accent; g.lineWidth = 6; g.setLineDash([16, 10]);
+        g.beginPath(); g.moveTo(540 - W / 2 - 18, y); g.lineTo(540 - W / 2 - 18 + (W + 36) * cut, y); g.stroke(); g.setLineDash([]);
+      }
+      const grow = MO.spring(t - 1.0, { duration: 0.9, bounce: 0 }), fade = 1 - MO.seg(t, 2.9, 3.2);   // the bracket: 9 checks, one pause
+      if (grow > 0 && fade > 0) {
+        const x = 540 + W / 2 + 26, y0 = TOP + HEAD, y1 = y0 + 9 * ROW * U.clamp(grow);
+        g.globalAlpha = fade; g.fillStyle = pal.accent;
+        g.fillRect(x, y0, 12, y1 - y0); g.fillRect(x - 22, y0, 34, 12); g.fillRect(x - 22, y1 - 12, 34, 12);
+        g.globalAlpha = 1;
+      }
+    });
+    // the words ride the camera; after the split the camera holds, so they no longer move
+    const place = (el, wx, wy, o) => {
+      const [sx, sy] = CAM.toScreen(cam, wx, wy);
+      el.style.transform = `translate(${sx.toFixed(1)}px, ${sy.toFixed(1)}px) scale(${cam.z.toFixed(4)})`;
+      el.style.opacity = o.toFixed(3); el.style.visibility = o > 0.001 ? "visible" : "hidden";
+    };
+    place($("hdL"), 540 - W / 2 + 24, TOP + 34, 1 - MO.seg(t, 2.5, 2.8));
+    place($("nine"), 540 + W / 2 + 54, TOP + HEAD + 4.5 * ROW - 36, MO.smooth(MO.seg(t, 1.7, 2.0)) * (1 - MO.seg(t, 2.6, 2.9)));
+    const settled = MO.seg(t, 3.9, 4.2);
+    for (let k = 0; k < 3; k++) {
+      const [x, top, bottom] = boxes[k];
+      place(heads[k], x + 24, top + 34, settled);
+      place(labs[k], x, bottom + 34, MO.smooth(MO.seg(t, 4.0 + 0.12 * k, 4.4 + 0.12 * k)));
+      labs[k].firstChild.style.color = PAL.mix(pal.ink, arcEnd, MO.smooth(MO.seg(t, 9.0, 9.4)));
+    }
+  },
+});
+</script>

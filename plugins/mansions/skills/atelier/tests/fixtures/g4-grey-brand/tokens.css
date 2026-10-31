@@ -1,0 +1,5 @@
+/* A brand of greys only, no --house: the planner must invent no hue for it. */
+:root {
+  --night: #141414; --paper: #f2f2f0; --ink: #262626; --cream: #fafafa;
+  --steel: #8a8a8a; --line: #d4d4d4;
+}

@@ -1,0 +1,5 @@
+{
+  "_note": "Known answers for calibrating the story-editor on angles. good-* must PASS; each bad-* must FAIL naming one of its flaws. Never edit to make a run pass.",
+  "good-ratio": [], "good-zoom-in": [], "good-hidden-constraint": [],
+  "bad-generic": ["generic"], "bad-untrue": ["untrue"], "bad-preachy": ["tone"], "bad-cliche": ["cliche", "generic"], "bad-salesy": ["tone"]
+}

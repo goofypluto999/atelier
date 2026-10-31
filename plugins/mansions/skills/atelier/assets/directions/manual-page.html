@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: manual-page. An appliance manual: an exploded diagram with numbered callouts (a real sequence of parts),
+     and a "do not" panel. For how something works inside. -->
+<style>
+.mp { background: var(--paper); color: var(--ink); }
+.mp h1 { position: absolute; left: 80px; right: 80px; top: 86px; font: 650 96px/0.98 var(--disp); letter-spacing: -0.035em; text-wrap: balance; }
+.mp svg { position: absolute; left: 0; top: 330px; }
+.mp .cl { font: 700 32px var(--body); fill: var(--paper); }
+.mp .tx { font: 500 32px var(--body); fill: var(--ink); }
+.dn { position: absolute; left: 80px; right: 80px; top: 1060px; border: 4px solid var(--ink); padding: 22px 26px; display: grid; grid-template-columns: 90px 1fr; gap: 20px; align-items: center; font: 500 34px/1.3 var(--body); }
+.dn i { width: 70px; height: 70px; border: 6px solid var(--house); border-radius: 50%; position: relative; }
+.dn i::after { content: ""; position: absolute; left: 50%; top: -4px; bottom: -4px; width: 6px; background: var(--house); transform: translateX(-50%) rotate(45deg); }
+.mp .logo { right: 80px; bottom: 40px; height: 32px; }
+</style>
+<section class="page mp">
+  <h1 data-role="hook">Inside one automated&nbsp;report.</h1>
+  <svg width="1080" height="700" viewBox="0 0 1080 700" data-role="object">
+    <g fill="#e1e3e5" stroke="#1c1e23" stroke-width="5">
+      <path d="M200 120 l200 -80 l200 80 l-200 80z"/><path d="M200 300 l200 -80 l200 80 l-200 80z"/><path d="M200 480 l200 -80 l200 80 l-200 80z"/>
+    </g>
+    <g stroke="#1c1e23" stroke-width="3" stroke-dasharray="10 10"><path d="M400 200 V220 M400 380 V400"/><path d="M600 120 H700 M600 300 H700 M600 480 H700"/></g>
+    <g fill="#143ca1"><circle cx="730" cy="120" r="30"/><circle cx="730" cy="300" r="30"/><circle cx="730" cy="480" r="30"/></g>
+    <text class="cl" x="721" y="131">1</text><text class="cl" x="720" y="311">2</text><text class="cl" x="720" y="491">3</text>
+    <text class="tx" x="780" y="130">sources</text><text class="tx" x="780" y="310">checks</text><text class="tx" x="780" y="490">the report</text>
+  </svg>
+  <div class="dn" data-role="accent"><i></i><span>Do not open layer 2 by hand. Sample content.</span></div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

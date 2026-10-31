@@ -1,0 +1,33 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r5-rawcolour): two pages. Page 1 writes nine raw colours (hex, rgb, hsl, an inline style, an SVG fill) into its own styles. Page 2 uses only tokens, a var() with a raw fallback, and a custom property definition: none of those count. render.mjs --audit must exit 0 and print "9 raw colours" as a warning on page 1 and no raw-colour warning on page 2 (tests/test_composer.py r12 asserts it). The allowance is 6 per page (--raw-max). -->
+<style>
+.rc1 { background: #fdf6e3; color: #073642; padding: 90px 84px; }
+.rc1 h1 { font: 600 96px/1.02 var(--disp); letter-spacing: -0.03em; max-width: 880px; }
+.rc1 .a { margin-top: 70px; font: 500 40px/1.3 var(--body); color: #7a5a00; }
+.rc1 .b { margin-top: 24px; font: 500 40px/1.3 var(--body); color: #a1300b; }
+.rc1 .c { margin-top: 24px; font: 500 40px/1.3 var(--body); color: rgb(176, 30, 30); }
+.rc1 .d { margin-top: 24px; font: 500 40px/1.3 var(--body); color: hsl(331 70% 33%); }
+.rc1 .e { margin-top: 24px; font: 500 40px/1.3 var(--body); color: #4b50a8; }
+.rc1 .fine { position: absolute; left: 84px; bottom: 54px; color: #073642; }
+.rc2 { --mine: #0a3d3f; background: var(--paper); color: var(--ink); padding: 90px 84px; }
+.rc2 h2 { font: 600 96px/1.02 var(--disp); letter-spacing: -0.03em; max-width: 880px; }
+.rc2 .a { margin-top: 70px; font: 500 40px/1.3 var(--body); color: var(--mine); }
+.rc2 .b { margin-top: 24px; font: 500 40px/1.3 var(--body); color: var(--house, #123456); }
+.rc2 .fine { position: absolute; left: 84px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page rc1">
+  <h1 data-role="hook">Nine colours, none of them tokens.</h1>
+  <p class="a">Mustard.</p>
+  <p class="b">Rust.</p>
+  <p class="c">Red.</p>
+  <p class="d">Pink.</p>
+  <p class="e" style="background:#b9dcf2;color:#073642;padding:8px 20px">Blue and white, inline.</p>
+  <svg width="120" height="40" viewBox="0 0 120 40" style="margin-top:30px"><rect width="120" height="40" fill="#2aa198"/></svg>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+<section class="page rc2">
+  <h2 data-role="hook">Tokens and a definition.</h2>
+  <p class="a">A custom property holds the raw value.</p>
+  <p class="b">A var() fallback is not a colour in use.</p>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

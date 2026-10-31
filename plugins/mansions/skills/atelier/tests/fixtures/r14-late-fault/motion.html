@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture: a film that is clean on its first frame and breaks three hard rules later. From 2.0 to 2.9 s the note takes the paper's colour
+     (contrast, found at the 2 s check); from 3.1 to 3.4 s the ticket rides up over the hook (text over text, between the half-second
+     checks, so found only at a poster time inside that window, such as --poster 3.25); from 21.2 to 21.9 s the hook takes the paper's
+     colour (0.7 s, found at 21.5 s in a 30 s film). tests/test_motion.py audits it with render.mjs. -->
+<style>
+.lf { background: var(--paper); color: var(--ink); }
+.lf h1 { position: absolute; left: 80px; right: 80px; top: 100px; font: 650 96px/1.05 var(--disp); letter-spacing: -0.02em; }
+.lf .note { position: absolute; left: 80px; right: 80px; top: 640px; font: 450 40px/1.3 var(--body); }
+.lf .ticket { position: absolute; left: 80px; top: 1000px; font: 600 48px/1.2 var(--body); }
+</style>
+<section class="page lf">
+  <h1 data-role="hook">One job waits all&nbsp;week.</h1>
+  <p class="note">The other jobs cleared overnight.</p>
+  <div class="ticket">Ticket 1038</div>
+</section>
+<script>
+const note = document.querySelector(".lf .note"), ticket = document.querySelector(".lf .ticket"), hook = document.querySelector(".lf h1");
+window.seek = (t) => {
+  note.style.color = t >= 2 && t < 2.9 ? "var(--paper)" : "";
+  ticket.style.top = t >= 3.1 && t < 3.4 ? "120px" : "";
+  hook.style.color = t >= 21.2 && t < 21.9 ? "var(--paper)" : "";
+};
+window.seek(0);
+</script>

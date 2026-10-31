@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: type-only. No pictures: scale, weight and width do all the work. Archivo's width axis is the instrument. -->
+<style>
+.to { background: var(--night); color: var(--cream); padding: 70px 70px; }
+.l1 { font: 900 300px/0.82 var(--body); font-stretch: 62%; letter-spacing: -0.02em; text-transform: uppercase; }
+.l2 { font: 300 128px/1 var(--body); font-stretch: 125%; letter-spacing: -0.02em; margin-top: 30px; color: var(--cream-2); }
+.l3 { font: 900 300px/0.82 var(--body); font-stretch: 62%; text-transform: uppercase; color: var(--teal-lit); margin-top: 26px; }
+.to .fine { position: absolute; left: 70px; bottom: 60px; color: var(--cream-2); }
+.to .logo { right: 70px; bottom: 56px; }
+</style>
+<section class="page to">
+  <div data-role="hook">
+    <div class="l1">Fewer</div>
+    <div class="l2">tools,</div>
+    <div class="l3" data-role="accent">more joins.</div>
+  </div>
+  <p class="fine" data-role="fine">Sample content.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

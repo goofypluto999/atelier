@@ -1,0 +1,226 @@
+{
+ "slug": "friday-brand",
+ "topic": "what a Friday release checklist really needs",
+ "topic_key": [
+  "checklist",
+  "friday",
+  "needs",
+  "really",
+  "release",
+  "what"
+ ],
+ "medium": "image",
+ "scope": "quick",
+ "created": "2026-10-30T18:10:44",
+ "stages": {
+  "atoms": {
+   "status": "passed",
+   "grades": [
+    {
+     "at": "2026-10-30T18:10:51",
+     "by": "self",
+     "scores": {
+      "coverage": 9.0,
+      "specificity": 9.0,
+      "sourced": 9.0,
+      "surprise": 8.0
+     },
+     "total": 8.8,
+     "capped": [],
+     "passed": true,
+     "notes": "coverage: 5 atoms across 4 types (number x2, mechanism, limit, object): the risk, the answer, the form, the outcome\nspecificity: each atom carries a figure or a named thing: 70%, 5 to 9 items, 19 items in three pauses of 7, 7 and 5, 1.5% to 0.8% in 8 hospitals\nsourced: every row names a published work: the Google SRE book introduction, Gawande ch. 6, the WHO checklist, Haynes et al. NEJM 2009\nsurprise: atom 4 is not about software at all: a surgical checklist built around three stops, which a release list can borrow\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "lenses": {
+   "status": "skipped"
+  },
+  "angles": {
+   "status": "passed",
+   "deals": [
+    [
+     "repurpose",
+     "glossary",
+     "no-adjectives"
+    ]
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T18:11:09",
+     "by": "self",
+     "scores": {
+      "novelty": 8.0,
+      "truth": 9.0,
+      "relevance": 8.0,
+      "intrigue": 8.0,
+      "tone": 8.0
+     },
+     "total": 8.2,
+     "capped": [],
+     "passed": true,
+     "notes": "novelty: operator 1 (put to another use): a surgical form becomes the release list; similar reports no overlap with memory, which is empty\ntruth: every number is sourced: 19 items in pauses of 7, 7 and 5 (WHO 2009), 5 to 9 per pause (Gawande ch. 6), 1.5% to 0.8% (Haynes 2009)\nrelevance: a Friday release list grows past nine lines; the form that keeps each stop under nine is what the list needs\nintrigue: an operating theatre's form as the answer to a deploy question opens a gap the reader wants closed\ntone: plain and factual; it does not claim software outages fall like surgical deaths, only that the form transfers\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "genome": {
+   "status": "passed",
+   "deals": [
+    {
+     "register": "play",
+     "direction": "specimen-label",
+     "format": "i-specimen",
+     "hook": "anomaly",
+     "close": "question-answered",
+     "harmony": "complementary",
+     "arc": "steady",
+     "type": "outdoors",
+     "motion": "none",
+     "operator": "repurpose",
+     "operator_family": "combine",
+     "lens": "",
+     "ground": "paper",
+     "layout_rhythm": [
+      "quote"
+     ],
+     "field_page": "none"
+    }
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T18:12:31",
+     "by": "self",
+     "scores": {
+      "coherence": 8.0,
+      "feasibility": 9.0
+     },
+     "total": 8.4,
+     "capped": [],
+     "passed": true,
+     "notes": "coherence: specimen-label lends the catalogue's dry facts; the quote layout puts the anomaly hook at display size and the WHO form small as its attribution\nfeasibility: one page, the brand's own faces and colours, the object is three rows of boxes from atom 4, all local fonts, no picture needed\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "sections": {
+   "status": "skipped"
+  },
+  "copy": {
+   "status": "skipped"
+  },
+  "visual": {
+   "status": "passed",
+   "grades": [
+    {
+     "at": "2026-10-30T18:16:27",
+     "by": "critic",
+     "scores": {
+      "idea": 7.0,
+      "hook": 8.0,
+      "hierarchy": 7.0,
+      "craft": 6.0,
+      "colour": 8.0,
+      "distinct": 7.0
+     },
+     "total": 7.2,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic idea 7: the checkbox rows are the checklist itself, but the ceiling of 9 that carries the argument is the smallest mark\nhook: critic hook 8: the 128 px headline \"Nineteen surgical checks, seven at a time.\" reads first, hook 49.7% in attention.py\nhierarchy: critic hierarchy 7: the crimson 9 and the 12 px bar are read last, accent 0.7% under fine print 3.5%\ncraft: critic craft 6: counts ride on the labels at ragged x, tight word spacing, chart stops at x 832 while the headline runs to 985\ncolour: critic colour 8: the brand plan holds, paper with forest green ink and one raspberry accent on the ceiling\ndistinct: critic distinct 7: departs from the specimen-label mount and every cluster, but the label direction is not recognisable\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-brand-r1.md",
+      "sha256": "0191d4e84646295121f9125d30782597ecbba479d90625dd4e6abafcf755e787",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 7.0,
+       "hook": 8.0,
+       "hierarchy": 7.0,
+       "craft": 6.0,
+       "colour": 8.0,
+       "distinct": 7.0
+      },
+      "total": 7.2
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-brand\\attempts\\visual-1"
+    },
+    {
+     "at": "2026-10-30T18:20:15",
+     "by": "critic",
+     "scores": {
+      "idea": 8.0,
+      "hook": 8.0,
+      "hierarchy": 8.0,
+      "craft": 7.0,
+      "colour": 7.0,
+      "distinct": 7.0
+     },
+     "total": 7.5,
+     "capped": [],
+     "passed": true,
+     "notes": "idea: critic idea 8: the three rows drawn as the checklist's own tick boxes, 7, 7 and 5 filled inside nine slots under one ceiling\nhook: critic hook 8: \"Nineteen surgical checks, seven at a time.\" reads first at 124 px, hook 42.7% in attention.py\nhierarchy: critic hierarchy 8: the claret wall is the single accent at 0.5% paint, on the one thing to remember\ncraft: critic craft 7: the bar overshoots the rows unevenly and the 9 sits off the caption's baseline; Gawande's source hangs under the Friday line\ncolour: critic colour 7: the plan holds, but the empty slots measure 2.3:1 against the paper, under 3:1 for a meaningful graphic\ndistinct: critic distinct 7: departs from the specimen-label mount and every cluster; a headline over chart frame is a familiar stat card\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-brand-r2.md",
+      "sha256": "b11a16089a29eb6d42ad1630dff90493dbb9209de3990f2916720b398fbe6d7c",
+      "verdict": "PASS",
+      "scores": {
+       "idea": 8.0,
+       "hook": 8.0,
+       "hierarchy": 8.0,
+       "craft": 7.0,
+       "colour": 7.0,
+       "distinct": 7.0
+      },
+      "total": 7.5,
+      "render": {
+       "html": "<run>\\friday-brand\\visual.html",
+       "html_sha256": "bab19bd9bae787a4a079d5c63d50060dd6b9bc284f6fc19a623498fa2ca55cfe",
+       "pages": {
+        "page-01.png": "4544e9ca517ffab96dcb0f3fddcedc6f36c6ac4f86fab3c0446cbf40eede10b5"
+       }
+      }
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-brand\\attempts\\visual-2"
+    }
+   ],
+   "attempts": 2
+  },
+  "final": {
+   "status": "skipped"
+  }
+ },
+ "brand": "<run>\\brand\\fieldlark.css",
+ "seeds": {
+  "angles": [
+   4256940082250344555
+  ],
+  "genome": [
+   8146029249530890720
+  ]
+ },
+ "angle": {
+  "n": 1,
+  "operator": "repurpose",
+  "lens": "",
+  "one_line": "The WHO surgical checklist put to another use: a Friday release list in three pauses, none over nine checks"
+ },
+ "genome": {
+  "register": "play",
+  "direction": "specimen-label",
+  "format": "i-specimen",
+  "hook": "anomaly",
+  "close": "question-answered",
+  "harmony": "complementary",
+  "arc": "steady",
+  "type": "outdoors",
+  "motion": "none",
+  "operator": "repurpose",
+  "operator_family": "combine",
+  "lens": "",
+  "ground": "paper",
+  "layout_rhythm": [
+   "quote"
+  ],
+  "field_page": "none"
+ },
+ "visual_html": "<run>\\friday-brand\\visual.html"
+}

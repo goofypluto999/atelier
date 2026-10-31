@@ -1,0 +1,54 @@
+[
+ {
+  "page": 1,
+  "texts": 14,
+  "words": 38,
+  "minFont": 40,
+  "minAll": 40,
+  "sizes": [
+   40,
+   44,
+   48,
+   116
+  ],
+  "families": [
+   "Work Sans",
+   "Nothing You Could Do"
+  ],
+  "fails": [],
+  "warns": [],
+  "boxes": [
+   {
+    "role": "object",
+    "x": 80,
+    "y": 228,
+    "w": 920,
+    "h": 500
+   },
+   {
+    "role": "accent",
+    "x": 80,
+    "y": 580,
+    "w": 920,
+    "h": 28
+   },
+   {
+    "role": "hook",
+    "x": 80,
+    "y": 826,
+    "w": 920,
+    "h": 348
+   },
+   {
+    "role": "fine",
+    "x": 80,
+    "y": 1222,
+    "w": 520,
+    "h": 48
+   }
+  ],
+  "accent": 0.8,
+  "rawColours": 0,
+  "centred": 0
+ }
+]

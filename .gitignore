@@ -1,0 +1,20 @@
+node_modules/
+.venv/
+.atelier/
+*.log
+.DS_Store
+__pycache__/
+# render and check outputs
+audit.json
+boxes.json
+attention-*.png
+plugins/mansions/skills/atelier/tests/fixtures/*/page-*.png
+plugins/mansions/skills/atelier/tests/fixtures/*/carousel.pdf
+dist/
+# by-products of the CI audit runs
+plugins/mansions/skills/atelier/assets/directions/page-*.png
+plugins/mansions/skills/atelier/assets/directions/carousel.pdf
+plugins/mansions/skills/atelier/evals/anchors/src/page-*.png
+plugins/mansions/skills/atelier/evals/anchors/src/carousel.pdf
+package.json
+package-lock.json

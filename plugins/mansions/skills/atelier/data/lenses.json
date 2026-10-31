@@ -1,0 +1,122 @@
+[
+ {
+  "id": "newcomer",
+  "name": "The newcomer",
+  "question": "What would confuse someone on their first day?"
+ },
+ {
+  "id": "maintainer",
+  "name": "The maintainer at 3 am",
+  "question": "What breaks, and how would they find out?"
+ },
+ {
+  "id": "auditor",
+  "name": "The auditor",
+  "question": "What can be proven, and what is only assumed?"
+ },
+ {
+  "id": "finance",
+  "name": "The finance lead",
+  "question": "What does it cost, and who pays?"
+ },
+ {
+  "id": "customer",
+  "name": "The customer",
+  "question": "What do they see, wait for or never notice?"
+ },
+ {
+  "id": "customers-customer",
+  "name": "The customer's customer",
+  "question": "Who is affected two steps away?"
+ },
+ {
+  "id": "historian",
+  "name": "The historian",
+  "question": "How was this done before, and what was lost or gained?"
+ },
+ {
+  "id": "future",
+  "name": "The archaeologist in 2040",
+  "question": "What will look absurd about how this is done now?"
+ },
+ {
+  "id": "sceptic",
+  "name": "The sceptic",
+  "question": "What is the strongest reason this will not work?"
+ },
+ {
+  "id": "builder",
+  "name": "The builder",
+  "question": "What is the one design decision that makes it work?"
+ },
+ {
+  "id": "operator",
+  "name": "The operator",
+  "question": "What do they do every day that nobody sees?"
+ },
+ {
+  "id": "leader",
+  "name": "The leader with ten minutes",
+  "question": "What decision does this change?"
+ },
+ {
+  "id": "specialist",
+  "name": "A specialist from another field",
+  "question": "What would a pilot, chef, librarian or accountant notice?"
+ },
+ {
+  "id": "object",
+  "name": "The object itself",
+  "question": "Where does it wait, who touches it, where does it get lost?"
+ },
+ {
+  "id": "number",
+  "name": "The number",
+  "question": "Which number moves, and what moves it?"
+ },
+ {
+  "id": "child",
+  "name": "The ten-year-old",
+  "question": "How would you explain it with no jargon at all?"
+ },
+ {
+  "id": "regulator",
+  "name": "The regulator",
+  "question": "What rule applies, and where is the risk?"
+ },
+ {
+  "id": "designer",
+  "name": "The designer",
+  "question": "What does the interface make easy, and what does it hide?"
+ },
+ {
+  "id": "competitor",
+  "name": "The competitor",
+  "question": "What would they copy, and what can they not copy?"
+ },
+ {
+  "id": "insider",
+  "name": "The insider",
+  "question": "What do people inside know that outsiders do not?"
+ },
+ {
+  "id": "outsider",
+  "name": "The outsider",
+  "question": "What looks strange from outside that insiders stopped seeing?"
+ },
+ {
+  "id": "ethicist",
+  "name": "The ethicist",
+  "question": "Who benefits, who carries the risk, who was not asked?"
+ },
+ {
+  "id": "scale",
+  "name": "The planner",
+  "question": "What happens at ten times the volume?"
+ },
+ {
+  "id": "minimalist",
+  "name": "The minimalist",
+  "question": "What could be removed with nothing lost?"
+ }
+]

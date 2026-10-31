@@ -1,0 +1,546 @@
+[
+ {
+  "id": "task-card",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a ruled card under it filling the lower two thirds, with a field row, a warning bar, numbered steps and a sign-off row; a note at the foot",
+  "stock": [
+   "a ruled card with TASK, APPLIES TO and SINCE boxes",
+   "a WARNING bar with a thick rule on its left",
+   "three numbered steps",
+   "a SIGNED and STATUS row with a tilted GATED stamp"
+  ],
+  "roles": {
+   "paper": "var(--ground)",
+   "paper-2": "var(--ground)",
+   "ink": "var(--text)",
+   "ink-2": "var(--text-2)",
+   "house": "var(--accent)",
+   "cream": "var(--ground)"
+  }
+ },
+ {
+  "id": "ledger",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a ruled table across the full width under it, its total row last; a note at the foot",
+  "stock": [
+   "a double rule over WHEN, ITEM and HOURS column heads",
+   "rows of day, item and hours with the hours right-aligned",
+   "a total row with its number in the accent"
+  ],
+  "roles": {
+   "paper": "var(--ground)",
+   "ink": "var(--text)",
+   "ink-2": "var(--text-2)",
+   "house": "var(--accent)"
+  }
+ },
+ {
+  "id": "departure-board",
+  "ground": "dark",
+  "media": [
+   "carousel",
+   "image",
+   "video"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a board of letter tiles across the full width a third down; a note under it",
+  "stock": [
+   "a black board of split-flap letter tiles in SERVICE, ROUTE and STATUS columns",
+   "one WAIT status in accent tiles"
+  ],
+  "roles": {
+   "night": "var(--ground)",
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)",
+   "steel": "oklch(from var(--text-2) max(l, 0.72) c h)",
+   "glow": "oklch(from var(--text) max(l, 0.9) c h)",
+   "amber": "var(--accent)"
+  },
+  "rules": [
+   ".db .f.off { color: var(--ground); }"
+  ]
+ },
+ {
+  "id": "receipt",
+  "ground": "dark",
+  "media": [
+   "carousel",
+   "image"
+  ],
+  "specimen": true,
+  "layout": "split",
+  "frame": "the headline top left in a narrow column; a till roll on the right, running off the top edge, with a torn foot; a note under the headline",
+  "stock": [
+   "a till roll on the right that runs off the top edge",
+   "a RUN number over token, retry and cache lines, the retries struck through",
+   "a TOTAL with its amount in an accent box",
+   "a zigzag torn foot"
+  ],
+  "roles": {
+   "night": "var(--ground)",
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)",
+   "house": "var(--accent)"
+  },
+  "rules": [
+   ".roll .tot span:last-child { color: var(--ground); }"
+  ]
+ },
+ {
+  "id": "specimen-label",
+  "ground": "paper",
+  "media": [
+   "image",
+   "carousel"
+  ],
+  "specimen": true,
+  "layout": "artefact",
+  "frame": "one object on a dark mount filling the top half; a catalogue label under it, with a rule on its left",
+  "stock": [
+   "a sheet of paper on a dark mount, held by a pin",
+   "a catalogue label under it with a rule on its left and a catalogue number"
+  ],
+  "roles": {
+   "paper-2": "var(--ground)",
+   "paper": "color-mix(in oklab, var(--ground) 90%, oklch(from var(--ground) round(l) 0 0))",
+   "ink": "var(--text)",
+   "ink-2": "var(--text-2)",
+   "house": "var(--accent)",
+   "cream": "var(--ground)"
+  }
+ },
+ {
+  "id": "field-notebook",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image",
+   "text"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "a number and its headline at the top; a sentence and one circled number under them; timestamps in the left margin; tape on two corners",
+  "stock": [
+   "a squared grid over the whole page",
+   "times in a margin column left of a vertical rule",
+   "one number in a drawn circle",
+   "tape strips on two corners"
+  ],
+  "roles": {
+   "paper": "var(--ground)",
+   "ink": "var(--text)",
+   "house": "var(--accent)"
+  },
+  "rules": [
+   ".fn { background: linear-gradient(color-mix(in srgb, var(--accent) 11%, transparent) 2px, transparent 2px) 0 0 / 54px 54px, linear-gradient(90deg, color-mix(in srgb, var(--accent) 11%, transparent) 2px, transparent 2px) 0 0 / 54px 54px, var(--ground); }",
+   ".fn .margin { background: color-mix(in srgb, var(--accent) 40%, transparent); }",
+   ".fn .tape { background: color-mix(in srgb, var(--accent) 22%, transparent); }"
+  ]
+ },
+ {
+  "id": "editorial-poster",
+  "ground": "field",
+  "media": [
+   "image",
+   "carousel",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "number",
+  "frame": "one number filling the top half; a rule; the claim and a note in two columns under it",
+  "stock": [
+   "one huge numeral filling the top half of a colour field",
+   "a full-width hairline rule under the numeral",
+   "a bold claim and a small note side by side in two columns under the rule"
+  ],
+  "roles": {
+   "house": "var(--ground)",
+   "cream": "var(--text)"
+  },
+  "rules": [
+   ".ep .col { color: var(--text-2); }"
+  ]
+ },
+ {
+  "id": "transit-map",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; the line diagram across the middle, stations on its left and branches on its right; a note at the foot",
+  "stock": [
+   "hollow ring stations",
+   "lines that bend into one large interchange ring and branch out to the right",
+   "station names set beside their rings"
+  ],
+  "roles": {
+   "paper": "var(--ground)",
+   "ink": "var(--text)",
+   "ink-2": "var(--text-2)"
+  },
+  "rules": [
+   ".tm path[stroke='#1c1e23'] { stroke: var(--text); }",
+   ".tm path[stroke='#2f5bc2'] { stroke: var(--accent-2, var(--accent)); }",
+   ".tm path[stroke='#8d939b'] { stroke: var(--text-2); }",
+   ".tm path[stroke='#143ca1'] { stroke: var(--accent); }",
+   ".tm g[fill='#f1f2f4'] { fill: var(--ground); stroke: var(--text); }",
+   ".tm rect[fill='#f1f2f4'] { fill: var(--ground); stroke: var(--accent); }"
+  ]
+ },
+ {
+  "id": "diff",
+  "ground": "dark",
+  "media": [
+   "carousel",
+   "image",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a code block across the full width a third down; a note under it",
+  "stock": [
+   "a dark code block with a file and version line",
+   "a removed line struck through after a minus",
+   "added lines after a plus on an accent band",
+   "a Why: note under the block"
+  ],
+  "roles": {
+   "night": "var(--ground)",
+   "deep": "color-mix(in oklab, var(--ground) 55%, oklch(from var(--ground) round(l) 0 0))",
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)",
+   "steel": "var(--text-2)",
+   "glow": "var(--text)"
+  },
+  "rules": [
+   ".df .add { background: color-mix(in srgb, var(--accent) 22%, transparent); }",
+   ".df .del { color: var(--text-2); }"
+  ]
+ },
+ {
+  "id": "index-card",
+  "ground": "field",
+  "media": [
+   "image",
+   "carousel"
+  ],
+  "specimen": true,
+  "layout": "artefact",
+  "frame": "one tilted card in the middle of a colour field: a headword, a definition and a see-also line",
+  "stock": [
+   "one tilted ruled card on a colour field",
+   "a headword in capitals followed by n.",
+   "a See also: line",
+   "a stamp box at the top right and a punched hole at the foot"
+  ],
+  "roles": {
+   "house": "var(--ground)",
+   "ink": "oklch(from var(--ground) min(l, 0.5) c h)",
+   "ink-2": "oklch(from var(--ground) min(l, 0.5) c h)",
+   "cream": "var(--text)"
+  },
+  "rules": [
+   ".ic .card { background-image: linear-gradient(color-mix(in srgb, var(--ground) 55%, transparent) 3px, transparent 3px), linear-gradient(color-mix(in srgb, var(--ground) 13%, transparent) 2px, transparent 2px); }",
+   ".ic .hole { background: color-mix(in srgb, var(--ground) 80%, black); box-shadow: inset 0 3px 0 color-mix(in srgb, var(--ground) 50%, black); }",
+   ".ic .stamp { border-color: color-mix(in srgb, var(--ground) 60%, transparent); color: oklch(from var(--ground) min(l, 0.5) c h); }"
+  ]
+ },
+ {
+  "id": "forecast",
+  "ground": "dark",
+  "media": [
+   "image",
+   "carousel",
+   "video"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a dot field across the middle with one curve through it; a legend line at the foot",
+  "stock": [
+   "a field of dots in two colours split by one curve",
+   "triangle markers along the curve",
+   "a legend line in monospace at the foot"
+  ],
+  "roles": {
+   "night": "var(--ground)",
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)",
+   "glow": "var(--text)"
+  },
+  "rules": [
+   ".fc circle[fill='#75a3f9'] { fill: var(--accent); }",
+   ".fc circle[fill='#8d939b'] { fill: var(--text-2); }",
+   ".fc text[fill='#75a3f9'] { fill: var(--accent); }",
+   ".fc text[fill='#c9ccd1'] { fill: var(--text-2); }",
+   ".fc path[stroke='#fff6e8'] { stroke: var(--text); }",
+   ".fc path[fill='#fff6e8'] { fill: var(--text); }"
+  ]
+ },
+ {
+  "id": "blueprint",
+  "ground": "dark",
+  "media": [
+   "carousel",
+   "image",
+   "slide",
+   "video"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; boxes joined by arrows across the middle; a title block at the bottom right",
+  "stock": [
+   "three labelled boxes joined by arrows",
+   "a dimension line with its measure",
+   "a SHEET, SCALE and STATUS title block at the bottom right"
+  ],
+  "roles": {
+   "glow": "var(--accent)"
+  },
+  "rules": [
+   ".bp { background: var(--ground); color: var(--text); }",
+   ".bp .lbl { fill: var(--text-2); }",
+   ".bp .tb { border-color: var(--text-2); color: var(--text); }",
+   ".bp .tb div { border-color: var(--text-2); }",
+   ".bp svg [stroke='#9fb4c2'] { stroke: var(--text-2); }",
+   ".bp svg [fill='#9fb4c2'] { fill: var(--text-2); }",
+   ".bp svg [stroke='#fff6e8'] { stroke: var(--accent); }",
+   ".bp svg rect[fill='#fff6e81a'] { fill: color-mix(in srgb, var(--accent) 14%, transparent); }"
+  ]
+ },
+ {
+  "id": "kitchen-rail",
+  "ground": "dark",
+  "media": [
+   "carousel",
+   "image",
+   "video"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a full-width rail a third down; four equal tickets hanging from it in a row, one tilted; a note under them",
+  "stock": [
+   "a full-width rail",
+   "four equal numbered tickets hanging from it",
+   "one tilted ticket in the accent marked WAIT",
+   "DONE stamps on the other tickets"
+  ],
+  "roles": {
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)",
+   "amber": "var(--accent)"
+  },
+  "rules": [
+   ".kr { background: var(--ground); }",
+   ".kr .t.late { background: #f6f3ec; border-top: 14px solid var(--accent); padding-top: 30px; }",
+   ".kr .t.late .st { background: var(--accent); color: var(--ground); }"
+  ]
+ },
+ {
+  "id": "timetable",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; a ruled table of four rows across the full width, one cell filled; a note at the foot",
+  "stock": [
+   "a ruled table with a step column and two time columns",
+   "one time cell filled in the accent"
+  ],
+  "roles": {
+   "paper": "var(--ground)",
+   "ink": "var(--text)",
+   "ink-2": "var(--text-2)",
+   "house": "var(--accent)",
+   "cream": "var(--ground)"
+  }
+ },
+ {
+  "id": "manual-page",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image"
+  ],
+  "specimen": true,
+  "layout": "stack",
+  "frame": "the headline top left; an exploded drawing stacked in the middle with numbered callouts on its right; a do-not box at the foot",
+  "stock": [
+   "three stacked rhombi, an exploded stack of plates",
+   "dashed leaders to numbered circles in the accent",
+   "a do-not box with a barred circle at the foot"
+  ],
+  "roles": {
+   "paper": "var(--ground)",
+   "ink": "var(--text)",
+   "house": "var(--accent)"
+  },
+  "rules": [
+   ".mp g[fill='#e1e3e5'] { fill: color-mix(in oklab, var(--ground), var(--text) 8%); stroke: var(--text); }",
+   ".mp g[stroke='#1c1e23'] { stroke: var(--text); }",
+   ".mp g[fill='#143ca1'] { fill: var(--accent); }"
+  ]
+ },
+ {
+  "id": "type-only",
+  "ground": "dark",
+  "media": [
+   "image",
+   "carousel",
+   "video",
+   "slide"
+  ],
+  "specimen": true,
+  "layout": "quote",
+  "frame": "the words fill the page from top to bottom in three or four lines of mixed weight and width",
+  "stock": [
+   "three or four lines of mixed weight and width filling the page",
+   "the last lines in the accent"
+  ],
+  "keeps_house_type": true,
+  "roles": {
+   "night": "var(--ground)",
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)",
+   "teal-lit": "var(--accent)"
+  }
+ },
+ {
+  "id": "colour-chapters",
+  "ground": "field",
+  "media": [
+   "carousel",
+   "video"
+  ],
+  "specimen": true,
+  "layout": "field",
+  "frame": "three horizontal bands of colour, each a chapter with its heading top left",
+  "stock": [
+   "three horizontal bands of colour, one per chapter",
+   "a heading at the top left of each band with a small note under it"
+  ],
+  "roles": {
+   "house": "var(--ground)",
+   "paper": "var(--text)",
+   "ink": "var(--ground)",
+   "ink-2": "var(--ground)",
+   "night": "color-mix(in oklab, var(--ground) 35%, oklch(from var(--ground) round(l) 0 0))",
+   "cream": "var(--text)",
+   "cream-2": "var(--text-2)"
+  }
+ },
+ {
+  "id": "field-guide",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "newspaper",
+  "ground": "paper",
+  "media": [
+   "image"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "page-is-the-object",
+  "ground": "paper",
+  "media": [
+   "carousel",
+   "image"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "product-performs",
+  "ground": "dark",
+  "media": [
+   "carousel",
+   "video"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "single-shape",
+  "ground": "dark",
+  "media": [
+   "video"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "three-inks",
+  "ground": "paper",
+  "media": [
+   "video"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "words-as-architecture",
+  "ground": "dark",
+  "media": [
+   "video",
+   "image"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "cost-machine",
+  "ground": "dark",
+  "media": [
+   "video"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "night-shift",
+  "ground": "dark",
+  "media": [
+   "video"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "the-dot",
+  "ground": "dark",
+  "media": [
+   "video"
+  ],
+  "specimen": false
+ },
+ {
+  "id": "job-ticket",
+  "ground": "paper",
+  "media": [
+   "video"
+  ],
+  "specimen": false
+ }
+]

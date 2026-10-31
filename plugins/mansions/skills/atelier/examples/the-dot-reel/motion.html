@@ -1,0 +1,57 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../assets/tokens.css"><script src="../../assets/lib/motion.js"></script>
+<!-- Worked example: "the-dot", a 10 s vertical reel (1080x1920), sample content. One accent dot traces the curve,
+     a counter rolls only while it moves and settles sharply, frame 0 already carries the hook, text stays out of the
+     platform UI zones (render.mjs --audit --safe reels), final hold from 8 s.
+     Render: node ../../scripts/motion.mjs motion.html --seconds 10 --size 1080x1920 --sub 2 --poster 9.5 -->
+<style>
+.page.reel { width: 1080px; height: 1920px; background: var(--night); color: var(--cream); }
+.reel h1 { position: absolute; left: 80px; right: 160px; top: 260px; font: 650 104px/0.98 var(--disp); letter-spacing: -0.035em; }
+.reel .count { position: absolute; left: 80px; top: 1250px; font: 900 300px/0.85 var(--body); font-stretch: 62%; font-variant-numeric: tabular-nums; color: var(--teal-lit); }
+.reel .unit { position: absolute; left: 80px; top: 1520px; font: 500 40px/1.2 var(--body); color: var(--cream-2); }
+.reel svg { position: absolute; left: 0; top: 560px; }
+.reel .logo { right: 160px; top: 260px; height: 0; }
+</style>
+<section class="page reel">
+  <h1 data-role="hook">Rows synced this week, night by night.</h1>
+  <svg width="1080" height="640" viewBox="0 0 1080 640">
+    <path id="grid" d="M80 600 H940 M80 450 H940 M80 300 H940 M80 150 H940" stroke="#ffffff1c" stroke-width="2"/>
+    <path id="line" fill="none" stroke="#75a3f9" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle id="dot" r="22" fill="#fff6e8"/>
+    <g id="peak" opacity="0"><circle cx="509.9" cy="61.1" r="40" fill="none" stroke="#fff6e8" stroke-width="5"/>
+      <text x="566" y="74" font-family="Archivo" font-weight="700" font-size="40" fill="#fff6e8">Thursday: 4,812</text></g>
+  </svg>
+  <div class="count" data-role="number">0</div>
+  <div class="unit">rows, Monday to Sunday (sample)</div>
+</section>
+<script>
+const nights = [3120, 4010, 3890, 4812, 4400, 2950, 3300];          // sample numbers
+const X = (i) => 80 + i * (860 / 6), Y = (v) => 600 - (v / 5000) * 560;
+const line = document.getElementById("line"), dot = document.getElementById("dot"), count = document.querySelector(".count");
+const totals = nights.map((_, i) => nights.slice(0, i + 1).reduce((a, b) => a + b, 0));
+window.POSTER_T = 9.5;
+window.seek = (t) => {
+  // the dot visits one night every 0.95 s from 0.8 s; position is the sum of springs, one per stop
+  const keysX = [[0, X(0)]], keysY = [[0, Y(nights[0])]];
+  nights.forEach((v, i) => { if (i) { keysX.push([0.8 + (i - 1) * 0.95, X(i)]); keysY.push([0.8 + (i - 1) * 0.95, Y(v)]); } });
+  const x = M.track(t, keysX, 140, 22), y = M.track(t, keysY, 140, 22);
+  let d = `M${X(0)} ${Y(nights[0])}`;
+  for (let i = 1; i < nights.length; i++) {
+    const start = 0.8 + (i - 1) * 0.95;
+    if (t >= start + 0.6) d += ` L${X(i)} ${Y(nights[i])}`;
+  }
+  d += ` L${x.toFixed(1)} ${y.toFixed(1)}`;
+  line.setAttribute("d", d);
+  dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", y.toFixed(1));
+  const k = Math.min(nights.length - 1, Math.max(0, Math.floor((t - 0.8) / 0.95) + 1));
+  const prev = k ? totals[k - 1] : 0;
+  const s = 0.8 + (k - 1) * 0.95;
+  count.textContent = (k === 0 ? 0 : M.counter(t, s, s + 0.7, totals[k], prev)).toLocaleString("en-GB");
+  // last beat at 7 s: the peak night is named; then a 1.8 s hold
+  const p = M.spring(t - 7.0, 160, 24);
+  const peak = document.getElementById("peak");
+  peak.setAttribute("opacity", M.clamp(p).toFixed(3));
+  peak.setAttribute("transform", `translate(0 ${((1 - p) * 24).toFixed(1)})`);
+  document.querySelector(".unit").textContent = t >= 7.4 ? "rows this week, the busiest night named (sample)" : "rows, Monday to Sunday (sample)";
+};
+window.seek(0);
+</script>

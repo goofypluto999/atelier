@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/a1-ring-over-label): a ring is drawn through the label and a triangle sits over another. The text-against-text
+     check passes both. render.mjs --audit must still exit 0 (no hard fail) but warn for each shape painted over text. The third label has a ring
+     marked data-allow="over" and must not warn. -->
+<style>
+.lg { color: var(--ink); padding: 90px 84px; background: var(--paper); }
+.lg h1 { font: 600 104px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 880px; }
+.lab { position: absolute; left: 84px; font: 700 48px/1.2 var(--body); }
+.l1 { top: 520px; } .l2 { top: 760px; } .l3 { top: 1000px; }
+.over { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+.over * { fill: none; stroke: #075055; stroke-width: 12; }
+.over .solid { fill: #075055; stroke: none; }
+.lg .fine { position: absolute; left: 84px; bottom: 50px; color: var(--ink-2); }
+</style>
+<section class="page lg">
+  <h1 data-role="hook">Where a month of reporting goes.</h1>
+  <div class="lab l1">Total hours</div>
+  <div class="lab l2">Hours lost</div>
+  <div class="lab l3">Hours saved</div>
+  <svg class="over" viewBox="0 0 1080 1350" aria-hidden="true">
+    <ellipse cx="190" cy="550" rx="80" ry="62"/>
+    <path class="solid" d="M200 770 L340 770 L270 830 Z"/>
+    <ellipse data-allow="over" cx="200" cy="1030" rx="90" ry="62"/>
+  </svg>
+  <p class="fine" data-role="fine">Sample content and numbers. Replace with your facts.</p>
+</section>

@@ -1,0 +1,11 @@
+{
+  "_note": "Known answers for calibrating the art-director agent (scripts/calibrate.py). good-* must PASS; each bad-* must FAIL naming at least one of its flaws. Never edit to make a run pass.",
+  "good-task-card": [], "good-ledger": [], "good-editorial-poster": [],
+  "bad-gradient-glow": ["tells", "generic-idea", "copy"],
+  "bad-tiny-text": ["legibility", "craft"],
+  "bad-clipped": ["craft"],
+  "bad-logo-first": ["hierarchy"],
+  "bad-template-chrome": ["tells", "generic-idea"],
+  "bad-salesy-copy": ["copy"],
+  "bad-overlap": ["craft"]
+}

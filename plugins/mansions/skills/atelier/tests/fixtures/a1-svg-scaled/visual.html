@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/a1-svg-scaled): the label is 32px in SVG units, but the viewBox is 2160 wide and drawn at 1080, so it is 16px on the page.
+     render.mjs --audit used to read 32px and pass it. It must measure the drawn size and fail the type floor. -->
+<style>
+.lg { color: var(--ink); padding: 90px 84px; background: var(--paper); }
+.lg h1 { font: 600 104px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 880px; }
+.chart { position: absolute; left: 0; top: 470px; width: 1080px; height: 700px; }
+.chart text { font: 500 32px var(--body); fill: var(--ink); }
+.lg .fine { position: absolute; left: 84px; bottom: 50px; color: var(--ink-2); }
+</style>
+<section class="page lg">
+  <h1 data-role="hook">Where a month of reporting goes.</h1>
+  <svg class="chart" viewBox="0 0 2160 1400" role="img" aria-label="Hours per step">
+    <rect x="168" y="200" width="1200" height="120" fill="#075055"/>
+    <rect x="168" y="400" width="800" height="120" fill="#075055"/>
+    <rect x="168" y="600" width="1700" height="120" fill="#075055"/>
+    <text x="168" y="170">Export numbers from six tools</text>
+    <text x="168" y="370">Chase the one export that failed</text>
+    <text x="168" y="570">Clean, merge and check by hand</text>
+  </svg>
+  <p class="fine" data-role="fine">Sample content and numbers. Replace with your facts.</p>
+</section>

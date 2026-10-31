@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/a1-broken-link): a specimen copied one folder too shallow. The tokens.css link and the logo path are wrong
+     (the right prefix from here is ../../../assets/). Without them the page renders in the browser default font at 16px and used to print
+     twenty misleading "text at 16px" fails. render.mjs must exit 1 and name the two missing files first, in --audit and in a plain render. -->
+<style>
+.lg { color: var(--ink); padding: 90px 84px; background: var(--paper); }
+.lg h1 { font: 600 104px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 880px; }
+.book { position: absolute; left: 84px; right: 84px; top: 470px; border-top: 6px double var(--ink); }
+.book .r { display: grid; grid-template-columns: 196px 1fr 150px; align-items: baseline; min-height: 118px; border-bottom: 2px solid #2e2c2840; padding: 34px 0 18px; font: 400 36px/1.2 var(--body); }
+.book .r .d { font: 500 32px/1.2 var(--mono); color: var(--ink-2); }
+.book .r .n { text-align: right; font: 700 50px/1 var(--body); }
+.lg .fine { position: absolute; left: 84px; bottom: 50px; color: var(--ink-2); }
+.lg .logo { right: 84px; bottom: 52px; }
+</style>
+<section class="page lg">
+  <h1 data-role="hook">Where a month of reporting goes.</h1>
+  <div class="book">
+    <div class="r"><span class="d">day 1</span><span>Export numbers from six tools</span><span class="n">6</span></div>
+    <div class="r"><span class="d">day 2</span><span>Clean, merge and check by hand</span><span class="n" data-role="number">9</span></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content and numbers. Replace with your facts.</p>
+  <img class="logo" data-role="logo" src="../../assets/brand/logo-lockup-dark.png" alt="The Mansions">
+</section>

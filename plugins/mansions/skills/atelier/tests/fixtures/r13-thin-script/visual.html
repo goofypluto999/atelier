@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css"><link rel="stylesheet" href="../../../assets/fonts/library/library.css">
+<!-- Test fixture (tests/fixtures/r13-thin-script): the fault of piece 3 in the 30 Oct 2026 run (docs/run). Page 1 sets the hook in a marker script
+     (Nothing You Could Do) at 84 px, whose strokes are about 1.6 px on a phone, and must get the "thin stroke" warning. Page 2 sets the
+     same hook in Work Sans 700 and page 3 in Work Sans 400 at 64 px (a regular text face, 7 to 9% of its size): neither may. Sample content. -->
+<style>
+.fx { --ground: #e1d7cf; --text: #32261d; background: var(--ground); color: var(--text); }
+.fx h1 { position: absolute; left: 80px; top: 80px; width: 900px; margin: 0; font: 400 84px/1.1 "Nothing You Could Do", cursive; }
+.fx.bold h1 { font: 700 84px/1.1 "Work Sans", sans-serif; }
+.fx.plain h1 { font: 400 64px/1.1 "Work Sans", sans-serif; }
+.fx .src { position: absolute; left: 80px; bottom: 80px; margin: 0; font: 500 40px/1.2 "Work Sans", sans-serif; }
+</style>
+<section class="page fx">
+  <h1 data-role="hook">Fifteen deaths in a thousand operations became eight.</h1>
+  <p class="src" data-role="fine">Sample content, after Haynes and colleagues, 2009.</p>
+</section>
+<section class="page fx bold">
+  <h1 data-role="hook">Fifteen deaths in a thousand operations became eight.</h1>
+  <p class="src" data-role="fine">Sample content, after Haynes and colleagues, 2009.</p>
+</section>
+<section class="page fx plain">
+  <h1 data-role="hook">Fifteen deaths in a thousand operations became eight.</h1>
+  <p class="src" data-role="fine">Sample content, after Haynes and colleagues, 2009.</p>
+</section>

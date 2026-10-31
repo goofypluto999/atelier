@@ -1,0 +1,279 @@
+{
+ "slug": "friday-warm",
+ "topic": "what a Friday release checklist really needs",
+ "topic_key": [
+  "checklist",
+  "friday",
+  "needs",
+  "really",
+  "release",
+  "what"
+ ],
+ "medium": "image",
+ "scope": "quick",
+ "created": "2026-10-30T18:34:15",
+ "stages": {
+  "atoms": {
+   "status": "passed",
+   "grades": [
+    {
+     "at": "2026-10-30T18:34:15",
+     "by": "self",
+     "scores": {
+      "coverage": 9.0,
+      "specificity": 9.0,
+      "sourced": 9.0,
+      "surprise": 8.0
+     },
+     "total": 8.8,
+     "capped": [],
+     "passed": true,
+     "notes": "coverage: 5 atoms across 4 types (number x2, mechanism, limit, object): the risk, the answer, the form, the outcome\nspecificity: each atom carries a figure or a named thing: 70%, 5 to 9 items, 19 items in three pauses of 7, 7 and 5, 1.5% to 0.8% in 8 hospitals\nsourced: every row names a published work: the Google SRE book introduction, Gawande ch. 6, the WHO checklist, Haynes et al. NEJM 2009\nsurprise: atom 4 is not about software at all: a surgical checklist built around three stops, which a release list can borrow\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "lenses": {
+   "status": "skipped"
+  },
+  "angles": {
+   "status": "passed",
+   "deals": [
+    [
+     "provocation",
+     "ratio",
+     "eliminate"
+    ]
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T18:34:41",
+     "by": "self",
+     "scores": {
+      "novelty": 8.0,
+      "truth": 9.0,
+      "relevance": 7.0,
+      "intrigue": 8.0,
+      "tone": 8.0
+     },
+     "total": 8.0,
+     "capped": [],
+     "passed": true,
+     "notes": "novelty: operator 2 (the ratio) turns atom 5's 1.5% and 0.8% into 15 and 8 in a thousand; the two earlier pieces used the form and the 70% share\ntruth: 1.5% to 0.8% across 8 hospitals is Haynes et al., NEJM 2009; 15 and 8 per 1,000 is the same figure, not sharpened beyond it\nrelevance: the Friday list borrows the three stops; the ratio is the evidence that a short paused list changes an outcome\nintrigue: a drop to about half from three pauses invites the question of what the pauses did, which the post answers\ntone: plain; it reports a surgical result and says only that the pause can be borrowed, not that releases will halve outages\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "genome": {
+   "status": "passed",
+   "deals": [
+    {
+     "register": "warmth",
+     "direction": "transit-map",
+     "format": "i-poster",
+     "hook": "price",
+     "close": "plain",
+     "harmony": "split",
+     "arc": "steady",
+     "type": "handnote",
+     "motion": "none",
+     "operator": "ratio",
+     "operator_family": "measure",
+     "lens": "",
+     "ground": "paper",
+     "layout_rhythm": [
+      "quote"
+     ],
+     "field_page": "none"
+    },
+    {
+     "register": "warmth",
+     "direction": "timetable",
+     "format": "i-poster",
+     "hook": "artefact",
+     "close": "callback",
+     "harmony": "split",
+     "arc": "steady",
+     "type": "handnote",
+     "motion": "none",
+     "operator": "ratio",
+     "operator_family": "measure",
+     "lens": "",
+     "ground": "paper",
+     "layout_rhythm": [
+      "sequence"
+     ],
+     "field_page": "none"
+    }
+   ],
+   "grades": [
+    {
+     "at": "2026-10-30T18:35:20",
+     "by": "self",
+     "scores": {
+      "coherence": 8.0,
+      "feasibility": 9.0
+     },
+     "total": 8.4,
+     "capped": [],
+     "passed": true,
+     "notes": "coherence: timetable lends a run of stops across; the sequence layout reads the surgical stops in order and ends on the ratio as the last step\nfeasibility: one page, local handnote faces, own warm palette from palette.py, the drawing is two runs of three stops, no picture needed\n"
+    }
+   ],
+   "attempts": 1
+  },
+  "sections": {
+   "status": "skipped"
+  },
+  "copy": {
+   "status": "skipped"
+  },
+  "visual": {
+   "status": "passed",
+   "grades": [
+    {
+     "at": "2026-10-30T18:38:35",
+     "by": "critic",
+     "scores": {
+      "idea": 7.0,
+      "hook": 7.0,
+      "hierarchy": 5.0,
+      "craft": 7.0,
+      "colour": 7.0,
+      "distinct": 7.0
+     },
+     "total": 6.7,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic idea 7: the WHO run and the Friday run share the same three x positions, so the Friday run reads as the WHO run copied\nhook: critic hook 7: the handwritten stat has no scope or unit and reads as what the Friday stops deliver\nhierarchy: critic hierarchy 5: title and stops compete at near-equal weight; the Friday rail is lighter than the WHO rail\ncraft: critic craft 7: stop numerals have no unit; rails run 280 px past the last stop with no end mark\ncolour: critic colour 7: madder accent at 5.1:1 on the buff ground, but the Friday rail recedes against the near-black rail\ndistinct: critic distinct 7: departs from the timetable specimen and from friday-brand; buff and madder sit near the warm cluster\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-warm-r1.md",
+      "sha256": "e82794e95ba910347fc468bba673ea1240f86c37741c5912df7589f964f3c37f",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 7.0,
+       "hook": 7.0,
+       "hierarchy": 5.0,
+       "craft": 7.0,
+       "colour": 7.0,
+       "distinct": 7.0
+      },
+      "total": 6.7
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-warm\\attempts\\visual-1"
+    },
+    {
+     "at": "2026-10-30T18:42:47",
+     "by": "critic",
+     "scores": {
+      "idea": 7.0,
+      "hook": 7.0,
+      "hierarchy": 6.0,
+      "craft": 6.0,
+      "colour": 7.0,
+      "distinct": 8.0
+     },
+     "total": 6.8,
+     "capped": [],
+     "passed": false,
+     "notes": "idea: critic idea 7: the two runs share columns with the madder accent only on the Friday run, but the statistic splits the comparison\nhook: critic hook 7: the first read is the script statistic, not the timetable; \"15\" reads as \"/5\" in the script face\nhierarchy: critic hierarchy 6: the statistic sits between the runs, about 600 px apart, so the comparison is held in memory\ncraft: critic craft 6: hairline script strokes, a 30 px gutter between \"faults watched\" and \"rollback tried\", source spacing ambiguous\ncolour: critic colour 7: madder accent about 1% of the page on the Friday run only, per the colour plan\ndistinct: critic distinct 8: departs from the timetable specimen and from friday-brand\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-warm-r2.md",
+      "sha256": "6f4ebff5420cd606ff56849b65782f63bd746a7b14cdfffe3d7ecb8e2fabcd6a",
+      "verdict": "FAIL",
+      "scores": {
+       "idea": 7.0,
+       "hook": 7.0,
+       "hierarchy": 6.0,
+       "craft": 6.0,
+       "colour": 7.0,
+       "distinct": 8.0
+      },
+      "total": 6.8
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-warm\\attempts\\visual-2"
+    },
+    {
+     "at": "2026-10-30T18:48:10",
+     "by": "critic",
+     "scores": {
+      "idea": 8.0,
+      "hook": 7.0,
+      "hierarchy": 7.0,
+      "craft": 7.0,
+      "colour": 8.0,
+      "distinct": 8.0
+     },
+     "total": 7.5,
+     "capped": [],
+     "passed": true,
+     "notes": "idea: critic idea 8: the two runs share one column grid, so Sign in maps to Before the change by position alone, accent on the Friday run\nhook: critic hook 7: the script statistic is the largest type but the thinnest stroke; spelled numbers slow the read to two seconds\nhierarchy: critic hierarchy 7: the Friday bar and bold stop names carry more ink than the headline; attention puts the object first\ncraft: critic craft 7: \"operations\" sits over \"became eight\"; the right margin is 101 px against 80 px, last segments short\ncolour: critic colour 8: one madder accent on the Friday run only, about 1% of the page, per the colour plan\ndistinct: critic distinct 8: departs from the timetable specimen and from friday-brand\n",
+     "evidence": {
+      "path": "<verdicts>\\friday-warm-r3.md",
+      "sha256": "a5aded9be8b07505183fbfa2034ca1419e27cce85d0960d8926b32262b707803",
+      "verdict": "PASS",
+      "scores": {
+       "idea": 8.0,
+       "hook": 7.0,
+       "hierarchy": 7.0,
+       "craft": 7.0,
+       "colour": 8.0,
+       "distinct": 8.0
+      },
+      "total": 7.5,
+      "render": {
+       "html": "<run>\\friday-warm\\visual.html",
+       "html_sha256": "b5db5d6e10fb3b25468e58b70a9b7d38c46c8295dc16f2ece8f36f756c72984a",
+       "pages": {
+        "page-01.png": "0725b942e378ff18b1d0c013612a214b03b06598a45d84a0d701f6043d0a6869"
+       }
+      }
+     },
+     "attempt": "<run>\\.atelier\\pieces\\friday-warm\\attempts\\visual-3"
+    }
+   ],
+   "attempts": 3
+  },
+  "final": {
+   "status": "skipped"
+  }
+ },
+ "seeds": {
+  "angles": [
+   177737567671153050
+  ],
+  "genome": [
+   12909678816868897759,
+   13099345799808027442
+  ]
+ },
+ "angle": {
+  "n": 2,
+  "operator": "ratio",
+  "lens": "",
+  "one_line": "Fifteen deaths in every thousand operations became eight once the surgical list stopped three times, the pause a Friday list can borrow"
+ },
+ "pins": {
+  "register": "warmth"
+ },
+ "genome": {
+  "register": "warmth",
+  "direction": "timetable",
+  "format": "i-poster",
+  "hook": "artefact",
+  "close": "callback",
+  "harmony": "split",
+  "arc": "steady",
+  "type": "handnote",
+  "motion": "none",
+  "operator": "ratio",
+  "operator_family": "measure",
+  "lens": "",
+  "ground": "paper",
+  "layout_rhythm": [
+   "sequence"
+  ],
+  "field_page": "none"
+ },
+ "visual_html": "<run>\\friday-warm\\visual.html"
+}

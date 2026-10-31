@@ -1,0 +1,2 @@
+# Evidence files are kept byte for byte, so their sha256 matches the one piece.json records on every checkout.
+* -text

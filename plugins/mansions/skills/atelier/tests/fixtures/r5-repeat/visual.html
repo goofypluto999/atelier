@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r5-repeat): copy with crutch words. "quiet" runs through pages 2, 3 and 4; "list" is used twice on page 2. copy_lint.py must exit 0 and print one warning, "repeated words: quiet x3 (pages 2, 3, 4), list x2 (twice on page 2)". The fine print repeats "Sample content" on every page and is not counted. render.mjs --audit passes this page (no hard fail). tests/test_composer.py r12 asserts the copy_lint.py warning. -->
+<style>
+.rp { background: var(--paper); color: var(--ink); padding: 90px 84px; }
+.rp h1, .rp h2 { font: 600 96px/1.02 var(--disp); letter-spacing: -0.03em; max-width: 880px; }
+.rp p { font: 450 40px/1.35 var(--body); color: var(--ink-2); margin-top: 40px; max-width: 840px; }
+.rp .fine { position: absolute; left: 84px; bottom: 54px; margin: 0; }
+</style>
+<section class="page rp">
+  <h1 data-role="hook">Late invoices, found at 06:00.</h1>
+  <p>A check runs before anyone is at a desk.</p>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+<section class="page rp">
+  <h2 data-role="hook">A quiet check, not a dashboard.</h2>
+  <p>Each match goes on the list. An unmatched row goes on the list too.</p>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+<section class="page rp">
+  <h2 data-role="hook">Quiet by design.</h2>
+  <p>One alert, sent only when a source fails.</p>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+<section class="page rp">
+  <h2 data-role="hook">Three lines to keep.</h2>
+  <p>The quiet part is the point: nobody opens a report.</p>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

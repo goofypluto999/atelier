@@ -1,0 +1,30 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r12-clean): the r12-flawed material set as the checks ask. Every line is 40 px or more in weight 500 or
+     more, the hook says the claim once, the 7 boxes sit on one line, the accent is a 10 px bracket, and both cells of the ruled row are
+     full. The audit passes with none of the five warnings. Sample content. -->
+<style>
+.fx { --ground: var(--paper); --text: var(--ink); --accent: #85135f; background: var(--ground); color: var(--text); }
+.fx h1 { position: absolute; left: 80px; top: 80px; width: 900px; margin: 0; font: 700 96px/1 var(--disp); letter-spacing: -0.03em; }
+.fx .lab { position: absolute; left: 80px; top: 300px; margin: 0; font: 700 48px/1 var(--disp); color: var(--accent); }
+.fx .brk { position: absolute; left: 160px; top: 312px; width: 400px; height: 24px; border: 10px solid var(--accent); border-bottom: 0; box-sizing: border-box; }
+.fx .row { position: absolute; left: 80px; top: 420px; width: 920px; height: 300px; display: grid; grid-template-columns: 1fr 1fr; border-top: 4px solid var(--text); border-bottom: 4px solid var(--text); }
+.fx .left { padding: 24px 24px 0 0; }
+.fx .left p { margin: 0; font: 700 44px/1.1 var(--disp); }
+.fx .left .when, .fx .when { margin: 8px 0 0; font: 500 40px/1.2 var(--body); }
+.fx .right { border-left: 4px solid var(--text); padding: 24px 0 0 32px; }
+.fx .name { margin: 0; font: 700 44px/1 var(--disp); }
+.fx .boxes { margin-top: 24px; display: flex; gap: 8px; }
+.fx .boxes i { display: block; width: 44px; height: 44px; border: 4px solid var(--text); box-sizing: border-box; }
+.fx .lines { margin-top: 24px; border-top: 4px solid var(--text); padding-top: 16px; font: 500 40px/1.2 var(--body); }
+.fx .fine { position: absolute; left: 80px; bottom: 60px; margin: 0; font: 500 40px/1.2 var(--body); }
+</style>
+<section class="page fx">
+  <h1 data-role="hook">Nine fit one pause. This list has&nbsp;19.</h1>
+  <p class="lab" data-role="number">9</p>
+  <div class="brk" data-role="accent"></div>
+  <div class="row" data-role="object">
+    <div class="left"><p>Before the change</p><p class="when">the release owner signs</p><div class="lines">rollback written down</div></div>
+    <div class="right"><p class="name">Sign in 7</p><p class="when">before anaesthesia</p><div class="boxes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content, after the WHO checklist.</p>
+</section>

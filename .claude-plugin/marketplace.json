@@ -1,0 +1,15 @@
+{
+  "name": "mansions",
+  "description": "Design plugins from The Mansions Agency.",
+  "owner": {
+    "name": "The Mansions Agency",
+    "url": "https://themansions.agency"
+  },
+  "plugins": [
+    {
+      "name": "atelier",
+      "source": "./plugins/mansions",
+      "description": "Designs social carousels, single images, posters, slides and short videos in HTML, renders them on your machine, checks them with scripts and a critic agent, and remembers past pieces so the next one differs."
+    }
+  ]
+}

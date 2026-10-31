@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: editorial-poster. A Swiss poster on a full colour field: one enormous number, a strict grid, everything else small. -->
+<style>
+.ep { background: var(--house); color: var(--cream); }
+.ep .n { position: absolute; left: 62px; top: 64px; font: 900 800px/0.8 var(--body); font-stretch: 62%; letter-spacing: 0; }
+.ep .rule { position: absolute; left: 80px; right: 80px; top: 790px; height: 4px; background: var(--cream); }
+.ep h1 { position: absolute; left: 80px; width: 560px; top: 830px; font: 600 64px/1.04 var(--disp); letter-spacing: -0.02em; text-wrap: balance; }
+.ep .col { position: absolute; left: 680px; right: 80px; top: 836px; font: 450 36px/1.32 var(--body); color: color-mix(in srgb, var(--cream) 90%, var(--house)); }
+.ep .logo { left: 80px; bottom: 60px; }
+</style>
+<section class="page ep">
+  <div class="n" data-role="number">12</div>
+  <div class="rule"></div>
+  <h1 data-role="hook">steps between an&nbsp;order and&nbsp;its&nbsp;invoice.</h1>
+  <p class="col">Sample content. Seven of them are copying a number between screens.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

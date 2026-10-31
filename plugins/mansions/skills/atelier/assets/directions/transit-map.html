@@ -1,0 +1,37 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: transit-map. Data flows as metro lines: sources are stations, the dashboard is the interchange.
+     What this page keeps, and a page built from it keeps: the headline, the first stations, their labels and the source line all start on
+     the 80px margin, and nothing passes the 80px right margin; every line runs one way, left to right, into the interchange; labels are
+     the body face at 36px (mono only for real data); the source line is 32px in the text colour; a balanced headline. -->
+<style>
+.tm { background: var(--paper); color: var(--ink); }
+.tm h1 { position: absolute; left: 80px; right: 80px; top: 90px; font: 650 94px/0.98 var(--disp); letter-spacing: -0.035em; text-wrap: balance; }
+.tm svg { position: absolute; left: 0; top: 380px; }
+.tm .st { font: 600 36px var(--body); fill: var(--ink); }
+.tm .sm { font: 500 36px var(--body); fill: var(--ink-2); }
+.tm .fine { position: absolute; left: 80px; right: 80px; bottom: 54px; font-size: 32px; color: var(--ink); text-wrap: pretty; }
+.tm .logo { right: 80px; bottom: 56px; }
+</style>
+<section class="page tm">
+  <h1 data-role="hook">Five sources. One&nbsp;dashboard.</h1>
+  <svg width="1080" height="660" viewBox="0 0 1080 660" data-role="object">
+    <g fill="none" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M104 80 H380 Q430 80 460 130 L560 330" stroke="#1c1e23"/>
+      <path d="M104 330 H560" stroke="#2f5bc2"/>
+      <path d="M104 580 H380 Q430 580 460 530 L560 330" stroke="#8d939b"/>
+      <path d="M560 330 H700 Q740 330 770 290 L860 170" stroke="#143ca1"/>
+      <path d="M700 330 Q740 330 770 370 L860 490" stroke="#143ca1"/>
+      <path d="M700 330 H930" stroke="#143ca1"/>
+    </g>
+    <g fill="#f1f2f4" stroke="#1c1e23" stroke-width="7">
+      <circle cx="104" cy="80" r="20"/><circle cx="104" cy="330" r="20"/><circle cx="104" cy="580" r="20"/>
+      <circle cx="860" cy="170" r="20"/><circle cx="930" cy="330" r="20"/><circle cx="860" cy="490" r="20"/>
+    </g>
+    <rect x="510" y="282" width="100" height="96" rx="48" fill="#f1f2f4" stroke="#143ca1" stroke-width="10"/>
+    <text class="st" x="80" y="44">Ad platforms</text><text class="st" x="80" y="294">Shops</text><text class="st" x="80" y="544">Email tools</text>
+    <text class="st" x="536" y="460">Live dashboard</text>
+    <text class="sm" x="1000" y="134" text-anchor="end">Client A</text><text class="sm" x="1000" y="398" text-anchor="end">Client B</text><text class="sm" x="1000" y="550" text-anchor="end">Client C</text>
+  </svg>
+  <p class="fine" data-role="fine">Sample content. Each client sees only its own line.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

@@ -1,0 +1,40 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/logo-vanish): the ledger moved to a dark ground but still using the dark logo lockup. render.mjs --audit passes it; attention.py must fail it. Direction: ledger. Accounting paper: ruled columns, a running total, one teal pencil tick on the line that matters. -->
+<style>
+.lg { color: var(--ink); padding: 90px 84px; background: var(--paper); }
+.lg { /* ruled ledger lines continue below the book, with the teal margin rule */ }
+.lg h1 { font: 600 104px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 880px; }
+.lg h1 em { font-style: normal; color: var(--house); }
+.book { position: absolute; left: 84px; right: 84px; top: 470px; border-top: 6px double var(--ink); }
+.book .h, .book .r { display: grid; grid-template-columns: 196px 1fr 150px; align-items: baseline; }
+.book .r > span:nth-child(2) { padding-left: 24px; text-wrap: balance; }
+.book .h > span:nth-child(2) { padding-left: 24px; }
+.book .h { font: 700 36px/1 var(--body); font-stretch: 80%; letter-spacing: 0.08em; padding: 22px 0 16px; border-bottom: 3px solid var(--ink); }
+.book .r { min-height: 118px; border-bottom: 2px solid #2e2c2840; padding: 34px 0 18px; font: 400 36px/1.2 var(--body); }
+.book .r .d { font: 500 32px/1.2 var(--mono); color: var(--ink-2); }
+.book .r .n { text-align: right; font: 700 50px/1 var(--body); font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.book .t { border-top: 4px solid var(--ink); border-bottom: 6px double var(--ink); min-height: 130px; }
+.book .t .n { font-size: 64px; color: var(--house); }
+.tick { position: absolute; left: 40px; top: 44px; width: 76px; height: 54px; }
+.margin { position: absolute; left: 84px; top: 470px; bottom: 0; }
+.lg .fine { position: absolute; left: 84px; bottom: 50px; color: var(--ink-2); max-width: 720px; background: var(--paper); padding: 4px 0; }
+.lg .logo { right: 84px; bottom: 52px; }
+.lg, .lg .fine { background: var(--night); color: var(--cream); }
+.book, .book .h, .book .t { border-color: var(--cream); }
+.book .r .d { color: var(--cream-2); }
+.book .t .n, .lg h1 em { color: var(--teal-lit); }
+</style>
+<section class="page lg">
+  <h1 data-role="hook">Where a month of reporting goes.</h1>
+  
+  <div class="book">
+    <div class="h"><span>WHEN</span><span>ITEM</span><span style="text-align:right">HOURS</span></div>
+    <div class="r"><span class="d">day 1</span><span>Export numbers from six tools</span><span class="n">6</span></div>
+    <div class="r"><span class="d">day 1</span><span>Chase the one export that failed</span><span class="n">2</span></div>
+    <div class="r"><span class="d">day 2</span><span>Clean, merge and check by hand</span><span class="n">7</span></div>
+    <div class="r t" style="position:relative"><span class="d">total</span><span>Every month, before anyone reads it</span><span class="n" data-role="number">15</span>
+      </div>
+  </div>
+  <p class="fine" data-role="fine">Sample content and numbers. Replace with your facts.</p>
+  <img class="logo" data-role="logo" src="../../../assets/brand/logo-lockup-dark.png" alt="The Mansions">
+</section>

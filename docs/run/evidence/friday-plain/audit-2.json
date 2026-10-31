@@ -1,0 +1,70 @@
+[
+ {
+  "page": 1,
+  "texts": 9,
+  "words": 34,
+  "minFont": 40,
+  "minAll": 40,
+  "sizes": [
+   40,
+   48,
+   52,
+   60,
+   104,
+   120
+  ],
+  "families": [
+   "Work Sans",
+   "Outfit"
+  ],
+  "fails": [],
+  "warns": [],
+  "boxes": [
+   {
+    "role": "object",
+    "x": 80,
+    "y": 96,
+    "w": 920,
+    "h": 516
+   },
+   {
+    "role": "accent",
+    "x": 484,
+    "y": 291,
+    "w": 376,
+    "h": 18
+   },
+   {
+    "role": "number",
+    "x": 929,
+    "y": 240,
+    "w": 71,
+    "h": 120
+   },
+   {
+    "role": "number",
+    "x": 965,
+    "y": 486,
+    "w": 35,
+    "h": 60
+   },
+   {
+    "role": "hook",
+    "x": 80,
+    "y": 672,
+    "w": 920,
+    "h": 348
+   },
+   {
+    "role": "fine",
+    "x": 80,
+    "y": 1222,
+    "w": 610,
+    "h": 48
+   }
+  ],
+  "accent": 0.8,
+  "rawColours": 0,
+  "centred": 0
+ }
+]

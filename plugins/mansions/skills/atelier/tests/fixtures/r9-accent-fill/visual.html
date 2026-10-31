@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r9-accent-fill): the 30 Oct 2026 defect. A checklist row filled with the accent, about 12% of the page.
+     The audit passes (no hard rule is broken) and must warn that accent paint covers more than 5% of the page. -->
+<style>
+.af { --ground: var(--paper); --text: var(--ink); --accent: #85135f; background: var(--ground); color: var(--text); padding: 90px 80px; }
+.af h1 { font: 650 96px/0.98 var(--disp); letter-spacing: -0.03em; max-width: 900px; text-wrap: balance; }
+.af .row { position: absolute; left: 80px; right: 80px; top: 640px; height: 180px; background: var(--accent); color: var(--cream); padding: 40px; font: 500 40px/1.2 var(--body); }
+.af .fine { position: absolute; left: 80px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page af">
+  <h1 data-role="hook">Line 3 is the rollback.</h1>
+  <div class="row" data-role="accent">Write the rollback out.</div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

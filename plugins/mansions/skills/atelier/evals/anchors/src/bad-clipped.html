@@ -1,0 +1,44 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Direction: task-card. An aircraft maintenance task card, the home of Simplified Technical English.
+     Real material: the rule as a task with a WARNING, steps and a sign-off box. Paper ground, ink, one teal block. -->
+<style>
+.tc { background: var(--paper); color: var(--ink); padding: 84px 80px; }
+.tc h1 { font: 650 150px/0.98 var(--disp); letter-spacing: -0.035em; width: 1500px; white-space: nowrap; }
+.card { position: absolute; left: 80px; right: -120px; top: 330px; bottom: 120px; border: 4px solid var(--ink); display: grid;
+  grid-template-rows: 92px auto 1fr 150px; }
+.row { display: grid; border-bottom: 3px solid var(--ink); }
+.r1 { grid-template-columns: 1fr 1.5fr 1fr; }
+.r1 div { padding: 16px 22px; border-right: 3px solid var(--ink); font: 500 28px/1.15 var(--mono); }
+.r1 div:last-child { border-right: 0; }
+.r1 b { display: block; font: 800 32px/1.1 var(--body); font-stretch: 75%; letter-spacing: 0.01em; }
+.warn { margin: 26px 26px 0; background: var(--house); color: var(--cream); padding: 22px 26px; display: grid; grid-template-columns: 200px 1fr; gap: 22px; align-items: start; }
+.warn b { font: 900 40px/1 var(--body); font-stretch: 70%; letter-spacing: 0.04em; }
+.warn span { font: 500 34px/1.25 var(--body); }
+ol { list-style: none; padding: 30px 30px 0; counter-reset: s; }
+li { counter-increment: s; display: grid; grid-template-columns: 70px 1fr; font: 450 36px/1.28 var(--body); margin-bottom: 22px; }
+li::before { content: counter(s) "."; font: 800 36px/1.28 var(--body); font-stretch: 75%; }
+code { font: 500 32px var(--mono); background: var(--paper-2); padding: 0 8px; }
+.sign { border-top: 3px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; }
+.sign div { padding: 18px 24px; border-right: 3px solid var(--ink); font: 500 28px/1.3 var(--mono); }
+.sign div:last-child { border-right: 0; position: relative; }
+.stamp { position: absolute; right: 26px; top: 22px; border: 5px solid var(--house); color: var(--house); font: 800 34px/1 var(--body);
+  font-stretch: 80%; padding: 12px 18px; transform: rotate(-6deg); letter-spacing: 0.06em; }
+.tc .logo { right: 80px; bottom: 50px; }
+.tc .fine { position: absolute; left: 80px; bottom: 54px; color: var(--ink-2); }
+</style>
+<section class="page tc">
+  <h1 data-role="hook">Check the config, not the wiki.</h1>
+  <div class="card">
+    <div class="row r1"><div><b>TASK</b>REL-04</div><div><b>APPLIES TO</b>every release</div><div><b>SINCE</b>v2.3</div></div>
+    <div class="warn" data-role="accent"><b>WARNING</b><span>Production reads the config file. Nobody reads the wiki page.</span></div>
+    <ol>
+      <li><span>Open the config file itself, not the page that describes it.</span></li>
+      <li><span>Find the line that ships: <code>deploy: auto</code></span></li>
+      <li><span>Put the sign-off on that line.</span></li>
+    </ol>
+    <div class="sign"><div>SIGNED<br>a person, before release</div><div>STATUS<span class="stamp">GATED</span></div></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content. Replace with your facts.</p>
+  <img class="logo" data-role="logo" src="../../../assets/brand/logo-lockup-dark.png" alt="The Mansions">
+</section>
+

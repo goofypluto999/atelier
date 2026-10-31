@@ -1,0 +1,27 @@
+== render.mjs visual.html --audit (frame 0)
+png: 1 page(s)
+audit page 1: 14 words, min 36px, sizes 36/84, Instrument Sans + Archivo, 1 raw colour(s), accent paint 0%
+audit: PASS (no hard fails)
+== motion.mjs visual.html --seconds 10 --sub 2 --poster 9.6 (width, height, frames)
+1080,1350,300
+== video_check.py . --seconds 10
+== video.mp4
+   duration 10.00 s (expected 10.00)
+   contact.png and phone.png written; frame0.png comes from motion.mjs
+  warn no captions.json
+  PASS
+== attention.py .
+== page-01.png
+   predicted order (share of the page's attention): hook 24.0% > fine 4.2% > number 1.7%
+   cover rule: the hook, the number or the object must win; winner is hook (24.0%, best hook, number or object 24.0%)
+   peak at (388,576); overlay attention-01.png
+== poster.png
+   predicted order (share of the page's attention): hook 19.4% > fine 2.7% > number 0.9%
+   cover rule: the hook, the number or the object must win; winner is hook (19.4%, best hook, number or object 19.4%)
+   peak at (716,848); overlay attention-poster.png
+== cvd.py .
+== page-01.png: page-01.cvd.png (original, protan, deutan, tritan)
+== poster.png: poster.cvd.png (original, protan, deutan, tritan)
+cvd: PASS
+== layout_memory.py check poster.png
+layout memory: PASS against 0 remembered cover(s)

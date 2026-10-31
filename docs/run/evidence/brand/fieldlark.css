@@ -1,0 +1,22 @@
+/* Fieldlark brand: forest green and raspberry. */
+:root {
+  --night: #0f3d2e;
+  --deep: #082519;
+  --cream: #f6f4ef;
+  --cream-2: #d3dcd6;
+  --steel: #8fa79c;
+  --paper: #f4f6f3;
+  --paper-2: #e3e9e4;
+  --ink: #0f3d2e;
+  --ink-2: #3c5a4f;
+  --house: #c2185b;
+  --teal: #d63a76;
+  --teal-lit: #f48fb1;
+  --glow: #fff6e8;
+  --amber: #f8c8da;
+  --disp: "Instrument Sans", system-ui, sans-serif;
+  --body: "Archivo", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --logo: url(logo-ink.svg);
+  --logo-on-dark: url(logo-light.svg);
+}

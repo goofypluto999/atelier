@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: timetable. A rail timetable grid: steps down the side, runs across, one highlighted run. For before and after timings. -->
+<style>
+.tt { background: var(--paper); color: var(--ink); padding: 86px 80px; }
+.tt h1 { font: 650 96px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 900px; text-wrap: balance; }
+table { position: absolute; left: 80px; width: 920px; top: 420px; border-collapse: collapse; font: 500 34px/1 var(--body); font-variant-numeric: tabular-nums; }
+th { font: 700 36px/1.1 var(--body); font-stretch: 80%; text-align: right; padding: 0 0 18px; border-bottom: 4px solid var(--ink); }
+th:first-child, td:first-child { text-align: left; }
+td { padding: 22px 0; border-bottom: 2px solid color-mix(in srgb, var(--ink) 20%, transparent); text-align: right; }
+td:first-child { font: 450 34px var(--body); }
+th:nth-child(2), td:nth-child(2) { padding-right: 32px; }
+th:last-child, td:last-child { padding-right: 14px; }
+.hl { background: var(--house); color: var(--cream); font-weight: 700; }
+.tt .fine { position: absolute; left: 80px; bottom: 56px; color: var(--ink-2); }
+.tt .logo { right: 80px; bottom: 52px; }
+</style>
+<section class="page tt">
+  <h1 data-role="hook">Same report. Two&nbsp;timetables.</h1>
+  <table><tr><th>step</th><th>by hand</th><th>automated</th></tr>
+  <tr><td>exports ready</td><td>Mon 10:00</td><td>Mon 06:00</td></tr>
+  <tr><td>numbers merged</td><td>Tue 16:30</td><td>Mon 06:04</td></tr>
+  <tr><td>checks done</td><td>Wed 12:00</td><td>Mon 06:05</td></tr>
+  <tr><td>report read</td><td>Thu 09:00</td><td class="hl" data-role="accent">Mon 09:00</td></tr></table>
+  <p class="fine" data-role="fine">Sample content and times. Replace with your facts.</p>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

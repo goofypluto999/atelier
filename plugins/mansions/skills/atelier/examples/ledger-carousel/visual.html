@@ -1,0 +1,95 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../assets/tokens.css">
+<!-- Worked example: a 6-page carousel in the ledger direction, sample content. One claim per page; the grid,
+     margins and type scale stay fixed; the layout inside the grid changes page by page (stack, table, bleed, split,
+     struck table, keep). Render: node ../../scripts/render.mjs visual.html  (PNG pages + carousel.pdf) -->
+<style>
+.lg { color: var(--ink); background: var(--paper); padding: 90px 84px; }
+.lg h1 { font: 600 104px/0.98 var(--disp); letter-spacing: -0.035em; max-width: 880px; }
+.lg h2 { font: 600 76px/1.02 var(--disp); letter-spacing: -0.03em; max-width: 900px; }
+.lg p.b { font: 450 38px/1.36 var(--body); color: var(--ink-2); margin-top: 34px; max-width: 820px; }
+.book { margin-top: 70px; border-top: 6px double var(--ink); }
+.book .h, .book .r { display: grid; grid-template-columns: 196px 1fr 210px; align-items: baseline; }
+.book .h { font: 700 36px/1 var(--body); font-stretch: 80%; letter-spacing: 0.08em; padding: 22px 0 16px; border-bottom: 3px solid var(--ink); }
+.book .r { min-height: 112px; border-bottom: 2px solid color-mix(in srgb, var(--ink) 25%, transparent); padding: 32px 0 18px; font: 400 36px/1.2 var(--body); }
+.book .d { font: 500 32px/1.2 var(--mono); color: var(--ink-2); }
+.book .n { text-align: right; font: 700 50px/1 var(--body); font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.book .t { border-top: 4px solid var(--ink); border-bottom: 6px double var(--ink); }
+.book .t .n { font-size: 64px; color: var(--house); }
+.book .x span:not(.d) { text-decoration: line-through; text-decoration-thickness: 3px; color: color-mix(in srgb, var(--ink) 70%, var(--paper)); }
+.book .new { color: var(--house); font-weight: 700; }
+.book .n.s { font-size: 40px; }
+.bleed { position: absolute; right: -60px; bottom: 150px; font: 900 700px/0.8 var(--body); font-stretch: 62%; letter-spacing: -0.02em; color: var(--house); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 80px; }
+.split .k { font: 700 36px/1 var(--body); font-stretch: 80%; letter-spacing: 0.08em; border-bottom: 3px solid var(--ink); padding-bottom: 14px; }
+.split .v { font: 800 150px/1 var(--body); font-stretch: 70%; margin-top: 26px; font-variant-numeric: tabular-nums; }
+.split .v.a { color: var(--house); }
+.split .s { font: 450 34px/1.3 var(--body); color: var(--ink-2); margin-top: 12px; }
+.bars { margin-top: 120px; }
+.bars .bl { font: 500 32px/1 var(--mono); color: var(--ink-2); margin: 34px 0 14px; }
+.bars .bar { height: 90px; background: var(--ink); }
+.bars .bar.a { background: var(--house); }
+.keep { position: absolute; left: 84px; right: 84px; top: 470px; border: 4px solid var(--ink); padding: 44px 46px; font: 600 58px/1.12 var(--disp); letter-spacing: -0.02em; }
+.keep small { display: block; font: 450 34px/1.35 var(--body); color: var(--ink-2); margin-top: 26px; letter-spacing: 0; }
+.fine { position: absolute; left: 84px; bottom: 54px; color: var(--ink-2); }
+</style>
+
+<section class="page lg">
+  <h1 data-role="hook">Where a month of reporting goes.</h1>
+  <div class="book">
+    <div class="h"><span>WHEN</span><span>ITEM</span><span style="text-align:right">HOURS</span></div>
+    <div class="r"><span class="d">day 1</span><span>Export numbers from six tools</span><span class="n">6</span></div>
+    <div class="r"><span class="d">day 1</span><span>Chase the one export that failed</span><span class="n">2</span></div>
+    <div class="r"><span class="d">day 2</span><span>Clean, merge and check by hand</span><span class="n">7</span></div>
+    <div class="r t"><span class="d"></span><span>Before anyone reads it</span><span class="n" data-role="number">15</span></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content and numbers.</p>
+</section>
+
+<section class="page lg">
+  <h2 data-role="hook">The report itself is read in about 20 minutes.</h2>
+  <p class="b">Fifteen hours of assembly for twenty minutes of reading. The ratio is the story, not the report.</p>
+  <div class="bleed" data-role="number" data-allow="bleed">45×</div>
+  <p class="fine" data-role="fine">Sample numbers: 15 hours of work, 20 minutes of reading.</p>
+</section>
+
+<section class="page lg">
+  <h2 data-role="hook">Two of the fifteen hours are one failed export.</h2>
+  <p class="b">One tool times out on the first try every month. Someone notices on day 1, chases it, and starts again.</p>
+  <div class="book">
+    <div class="h"><span>WHEN</span><span>ITEM</span><span style="text-align:right">HOURS</span></div>
+    <div class="r"><span class="d">09:10</span><span>Export fails, nobody told</span><span class="n">0</span></div>
+    <div class="r"><span class="d">11:40</span><span>Missing numbers noticed</span><span class="n">1</span></div>
+    <div class="r"><span class="d">13:30</span><span>Export run again, by hand</span><span class="n">1</span></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+
+<section class="page lg">
+  <h2 data-role="hook">Same month, two ledgers.</h2>
+  <div class="split">
+    <div><div class="k">BY HAND</div><div class="v" data-role="number">15 h</div><div class="s">every month, senior time</div></div>
+    <div><div class="k">AUTOMATED</div><div class="v a" data-role="number">5 min</div><div class="s">a check, then reading</div></div>
+  </div>
+  <div class="bars">
+    <div class="bl">15 hours</div><div class="bar" style="width:100%"></div>
+    <div class="bl">5 minutes, to scale</div><div class="bar a" style="width:6px"></div>
+  </div>
+  <p class="fine" data-role="fine">Sample numbers.</p>
+</section>
+
+<section class="page lg">
+  <h2 data-role="hook">What is left after the automation.</h2>
+  <div class="book">
+    <div class="h"><span>WHEN</span><span>ITEM</span><span style="text-align:right">HOURS</span></div>
+    <div class="r x"><span class="d">day 1</span><span>Export numbers from six tools</span><span class="n s">6</span></div>
+    <div class="r x"><span class="d">day 1</span><span>Chase the one export that failed</span><span class="n s">2</span></div>
+    <div class="r x"><span class="d">day 2</span><span>Clean, merge and check by hand</span><span class="n s">7</span></div>
+    <div class="r"><span class="d">06:00</span><span class="new" data-role="accent">Read the alert if a source fails</span><span class="n" data-role="number">0.08</span></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>
+
+<section class="page lg">
+  <div class="keep" data-role="hook">The first check we run: count the hours a person spends moving a number from one screen to another.<small>That count is usually the cheapest thing to automate, and the first thing nobody misses.</small></div>
+  <p class="fine" data-role="fine">Sample content.</p>
+</section>

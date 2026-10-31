@@ -1,0 +1,545 @@
+[
+ {
+  "id": "c-anatomy",
+  "medium": "carousel",
+  "name": "Anatomy plate",
+  "sections": [
+   "the whole object",
+   "part 1",
+   "part 2",
+   "part 3",
+   "the part that matters",
+   "the takeaway"
+  ],
+  "when": "one system with parts",
+  "overuse": 0.3,
+  "moves": [
+   "anatomy",
+   "zoom-in"
+  ],
+  "lead": {
+   "layout": "diagram",
+   "page": 1
+  }
+ },
+ {
+  "id": "c-timeline",
+  "medium": "carousel",
+  "name": "Timeline",
+  "sections": [
+   "the end state",
+   "t1",
+   "t2",
+   "t3",
+   "the turn",
+   "what changed"
+  ],
+  "when": "a sequence in time",
+  "overuse": 0.4,
+  "moves": [
+   "slow-motion",
+   "scene",
+   "failure-first"
+  ]
+ },
+ {
+  "id": "c-ledger",
+  "medium": "carousel",
+  "name": "Ledger",
+  "sections": [
+   "the total",
+   "line items",
+   "the surprising line",
+   "after",
+   "the rule"
+  ],
+  "when": "costs, time, budgets",
+  "overuse": 0.2,
+  "moves": [
+   "price-tag",
+   "count",
+   "ratio"
+  ],
+  "lead": {
+   "layout": "table",
+   "page": 2
+  }
+ },
+ {
+  "id": "c-artefact",
+  "medium": "carousel",
+  "name": "Annotated artefact",
+  "sections": [
+   "the artefact",
+   "note 1",
+   "note 2",
+   "note 3",
+   "what it means"
+  ],
+  "when": "a real document exists",
+  "overuse": 0.2,
+  "moves": [
+   "artefact"
+  ],
+  "lead": {
+   "layout": "artefact",
+   "page": 1
+  }
+ },
+ {
+  "id": "c-before-after",
+  "medium": "carousel",
+  "name": "Before and after",
+  "sections": [
+   "the claim",
+   "before",
+   "after",
+   "the mechanism",
+   "the keep"
+  ],
+  "when": "a clear change",
+  "overuse": 0.5,
+  "moves": [
+   "before-after",
+   "eliminate"
+  ]
+ },
+ {
+  "id": "c-field-guide",
+  "medium": "carousel",
+  "name": "Field guide",
+  "sections": [
+   "the kinds",
+   "kind 1",
+   "kind 2",
+   "kind 3",
+   "how to tell them apart"
+  ],
+  "when": "a taxonomy",
+  "overuse": 0.3,
+  "moves": [
+   "taxonomy",
+   "expert-eye"
+  ]
+ },
+ {
+  "id": "c-glossary",
+  "medium": "carousel",
+  "name": "Glossary",
+  "sections": [
+   "the term",
+   "the definition",
+   "the example",
+   "the consequence",
+   "see also"
+  ],
+  "when": "a term to reframe",
+  "overuse": 0.2,
+  "moves": [
+   "glossary",
+   "question-behind"
+  ]
+ },
+ {
+  "id": "c-puzzle",
+  "medium": "carousel",
+  "name": "Puzzle and solution",
+  "sections": [
+   "the anomaly",
+   "clue 1",
+   "clue 2",
+   "the solution",
+   "the lesson as a rule"
+  ],
+  "when": "a real anomaly",
+  "overuse": 0.2,
+  "moves": [
+   "puzzle",
+   "hidden-constraint"
+  ]
+ },
+ {
+  "id": "c-duet",
+  "medium": "carousel",
+  "name": "Two voices",
+  "sections": [
+   "the question",
+   "voice A",
+   "voice B",
+   "the evidence",
+   "the settle"
+  ],
+  "when": "a real disagreement",
+  "overuse": 0.2,
+  "moves": [
+   "the-duet",
+   "adversary"
+  ]
+ },
+ {
+  "id": "c-one-number",
+  "medium": "carousel",
+  "name": "One number",
+  "sections": [
+   "the number",
+   "what it counts",
+   "what it compares to",
+   "why it moved",
+   "the keep"
+  ],
+  "when": "one striking number",
+  "overuse": 0.4,
+  "moves": [
+   "one-number",
+   "ratio"
+  ],
+  "lead": {
+   "layout": "number",
+   "page": 1
+  }
+ },
+ {
+  "id": "c-map",
+  "medium": "carousel",
+  "name": "Map",
+  "sections": [
+   "the map",
+   "station 1",
+   "station 2",
+   "the interchange",
+   "the bottleneck"
+  ],
+  "when": "flows and integrations",
+  "overuse": 0.2,
+  "moves": [
+   "zoom-out",
+   "object-speaks"
+  ],
+  "lead": {
+   "layout": "map",
+   "page": 1
+  }
+ },
+ {
+  "id": "c-handover",
+  "medium": "carousel",
+  "name": "Handover note",
+  "sections": [
+   "to the next person",
+   "check first",
+   "do not touch",
+   "why",
+   "sign-off"
+  ],
+  "when": "rules and maintenance",
+  "overuse": 0.1,
+  "moves": [
+   "handover"
+  ]
+ },
+ {
+  "id": "c-genre",
+  "medium": "carousel",
+  "name": "Borrowed genre",
+  "sections": [
+   "the genre's cover",
+   "its first section",
+   "its second",
+   "its third",
+   "its colophon"
+  ],
+  "when": "a genre that carries information",
+  "overuse": 0.1,
+  "moves": [
+   "genre-swap",
+   "domain-analogy"
+  ]
+ },
+ {
+  "id": "i-poster",
+  "medium": "image",
+  "name": "Poster",
+  "sections": [
+   "one claim with its proof"
+  ],
+  "when": "one idea",
+  "overuse": 0.4,
+  "moves": [
+   "one-number",
+   "constraint-one-word"
+  ]
+ },
+ {
+  "id": "i-specimen",
+  "medium": "image",
+  "name": "Specimen",
+  "sections": [
+   "the object, labelled"
+  ],
+  "when": "one object with a story",
+  "overuse": 0.1,
+  "moves": [
+   "object-speaks",
+   "artefact"
+  ]
+ },
+ {
+  "id": "i-diagram",
+  "medium": "image",
+  "name": "Diagram",
+  "sections": [
+   "the system, one weak joint marked"
+  ],
+  "when": "a system",
+  "overuse": 0.3,
+  "moves": [
+   "zoom-out",
+   "anatomy"
+  ],
+  "lead": {
+   "layout": "diagram",
+   "page": 1
+  }
+ },
+ {
+  "id": "i-chart",
+  "medium": "image",
+  "name": "One chart",
+  "sections": [
+   "the finding as title, the chart as proof"
+  ],
+  "when": "data",
+  "overuse": 0.4,
+  "moves": [
+   "ratio",
+   "count"
+  ]
+ },
+ {
+  "id": "v-single-shape",
+  "medium": "video",
+  "name": "Single shape",
+  "sections": [
+   "hook",
+   "state 1",
+   "state 2",
+   "state 3",
+   "payoff and hold"
+  ],
+  "when": "a flow of states",
+  "overuse": 0.1,
+  "moves": [
+   "single-shape"
+  ]
+ },
+ {
+  "id": "v-board",
+  "medium": "video",
+  "name": "Status board",
+  "sections": [
+   "hook",
+   "rows flip",
+   "the one that waits",
+   "the note",
+   "hold"
+  ],
+  "when": "queues and statuses",
+  "overuse": 0.1,
+  "moves": [
+   "count",
+   "stakeholder-swap"
+  ]
+ },
+ {
+  "id": "v-draw",
+  "medium": "video",
+  "name": "Drawn live",
+  "sections": [
+   "hook",
+   "lines draw",
+   "the part lights up",
+   "the number",
+   "hold"
+  ],
+  "when": "designs and architectures",
+  "overuse": 0.2,
+  "moves": [
+   "anatomy",
+   "zoom-out"
+  ]
+ },
+ {
+  "id": "v-timelapse",
+  "medium": "video",
+  "name": "Timelapse",
+  "sections": [
+   "hook",
+   "frames",
+   "the dark frames",
+   "the change",
+   "hold"
+  ],
+  "when": "long periods",
+  "overuse": 0.1,
+  "moves": [
+   "timelapse"
+  ]
+ },
+ {
+  "id": "v-counter",
+  "medium": "video",
+  "name": "Counter",
+  "sections": [
+   "hook",
+   "the counter rolls",
+   "the comparison",
+   "the peak named",
+   "hold"
+  ],
+  "when": "one moving number",
+  "overuse": 0.3,
+  "moves": [
+   "one-number",
+   "ratio"
+  ]
+ },
+ {
+  "id": "v-kinetic",
+  "medium": "video",
+  "name": "Kinetic type",
+  "sections": [
+   "hook word",
+   "line 2",
+   "line 3",
+   "the claim built",
+   "hold"
+  ],
+  "when": "a short argument",
+  "overuse": 0.5,
+  "moves": [
+   "constraint-one-word",
+   "provocation"
+  ]
+ },
+ {
+  "id": "t-scene",
+  "medium": "text",
+  "name": "Scene",
+  "sections": [
+   "time and place",
+   "what happened",
+   "the turn",
+   "what changed"
+  ],
+  "when": "first-party moments",
+  "overuse": 0.2,
+  "moves": [
+   "scene",
+   "failure-first"
+  ]
+ },
+ {
+  "id": "t-teardown",
+  "medium": "text",
+  "name": "Teardown",
+  "sections": [
+   "the thing",
+   "its parts",
+   "the part that decides",
+   "our view"
+  ],
+  "when": "a public release",
+  "overuse": 0.3,
+  "moves": [
+   "anatomy",
+   "second-order"
+  ]
+ },
+ {
+  "id": "t-note",
+  "medium": "text",
+  "name": "Field note",
+  "sections": [
+   "the observation",
+   "the evidence",
+   "the limit",
+   "the next test"
+  ],
+  "when": "tests and observations",
+  "overuse": 0.2,
+  "moves": [
+   "count",
+   "puzzle"
+  ]
+ },
+ {
+  "id": "t-letter",
+  "medium": "text",
+  "name": "Handover letter",
+  "sections": [
+   "to",
+   "what to know",
+   "what to check",
+   "signed"
+  ],
+  "when": "maintenance wisdom",
+  "overuse": 0.1,
+  "moves": [
+   "handover"
+  ]
+ },
+ {
+  "id": "s-claim",
+  "medium": "slide",
+  "name": "Claim and proof",
+  "sections": [
+   "claim",
+   "proof",
+   "source"
+  ],
+  "when": "a talk or deck",
+  "overuse": 0.4,
+  "moves": [
+   "one-number",
+   "before-after"
+  ]
+ },
+ {
+  "id": "s-map",
+  "medium": "slide",
+  "name": "System map",
+  "sections": [
+   "the map",
+   "the joint",
+   "the ask"
+  ],
+  "when": "architecture",
+  "overuse": 0.3,
+  "moves": [
+   "zoom-out"
+  ],
+  "lead": {
+   "layout": "map",
+   "page": 1
+  }
+ },
+ {
+  "id": "s-quote",
+  "medium": "slide",
+  "name": "Real quote",
+  "sections": [
+   "the quote",
+   "who, when",
+   "why it matters"
+  ],
+  "when": "a sourced quote",
+  "overuse": 0.4,
+  "moves": [
+   "artefact"
+  ],
+  "lead": {
+   "layout": "quote",
+   "page": 1
+  }
+ }
+]

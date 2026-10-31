@@ -1,0 +1,5 @@
+/* A red and orange brand with no --house: the planner must take its accent hue from these two and add no other. */
+:root {
+  --primary: #c0392b; --secondary: #e67e22;
+  --night: #15110f; --paper: #f6f1ea; --ink: #2b2522; --cream: #fbf7f1;
+}

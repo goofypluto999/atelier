@@ -1,0 +1,156 @@
+{
+ "hooks": [
+  {
+   "id": "number",
+   "definition": "Opens on one specific number and says what it counts.",
+   "needs": {
+    "types": [
+     "number"
+    ]
+   }
+  },
+  {
+   "id": "price",
+   "definition": "Opens on what something cost, as an amount of money, hours or attention.",
+   "needs": {
+    "types": [
+     "number"
+    ]
+   }
+  },
+  {
+   "id": "object",
+   "definition": "Opens on one concrete thing you could point at: a form, a label, a button, a ticket."
+  },
+  {
+   "id": "contradiction",
+   "definition": "Puts two true things side by side that should not both hold."
+  },
+  {
+   "id": "moment",
+   "definition": "Opens inside one dated instant, as it happened, with no set-up.",
+   "needs": {
+    "types": [
+     "time"
+    ]
+   }
+  },
+  {
+   "id": "quote",
+   "definition": "Opens on a line someone really said or wrote, with the speaker's role.",
+   "needs": {
+    "types": [
+     "quote"
+    ]
+   }
+  },
+  {
+   "id": "definition",
+   "definition": "Defines a word the way the work really uses it, not the way a dictionary does."
+  },
+  {
+   "id": "confession",
+   "definition": "Opens on a plain admission of what we got wrong, in the first person.",
+   "needs": {
+    "first_party": true
+   }
+  },
+  {
+   "id": "comparison",
+   "definition": "Sets two things next to each other and lets the gap between them do the work."
+  },
+  {
+   "id": "image",
+   "definition": "Opens on a picture or drawing that carries the claim before any words do."
+  },
+  {
+   "id": "anomaly",
+   "definition": "Opens on one result that does not fit the pattern around it."
+  },
+  {
+   "id": "artefact",
+   "definition": "Shows a real document, screen or file as found, with one part marked.",
+   "needs": {
+    "types": [
+     "object"
+    ]
+   }
+  }
+ ],
+ "closes": [
+  {
+   "id": "changed",
+   "definition": "Ends on what we do differently now.",
+   "needs": {
+    "first_party": true
+   }
+  },
+  {
+   "id": "admission",
+   "definition": "Ends by admitting what is still unsolved or not yet known."
+  },
+  {
+   "id": "plain",
+   "definition": "Ends on the point, in one flat sentence with no flourish."
+  },
+  {
+   "id": "callback",
+   "definition": "Returns to the object or line the piece opened on, now changed."
+  },
+  {
+   "id": "aside",
+   "definition": "Ends on a small remark off to the side of the argument, said lightly."
+  },
+  {
+   "id": "gift",
+   "definition": "Ends by giving the reader something to take away: a template, a check, a number to reuse."
+  },
+  {
+   "id": "next-test",
+   "definition": "Ends on the next thing we will test and what result would change our mind.",
+   "needs": {
+    "first_party": true
+   }
+  },
+  {
+   "id": "image",
+   "definition": "Ends on a picture, with no claim in a caption."
+  },
+  {
+   "id": "rule",
+   "definition": "Ends on one rule short enough to repeat."
+  },
+  {
+   "id": "question-answered",
+   "definition": "Ends by answering, in one line, the question the piece opened with."
+  }
+ ],
+ "layout_words": [
+  "stack",
+  "split",
+  "bleed",
+  "grid",
+  "table",
+  "map",
+  "diagram",
+  "quote",
+  "number",
+  "artefact",
+  "sequence",
+  "field"
+ ],
+ "layouts": {
+  "stack": "the hook in a band at the top, the object in a band under it, the proof and the source under that.",
+  "split": "the page divides into two unequal fields side by side: the object fills the narrow one from top to bottom, the hook and its proof stand in the wide one.",
+  "bleed": "the object is drawn larger than the page and is cut by two edges; the hook stands in the space it leaves, low on the page.",
+  "grid": "a modular grid of equal cells: the object fills a block of cells top right, and the hook takes the block of cells under it on the left margin, so the eye runs on a diagonal.",
+  "table": "the page is one ruled table: its rows are the object, and the hook is the last row, the total or the answer, set at display size.",
+  "map": "the object spreads over the whole page and its positions mean something; the hook sits inside the map, beside the place it points at.",
+  "diagram": "the object is drawn large in the upper two thirds; the hook is its caption, under it.",
+  "quote": "the real words are the hook, set at display size over most of the page; the object is small, as its attribution.",
+  "number": "one real number at display size leads the page (data-role number); the hook says what it counts, beside or under it.",
+  "artefact": "the object as found, large and cut by one edge; the hook is its label, under it on the margin.",
+  "sequence": "the object is a run of steps in reading order across the page; the hook is the last step, at the foot on the right.",
+  "field": "a full colour field and the hook alone on it, low and large, with the source at the foot."
+ }
+}

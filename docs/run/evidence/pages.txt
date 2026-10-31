@@ -1,0 +1,12 @@
+Original sha256 of each page in this folder, before its absolute links were replaced by <skill>/ and <run>/ (docs/run/README.md, "Check it yourself").
+friday-brand/visual-1.html 2a71f2209e18cfe23e4bdff74440be4438f730b7c76c73ed1a944d43a440eab4
+friday-brand/visual-2.html bab19bd9bae787a4a079d5c63d50060dd6b9bc284f6fc19a623498fa2ca55cfe (piece.json html_sha256, the passing grade)
+friday-plain/visual-1.html e5e390808bcfd442ba32c5ead2b521cb1093d8f9bbb9a59493339a0b89df6f78
+friday-plain/visual-2.html 66e9e6b5c4a55ff2e0ecf53afd608242593b1e5f2db28231c04ae45f9e538acb
+friday-plain/visual-3.html 1f8cebba4b2a307ff0b679f8f78eace1a16476ec52eaf0cc9a9479ba05fced95
+friday-warm/visual-1.html d69846e871a32daebb411b083bfb7aa7b35455267f952b82e3508e344a99f7c8
+friday-warm/visual-2.html ae8313f6af00b060880c08ae9e23d8a064edd7adbc7ddb32560d73953d74fbb3
+friday-warm/visual-3.html b5db5d6e10fb3b25468e58b70a9b7d38c46c8295dc16f2ece8f36f756c72984a (piece.json html_sha256, the passing grade)
+friday-motion/visual-1.html d79dd6fa82b0dce6c887d1af09f583312767966a4ffb01e8f49470609cae7141
+friday-motion/visual-2.html a27556297a1808ac72aa72c889440b9539e7f53470707ea531dc6e4b77addda1
+friday-motion/visual-3.html 00f954ebff8a3262e7e4ab6bcbbfed30fc8883312ae63096d215ee99dcf23189

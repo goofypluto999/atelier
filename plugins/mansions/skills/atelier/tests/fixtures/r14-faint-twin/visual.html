@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r14-faint-twin): the faint mark check against the mark's own ground. Four stops are dots on a line of
+     their own colour: one drawn shape, clear of the paper, so no warning (on 31 Oct 2026 the audit warned on such dots at 1.0:1 on 5 of the 8 run pages).
+     Two empty slots in a grey about 2.2:1 against the paper are truly faint, and one dot in the colour of the large panel it sits on is
+     invisible: both must warn. Sample content. -->
+<style>
+.ft { --ground: #f4f6f3; --text: #0f3d2e; background: var(--ground); color: var(--text); }
+.ft h1 { position: absolute; left: 80px; top: 80px; width: 920px; margin: 0; font: 700 96px/1 var(--disp); letter-spacing: -0.03em; }
+.ft .line { position: absolute; left: 80px; top: 520px; width: 920px; height: 10px; background: var(--text); }
+.ft .stop { position: absolute; top: 507px; width: 36px; height: 36px; border-radius: 50%; background: var(--text); }
+.ft .slot { position: absolute; top: 640px; width: 64px; height: 64px; border: 5px solid #a3aaa6; box-sizing: border-box; }
+.ft .panel { position: absolute; left: 0; right: 0; top: 820px; height: 420px; background: var(--text); }
+.ft .lost { position: absolute; left: 500px; top: 1000px; width: 40px; height: 40px; border-radius: 50%; background: var(--text); }
+</style>
+<section class="page ft">
+  <h1 data-role="hook">Four stops, two gaps.</h1>
+  <div class="line" data-role="object"></div>
+  <i class="stop" style="left:80px"></i><i class="stop" style="left:380px"></i><i class="stop" style="left:680px"></i><i class="stop" style="left:964px"></i>
+  <i class="slot" style="left:80px"></i><i class="slot" style="left:180px"></i>
+  <div class="panel"></div><i class="lost"></i>
+</section>

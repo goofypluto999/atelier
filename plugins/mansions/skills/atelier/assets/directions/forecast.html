@@ -1,0 +1,37 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: forecast. A weather console for a simulation. Real material: 500 dots, each one 1,000 simulated
+     customers; a front where the customer types meet. Never invent percentages: the dots show scale, not results. -->
+<style>
+.fc { background: var(--night); color: var(--cream); }
+.fc h1 { position: absolute; left: 70px; right: 70px; top: 86px; font: 600 100px/0.98 var(--disp); letter-spacing: -0.03em; text-wrap: balance; }
+.fc svg { position: absolute; left: 0; top: 330px; }
+.fc .t { font: 650 36px var(--body); }
+.fc .k { font: 500 33px var(--body); fill: var(--cream-2); } /* the map is drawn at 0.97x, so 33px reads as 32px; a sentence is set in the text face, not the data face */
+.fc .bar { position: absolute; left: 70px; right: 70px; bottom: 130px; display: flex; justify-content: space-between; font: 500 32px/1.3 var(--mono); color: var(--cream-2); border-top: 2px solid #ffffff22; padding-top: 22px; }
+.fc .bar b { color: var(--glow); font-weight: 700; }
+.fc .logo { right: 70px; bottom: 46px; }
+</style>
+<section class="page fc">
+  <h1 data-role="hook">A&nbsp;forecast for&nbsp;one&nbsp;decision.</h1>
+  <svg id="map" width="1080" height="760" viewBox="0 -20 1080 780" data-role="object"></svg>
+  <div class="bar"><span>simulated customers <b>500,000</b></span><span>types <b>2</b></span><span>sample content</span></div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>
+<script>
+// 25 x 20 = 500 dots, each 1,000 simulated customers. A front curve splits two customer types.
+const svg = document.getElementById("map"), NS = "http://www.w3.org/2000/svg";
+const front = (x) => 330 + 120 * Math.sin((x - 60) / 190) - 0.12 * (x - 540);
+let dots = "";
+for (let r = 0; r < 20; r++) for (let c = 0; c < 25; c++) {
+  const x = 90 + c * 37.5, y = 40 + r * 31;
+  const above = y < front(x);
+  dots += `<circle cx="${x}" cy="${y}" r="${above ? 7 : 7}" fill="${above ? "#75a3f9" : "#8d939b"}" opacity="${above ? 0.95 : 0.7}"/>`;
+}
+let path = "M40 " + front(40);
+for (let x = 60; x <= 1040; x += 20) path += ` L${x} ${front(x).toFixed(1)}`;
+let teeth = "";
+for (let x = 120; x < 1000; x += 120) { const y = front(x); teeth += `<path d="M${x - 18} ${y + 2} L${x} ${y - 32} L${x + 18} ${y + 2}Z" fill="#fff6e8"/>`; }
+svg.innerHTML = dots + `<path d="${path}" fill="none" stroke="#fff6e8" stroke-width="8"/>` + teeth +
+  `<text class="t" x="90" y="22" fill="#75a3f9">the sceptics</text><text class="t" x="760" y="700" fill="#c9ccd1">the loyalists</text>` +
+  `<text class="k" x="90" y="748">each dot: 1,000 simulated customers; split illustrative</text>`;
+</script>

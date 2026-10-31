@@ -1,0 +1,12 @@
+## friday-warm
+reads as: handwritten statistic
+page-01.png seen: "15 deaths in 1,000 operations became 8."
+flaws: [hierarchy, legibility, craft]
+1. page-01, middle band (y about 450 to 800): the 96px script line "15 deaths in 1,000 operations became 8." sits between the WHO run (top) and the Friday run (bottom), about 600 px apart, so the first read is a statistic, not a timetable, and the "same three stops beneath it" comparison has to be held in memory; the brief wanted the Friday run beneath the WHO run -> stack the two runs about 80 px apart on shared columns (they already share x 80, 400, 720) and move the statistic above both runs, or beside the WHO run, so the eye compares row to row.
+2. page-01, the "15 deaths in 1,000" line: the script face draws "1" as a bare slash, so "15" reads as "/5" and "1,000" as "/,000", and the strokes are hairline (about 6 px, about 2 px at 360 wide); the number that carries the claim is the least legible glyph on the page -> choose a handwriting face with a flagged 1 and a heavier stroke (check "15", "1,000" and "8" at 360 px wide), keep the 96px size.
+3. page-01, bottom half (y about 785 to 1120): "8 hospitals, NEJM 2009." sits about 70 px under the statistic and about 85 px above "Friday release", so space does not say which it belongs to; "faults watched" ends at x 690 and "rollback tried" starts at x 720, a 30 px gutter (10 px at 360 wide) that runs the two together; "Before the change" and "Before you leave" wrap to two lines while "At go-live" takes one -> set the source line 20 px under the statistic and open about 110 px before "Friday release"; break each sub-label on two lines ("rollout / staged", "faults / watched", "rollback / tried") so each column is narrower than its pitch.
+4. page-01, Friday row labels (could improve, taste): "rollout staged", "faults watched", "rollback tried" read as done states, while the post asks them as questions ("is the rollout staged?") -> add a question mark to each, or phrase them as "staged?", "watched?", "tried?".
+keep: the three stops share the same columns in both runs, with the madder accent only on the Friday run (accent about 1% of the page, on one thing); this parallel must survive the fixes.
+strongest case to reject: the biggest thing on the page is a hairline handwriting statistic that splits the very comparison the piece exists to make, so a viewer takes away a death rate, not that a Friday release can take the same three stops.
+verdict: FAIL
+scores: idea 7, hook 7, hierarchy 6, craft 6, colour 7, distinct 8  total 6.8 (capped: no)

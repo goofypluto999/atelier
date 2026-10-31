@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../tokens.css">
+<!-- Direction: field-notebook. Grid paper, timestamps in the margin, tape, one circled number. For scenes, benches, puzzles. -->
+<style>
+.fn { background: linear-gradient(color-mix(in srgb, var(--house) 11%, transparent) 2px, transparent 2px) 0 0 / 54px 54px, linear-gradient(90deg, color-mix(in srgb, var(--house) 11%, transparent) 2px, transparent 2px) 0 0 / 54px 54px, var(--paper); color: var(--ink); }
+.fn .margin { position: absolute; left: 210px; top: 0; bottom: 0; width: 3px; background: color-mix(in srgb, var(--house) 40%, transparent); }
+.fn h1 { position: absolute; left: 260px; right: 80px; top: 110px; font: 650 92px/1.0 var(--disp); letter-spacing: -0.03em; text-wrap: balance; }
+.entry { position: absolute; left: 0; right: 80px; display: grid; grid-template-columns: 210px 1fr; }
+.entry .t { font: 500 32px/1.3 var(--mono); color: var(--ink); text-align: right; padding-right: 28px; padding-top: 8px; }
+.entry .x { padding-left: 50px; font: 450 44px/1.3 var(--body); }
+.ring { display: inline-block; border: 7px solid var(--house); border-radius: 50%; padding: 0 44px; margin: 18px 0 0 -10px; transform: rotate(-4deg); font: 800 150px/1.15 var(--body); font-stretch: 85%; }
+.tape { position: absolute; width: 230px; height: 60px; background: #f8c15380; transform: rotate(-8deg); }
+.fn .logo { right: 80px; bottom: 56px; }
+</style>
+<section class="page fn" data-allow="gradient">
+  <div class="margin"></div>
+  <h1 data-role="hook">4,812 rows&nbsp;synced.</h1>
+  <div class="entry" style="top:360px"><div class="t">06:00<br>nightly run</div><div class="x">One sync cycle across 14 sources. Rows rejected:<br><span class="ring" data-role="number">0</span></div></div>
+  <div class="entry" style="top:930px"><div class="t">note</div><div class="x">Sample content. Nothing to fix is also a result; it gets written down like the others.</div></div>
+  <div class="tape" style="right:-40px; top:40px"></div><div class="tape" style="left:-50px; bottom:120px; transform:rotate(12deg)"></div>
+  <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
+</section>

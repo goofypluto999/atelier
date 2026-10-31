@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r12-flawed): the five faults the 30 Oct 2026 critics charged that no audit check named, on one page, all above
+     the hard floors so the audit still passes. A source line in fine print at 32 px and a label at 34 px in weight 400 (phone read); a label
+     that repeats the hook's words (claim twice); a run of 7 boxes that wraps as 5 and 2 (wrapped run); the accent drawn as a 6 px bracket
+     (hairline accent); a ruled row whose left cell holds one line beside a full right cell (empty cell). Sample content. -->
+<style>
+.fx { --ground: var(--paper); --text: var(--ink); --accent: #85135f; background: var(--ground); color: var(--text); }
+.fx h1 { position: absolute; left: 80px; top: 80px; width: 900px; margin: 0; font: 700 96px/1 var(--disp); letter-spacing: -0.03em; }
+.fx .lab { position: absolute; left: 80px; top: 300px; margin: 0; font: 700 44px/1 var(--disp); color: var(--accent); }
+.fx .brk { position: absolute; left: 80px; top: 360px; width: 400px; height: 18px; border: 6px solid var(--accent); border-bottom: 0; box-sizing: border-box; }
+.fx .row { position: absolute; left: 80px; top: 420px; width: 920px; height: 320px; display: grid; grid-template-columns: 1fr 1fr; border-top: 4px solid var(--text); border-bottom: 4px solid var(--text); }
+.fx .left { margin: 0; padding: 24px 24px 0 0; font: 700 44px/1.1 var(--disp); }
+.fx .right { border-left: 4px solid var(--text); padding: 24px 0 0 32px; }
+.fx .name { margin: 0; font: 700 44px/1 var(--disp); }
+.fx .when { margin: 8px 0 0; font: 400 34px/1.2 var(--body); }
+.fx .boxes { margin-top: 24px; display: grid; grid-template-columns: repeat(5, 56px); gap: 16px; }
+.fx .boxes i { display: block; width: 56px; height: 56px; border: 4px solid var(--text); box-sizing: border-box; }
+.fx .fine { position: absolute; left: 80px; bottom: 60px; margin: 0; font: 400 32px/1.2 var(--body); }
+</style>
+<section class="page fx">
+  <h1 data-role="hook">Nine fit one pause. This list has&nbsp;19.</h1>
+  <p class="lab" data-role="accent">9 fit one pause</p>
+  <div class="brk" data-role="accent"></div>
+  <div class="row" data-role="object">
+    <p class="left">Before the change</p>
+    <div class="right"><p class="name">Sign in 7</p><p class="when">before anaesthesia</p><div class="boxes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  </div>
+  <p class="fine" data-role="fine">Sample content, after the WHO checklist.</p>
+</section>
