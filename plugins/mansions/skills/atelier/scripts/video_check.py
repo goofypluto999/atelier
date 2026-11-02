@@ -12,7 +12,10 @@ Checks (ffmpeg, local):
     It looks at a quarter-size, blurred copy, so the grain of a film finish (assets/lib/art-motion.js) does not count as change.
   black frames (blackdetect)
   frame 0 must carry the hook: frame0.png (from motion.mjs) is checked by attention.py; captions must start by 0.5 s
-  captions of 7 words or fewer, each on screen long enough to read (0.3 s per word, 1.2 s minimum)
+  captions of 7 words or fewer, each on screen long enough to read (read_time, 1.2 s minimum)
+  words on screen (texts.json, which motion.mjs writes for blocks marked data-read and for window.texts): each piece whole
+    on screen for read_time plus 1.5 s, the time the eye needs to find it (1.5 s minimum); a piece never whole on screen fails
+  read_time: 0.3 s a word, and 4.5 characters a second in Chinese, Japanese and Korean
 Exit 1 on a FAIL.
 """
 import json
@@ -26,6 +29,20 @@ sys.stdout.reconfigure(encoding="utf-8") if hasattr(sys.stdout, "reconfigure") e
 
 def ff(args):
     return subprocess.run(["ffmpeg", "-hide_banner", "-nostats"] + args, capture_output=True, text=True).stderr
+
+
+# One reading speed for captions and for words elsewhere on screen. Latin script: 0.3 s a word (Atelier's caption rule;
+# lemo-opuscar's 15 characters a second comes to about the same in English). Chinese, Japanese and Korean put no spaces
+# between words, so they count by character, 4.5 a second (the idea of lemo-opuscar's core/render/readcheck.mjs, rewritten).
+# Kana punctuation (the double hyphen and the middle dot) is not a character to read.
+CJK = re.compile("[\u1100-\u11ff\u3040-\u309f\u30a1-\u30fa\u30fc-\u30ff\u3130-\u318f\u31f0-\u31ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af\uf900-\ufaff\uff66-\uff9f\U00020000-\U0002fa1f]")
+
+
+def read_time(text, pad=0.0, floor=1.2):
+    """Seconds a viewer needs to read text: 0.3 s a word, a Chinese, Japanese or Korean character 1/4.5 s, plus pad; at least floor."""
+    cjk = len(CJK.findall(text))
+    words = [w for w in CJK.sub(" ", text).split() if re.search(r"\w", w)]
+    return max(floor, 0.3 * len(words) + cjk / 4.5 + pad)
 
 
 def duration(video):
@@ -73,13 +90,33 @@ def main(argv):
             fails.append(f"first caption starts at {caps[0]['start']} s; LinkedIn autoplays muted, frame 0 must say something")
         for c in caps:
             n = len(c["text"].split())
-            shown = c["end"] - c["start"]
-            if n > 7:
+            shown, need = c["end"] - c["start"], read_time(c["text"])
+            cjk = len(CJK.findall(c["text"]))
+            if n > 7 and not cjk:
                 warns.append(f"caption of {n} words: \"{c['text'][:50]}\" (7 or fewer reads at a glance)")
-            if shown < max(1.2, 0.3 * n):
-                fails.append(f"caption \"{c['text'][:40]}\" is on screen {shown:.1f} s; needs {max(1.2, 0.3 * n):.1f} s")
+            if cjk > 16:
+                warns.append(f"caption of {cjk} Chinese, Japanese or Korean characters: \"{c['text'][:30]}\" (16 or fewer reads at a glance)")
+            if shown < need:
+                fails.append(f"caption \"{c['text'][:40]}\" is on screen {shown:.1f} s; needs {need:.1f} s")
     else:
         warns.append("no captions.json")
+
+    words = folder / "texts.json"
+    if words.exists():
+        texts = json.loads(words.read_text(encoding="utf-8")).get("texts", [])
+        if not texts:
+            fails.append("texts.json lists no words: a block marked data-read, or window.texts(t), was never on screen")
+        for w in texts:
+            label = f"{w['id']} \"{w['text'][:40]}\""
+            if not w["whole"]:
+                fails.append(f"words never wholly visible (cut by the frame or a clip, or partly hidden): {label}")
+                continue
+            need = read_time(w["text"], pad=1.5, floor=1.5)
+            if w["shown"] < need - 0.002:   # shown is rounded to 3 decimals in texts.json
+                fails.append(f"words on screen too briefly to read: {label} is whole on screen {w['shown']:.2f} s from {w['start']:.2f} s; needs {need:.2f} s")
+        facts.append(f"{len(texts)} piece(s) of words on screen measured for reading time (texts.json)")
+    else:
+        warns.append("no texts.json: words on screen are not checked for reading time (mark them data-read, references/motion.md)")
 
     secs = max(1, int(dur))
     rows = (secs + 4) // 5

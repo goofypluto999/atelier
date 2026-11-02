@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.3.0 (2026-11-02)
+
+What you get
+- Words on screen are checked for reading time. Mark each block with `data-read`, or report canvas words with `window.texts(t)`; `motion.mjs` writes texts.json and `video_check.py` fails a block held too briefly or never wholly visible.
+- Captions and on-screen words count Chinese, Japanese and Korean by character (4.5 a second). Latin script keeps 0.3 s a word.
+- Drawn films are directed before they are drawn: a reference film, three candidate structures, one native move at the peak, at least four kinds of camera move, and "four of six features differ" from the nearest example (references/art-motion.md).
+- Eight film styles that suit LinkedIn, each in the same eleven parts: Swiss grid, Whiteboard, Pencil chart, Pictogram system, Riso print, Screen print, One line, Case file (references/film-styles.md).
+
+The detail follows.
+
+Intake
+- lemo-opuscar by LemoLab (MIT, commit bebbbe1) came in through docs/INTAKE.md: vetted, refereed, licence checked, ideas rewritten in Atelier's words, everything else stripped. The vet and the intake report are kept in the development repository. No code was copied, and a few short phrases match the source; vendor/lemo-opuscar holds its licence file, listed in vendor/MANIFEST.md with its blob hash, and both CREDITS.md copies credit it.
+
+Checks
+- `scripts/motion.mjs`: a block is whole when every word in it is at 90% opacity or more and every line of its text is inside the page, each overflow box and each clip-path inset. Its longest whole stretch counts, and a gap of 0.2 s or less does not break it. New text under the same id is a new piece. A page that marks no words gets no texts.json (an older one is removed), and `video_check.py` warns.
+- `scripts/video_check.py`: `read_time` is one rule for captions (1.2 s floor) and words on screen (plus 1.5 s for the eye to find them, 1.5 s floor). A piece never wholly visible fails. A caption of more than 16 Chinese, Japanese or Korean characters warns.
+- `tests/test_readcheck.py` with the planted fixture `tests/fixtures/r15-read-time`: the rule, captions and rounding, 14 measured pieces (five planted to fail) at `--sub` 1 and 2, the fixed film, and a film with no marks.
+- CI runs `tests/test_readcheck.py` (a step after "Python scripts compile" in .github/workflows/check.yml), and CONTRIBUTING step 7 lists it.
+- `scripts/motion.mjs`: a page box that starts between two pixel rows renders. An element screenshot rounded it outward, one row too many, and ffmpeg refused the odd height ("ffmpeg 187"). Each frame is now clipped to the box, measured at every step: its size rounded to an even number of pixels, ending at its rounded far edge. A box on whole pixels with an even size gives the same frames as before. `tests/test_motion.py` plants it (`tests/fixtures/r16-odd-offset`).
+
+Worked films
+- Both films mark their words and pass the reading-time check. Rolling flaps and the rolling counter report only their settled words with `window.texts(t)`.
+- departure-board.motion.html: the note is shorter ("Sample content. The job that needs a person waits.") and comes in at 3.2 s, before the last row. The row with the accent (WAIT) still lands last.
+- examples/the-dot-reel: the dot starts at 1.55 s, so the week total lands at 7 s; the unit line turns to "rows this week (sample)" then, and the peak is named at 7.3 s. The longer unit line it replaces also ran into the reels UI zone. video.mp4, poster.png, contact.png and phone.png are a new render, made with the command in motion.html.
+
 ## 1.2.0 (2026-10-31), first public release
 
 What you get

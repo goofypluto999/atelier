@@ -33,7 +33,8 @@ Write the beat sheet with times and locked copy before any code. Every paused fr
 
 ## Captions and words on screen (muted first)
 - Every message is on screen as large type, not only in captions.
-- 7 words or fewer per caption, on screen at least max(1.2 s, 0.3 s per word).
+- 7 words or fewer per caption, on screen at least max(1.2 s, 0.3 s per word). Chinese, Japanese and Korean count by character: 4.5 a second.
+- Mark each block of words to read with `data-read="<id>"`, and report words drawn on a canvas with `window.texts(t)` (the header of scripts/motion.mjs). video_check.py then fails a block whose longest whole stretch is shorter than its reading time plus 1.5 s, the time the eye needs to find it (1.5 s at least), and a block that is never whole. Whole means every word in it at 90% opacity or more, and every line inside the page, each overflow box and each clip-path inset. A gap of 0.2 s or less (a shake, a punch) does not break a stretch. New text under the same id starts again. A block painted over by another element is not seen here: render.mjs --audit checks text over text. Do not mark the caption line: captions.json times it. Do not mark a rolling counter, where every value would be new text; report its settled value with `window.texts(t)`. (The idea of lemo-opuscar's readcheck, rewritten.)
 - A phrase holds still to be read before it moves; nothing moves across text being read.
 - Keep text inside the platform's safe area (references/carousel.md).
 - Deliver captions.srt for platforms that accept it (motion.mjs writes it from captions.json).
@@ -47,7 +48,7 @@ Write the beat sheet with times and locked copy before any code. Every paused fr
 Most feeds play muted, so the film must work without sound. If sound is used: licensed or code-made music only, effects on the beat, loudness about -14 LUFS for social.
 
 ## Checks
-`python scripts/video_check.py <folder> --seconds 20` writes contact.png (one frame per second) and phone.png (360 px wide), and fails on: duration off by more than 2%, a still stretch of 3 s or more (a dead beat), black frames, a first caption later than 0.5 s, captions too short to read. Then `python scripts/attention.py <folder>/frame0.png` for the first frame. The critic reviews contact.png and phone.png, never the code.
+`python scripts/video_check.py <folder> --seconds 20` writes contact.png (one frame per second) and phone.png (360 px wide), and fails on: duration off by more than 2%, a still stretch of 3 s or more (a dead beat), black frames, a first caption later than 0.5 s, captions too short to read, and marked words on screen held too briefly or cut (texts.json from motion.mjs). Then `python scripts/attention.py <folder>/frame0.png` for the first frame. The critic reviews contact.png and phone.png, never the code.
 
 ## Banned in motion
 Everything fading in the same way; bouncy easing; particle bursts; glows; typewriter or scramble text by default; spinning logos; a centred title on a gradient; "loading" shimmer as decoration; holds over 3 s with nothing new except the final hold; a loop seam that jumps (if it loops, the last frame equals the first).

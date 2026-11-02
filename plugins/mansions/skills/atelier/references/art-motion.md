@@ -2,7 +2,14 @@
 
 Use this when a film needs objects drawn and moved (a sheet, a list, a stamp, a board), a camera that pushes, glides and pulls across them, and a film finish. For type-led motion with a few moving parts, CSS keyframes or `window.seek(t)` with assets/lib/motion.js stay simpler (references/motion.md). Both render with the same script and pass the same checks.
 
-The drawing code is vendored from huashu-art-motion by alchaincyf (MIT, commit 8a0d7d7; vendor/MANIFEST.md). The method below is rewritten from it for Atelier.
+The drawing code is vendored from huashu-art-motion by alchaincyf (MIT, commit 8a0d7d7; vendor/MANIFEST.md). The method below is rewritten from it for Atelier. The directing rules ("Direct it first", the four moves, "Not the example again", "What goes wrong on screen") and references/film-styles.md are rewritten from lemo-opuscar by LemoLab (MIT, commit bebbbe1). No code of it is copied, and its prose is rewritten in Atelier's words.
+
+## Direct it first
+Write four things above the shot list, before any code.
+1. **A reference film.** Pick one or two works that show how good this style can get on a subject like this one: a title sequence, an explainer, an ad, a print series. Choose them for this film; do not reuse an example's. Write two lines: what to study (how it is composed, paced, framed and coloured) and what not to take (characters, designs, shots, logos, type, music). The film never names them, and it copies no look whole from a living artist or an active studio.
+2. **Three structures.** Sketch three possible shapes in a line each (a single journey, a before and after, a countdown, a list with a twist), then name the one you picked and the reason. The first idea a style suggests is usually its cliché.
+3. **A look.** Take one style from references/film-styles.md, or write a new one in its eleven parts. Pick one native move from it and put it at the peak of the film, once.
+4. **A pace.** Mark one clear speed-up or slow-down and one breath (a held shot or a long take). A film that never changes speed is a failed film.
 
 ## The page
 ```html
@@ -36,6 +43,8 @@ Columns: time, object (a noun you can point at), what it does (a verb), camera m
 5. Two shots in a row never share a composition: change the framing and the camera, not the style.
 Red flags: in the object column, title, bullet, list, label, card, background, icon, empty frame, gradient; in the verb column, appear, show, display, fade in, one by one. A row without an object and a verb is not ready.
 
+**Not the example again.** When the shot list is done, compare it with the nearest worked example or specimen film on six features: structure, opening, signature shot, camera path, pace and ending. At least four must differ. Redesign the features that still match. (lemo-opuscar compares the score's shape; Atelier films play muted first, so the sixth feature here is the pace.)
+
 ## Camera
 Before each move, answer: where should the eye be, and can it read it at this framing (if so, hold)? Is the move a transition (slow) or an accent (fast, rare: a reveal, a key number)? What was the last move (after a push, pull out, glide or cut; never three pushes in a row)?
 
@@ -52,6 +61,8 @@ Before each move, answer: where should the eye be, and can it read it at this fr
 
 Accents (punch, slam, pan) stay at a third of the shots or fewer; 8 or more pushes a minute is too many. The same move on every shot reads as a slideshow, slow or fast. Zoom with `CAM.zlerp` (even through scale) and draw vectors under the camera every frame, so a push stays sharp. `CAM.layer(c, cam, d, fn)` gives depth: layers with d under 1 move less.
 
+A drawn film of 15 s or more uses at least four kinds of move from the table besides the hold, with a real change of framing each time. A type-led film keeps to the one or two operations in references/motion.md.
+
 ## Motion and finish
 - Springs and eases come from t only: `MO.spring(t - at, { duration: 0.5, bounce: 0.15 })`, `MO.smooth`, `MO.lagged(i, n, p)` for staggers, `MO.step(t, 12)` for a hand-drawn 12 fps feel. The rules in references/motion.md hold: no overshoot on type, exits faster than entrances, a stillness before the key reveal, a hold at the end, not a fade.
 - Every random value comes from a seed: `const r = U.rng(7)` once, outside `draw`. No `Math.random`, no clock.
@@ -66,8 +77,18 @@ Accents (punch, slam, pan) stay at a third of the shots or fewer; 8 or more push
 5. Drawing what exists as real material: put the real screen, document or photo full frame instead (references/imagery.md).
 6. The instant AI look: blue to purple gradients, purple starfields, neon glow, a collage of styles, code-drawn mascots and robots. One style, one palette; people only as hands and backs.
 
+## What goes wrong on screen
+Failures seen in rendered films. Look for each on contact.png and phone.png.
+- The subject is too small, too far away or against the frame edge. In the key beats, make it at least one third as tall as the frame.
+- A colour lies on itself (red on red), or the frame is too dark to read.
+- Words or captions cover the subject.
+- A beat passes too fast to understand. Give it the time; make the film faster with fewer words, not with shorter holds.
+- A transition leaves blank frames.
+- An effect placed in screen space (a ring, a label, a spotlight) stays put while the camera moves. Place it every frame from `CAM.toScreen`.
+
 ## The alive test
 A film is judged alive when, watched muted at phone size, every shot has a visible action by an object (drawn, moved, struck, stamped, stacked), the camera or the objects change the frame at least every 4 seconds, and no stretch looks like a still image with grain on it. A static or empty-feeling film fails, whatever its scores. `video_check.py` fails a stretch of 3 s or more with nothing new; the grain of a finish does not count as something new. The art-director applies the test to contact.png and phone.png.
 
 ## Not taken from the source
 Its skill file and reference files (they tell the agent to edit the skill and to call GitHub on a timer), its Python scripts (unpinned inline dependencies), its renderer (it turns off browser web security), voice cloning, image fetching, its fonts, stroke data, showcase media and the author's likeness. The list with reasons: vendor/MANIFEST.md.
+From lemo-opuscar: its plugin and setup script (they update from its main branch on every run and install unpinned packages), its agent guides (they override the user's settings and approval steps, and one section sets political map rules), its speech, audio and renderer code, every demo and demo tool, its fonts, models, samples and media. The list with reasons: vendor/MANIFEST.md.

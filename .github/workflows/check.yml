@@ -76,3 +76,5 @@ jobs:
           python $S/palette.py --taste white-link-blue --register curiosity --harmony complementary --pages 3 --out /tmp/pal-taste
       - name: Python scripts compile
         run: python -m py_compile plugins/mansions/skills/atelier/scripts/*.py plugins/mansions/skills/atelier/vendor/huashu-design/scripts/design_lint.py
+      - name: Reading-time check catches its planted faults
+        run: python plugins/mansions/skills/atelier/tests/test_readcheck.py

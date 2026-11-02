@@ -14,7 +14,8 @@
 6. render.mjs --audit checks a film past its first frame: the hard rules again every half second and at the poster time
    (tests/fixtures/r14-late-fault breaks two rules after 2 s), with the length from --seconds or from ART.film.
 7. A drawn object marked with an element that follows it leads the film's poster in attention.py; unmarked, it fails as decoration.
-Rendering needs node, Playwright and ffmpeg; without them checks 3 to 7 print SKIP and the test passes."""
+8. A page box that starts between two pixel rows (tests/fixtures/r16-odd-offset) renders at the box's own size, 360x450.
+Rendering needs node, Playwright and ffmpeg; without them checks 3 to 8 print SKIP and the test passes."""
 import hashlib
 import json
 import pathlib
@@ -376,6 +377,29 @@ def test_poster_object(tmp):
           "where the audit records its box; attention.py passes the marked poster and fails the unmarked one as decoration")
 
 
+def test_odd_offset(tmp):
+    """The fixture's page box starts 26.8 px down. An element screenshot rounds it out to 451 rows, which H.264 in yuv420p
+    refuses ("ffmpeg 187"); motion.mjs must clip each frame to the box's own 360x450, with the page's ground at every corner."""
+    from PIL import Image
+    fx = SKILL / "tests" / "fixtures" / "r16-odd-offset" / "motion.html"
+    r = motion(fx, tmp / "odd", "--seconds", "1", "--fps", "10", "--size", "360x450")
+    if missing(r, "odd offset"):
+        return
+    err = next((ln.strip() for ln in r.stderr.splitlines() if ln.startswith("Error")), r.stderr.strip()[-300:])
+    assert r.returncode == 0, f"a page box at a fractional offset did not render (exit {r.returncode}): {err}"
+    probe = subprocess.run(["ffprobe", "-v", "error", "-count_frames", "-select_streams", "v:0", "-show_entries", "stream=nb_read_frames,width,height",
+                            "-of", "csv=p=0", str(tmp / "odd" / "video.mp4")], capture_output=True, text=True).stdout.strip()
+    assert probe == "360,450,10", f"video.mp4 is {probe} (width, height, frames), not 360,450,10"
+    ground = (0xE3, 0xD8, 0xD1)
+    for name in ("frame0.png", "poster.png"):
+        im = Image.open(tmp / "odd" / name).convert("RGB")
+        assert im.size == (360, 450), f"{name} is {im.size[0]}x{im.size[1]}, not the page box's 360x450"
+        corners = [im.getpixel(xy) for xy in ((0, 0), (359, 0), (0, 449), (359, 449))]
+        assert all(c == ground for c in corners), f"{name} corners are {corners}, not the page's ground {ground}: the frame is not the page box"
+    print("PASS odd offset: a page box 26.8 px down renders at its own 360x450 (10 frames, the page's ground at every corner of frame0.png "
+          "and poster.png); an element screenshot gave 451 rows and ffmpeg refused them")
+
+
 def main():
     test_hashes()
     test_no_spawn()
@@ -391,6 +415,7 @@ def main():
         test_blocked(tmp)
         test_audit_times(tmp)
         test_poster_object(tmp)
+        test_odd_offset(tmp)
     print("test_motion: PASS")
     return 0
 

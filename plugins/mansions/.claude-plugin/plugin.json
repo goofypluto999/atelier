@@ -1,6 +1,6 @@
 {
   "name": "atelier",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Designs social carousels, single images, posters, slides and short videos in HTML, renders them on your machine, checks them with scripts and a critic agent, and remembers past pieces so the next one differs.",
   "author": {
     "name": "The Mansions Agency",

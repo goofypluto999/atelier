@@ -201,13 +201,14 @@ plugins/mansions/skills/atelier/
   SKILL.md                             the quick path, the full pipeline and the hard rules
   LICENSE, CREDITS.md                  copies of the root files, so every install carries them
   references/                          process, brief, directions, composition, type, colour, carousel,
-                                       motion, art-motion, dataviz, copy, imagery, tells, critique, science, brand, composer
+                                       motion, art-motion, film-styles, dataviz, copy, imagery, tells, critique, science,
+                                       brand, composer
   scripts/                             the tools above
   data/                                operators, lenses, formats, registers, colour, rubrics, directions,
                                        type pairings, structures (hooks, closes, layout words)
   vendor/                              the source projects' tools and references, pinned and licensed (MANIFEST.md),
                                        among them huashu-art-motion's five drawing files
-  tests/                               composer, diversity, palette and motion tests; fixtures with planted flaws
+  tests/                               composer, diversity, palette, motion and reading-time tests; fixtures with planted flaws
   assets/                              tokens.css (neutral), themes/ (optional Mansions theme), brands/, fonts/ (OFL),
                                        lib/motion.js, lib/art-motion.js (drawn films), directions/ (specimens)
   examples/                            ledger-carousel (6 pages), the-dot-reel (9:16)
@@ -216,11 +217,11 @@ docs/                                  the images in this README, the composer d
                                        the tool-adoption process (INTAKE.md)
 .github/workflows/check.yml            CI: validates the plugin, audits every specimen, runs the tests
 ```
-CI fails if the audit, the copy lint, the attention check or design_lint stops catching one of the original planted flaws. The newer fixtures, `tests/test_palette.py` and `tests/test_motion.py` run from the local list in [CONTRIBUTING.md](CONTRIBUTING.md), where each line prints its exit code next to the expected one.
+CI fails if the audit, the copy lint, the attention check or design_lint stops catching one of the original planted flaws. CI also runs `tests/test_readcheck.py`, the reading-time check's planted faults. The newer fixtures, `tests/test_palette.py` and `tests/test_motion.py` run from the local list in [CONTRIBUTING.md](CONTRIBUTING.md), where each line prints its exit code next to the expected one.
 
 ## Credits
 
-Atelier builds on ideas and vendored files from taste-skill, huashu-design, huashu-art-motion, brag, superpowers, humanizer, Uncodixfy, Anthropic's frontend-design and canvas-design skills, and two community motion-design sources (the awesome-opus5-5-videos list and Ray C.'s motion design studio guide), and on the author's own design notes. Each is listed with its author and licence in [CREDITS.md](CREDITS.md); the vendored files and their commits are in [vendor/MANIFEST.md](plugins/mansions/skills/atelier/vendor/MANIFEST.md). The design theory and research it cites are graded in [references/science.md](plugins/mansions/skills/atelier/references/science.md). A third-party tool comes in only through [docs/INTAKE.md](docs/INTAKE.md): vet it without running it, check its licence, copy only small pure code, strip the rest, test it, credit it.
+Atelier builds on ideas and vendored files from taste-skill, huashu-design, huashu-art-motion, lemo-opuscar, brag, superpowers, humanizer, Uncodixfy, Anthropic's frontend-design and canvas-design skills, and two community motion-design sources (the awesome-opus5-5-videos list and Ray C.'s motion design studio guide), and on the author's own design notes. Each is listed with its author and licence in [CREDITS.md](CREDITS.md); the vendored files and their commits are in [vendor/MANIFEST.md](plugins/mansions/skills/atelier/vendor/MANIFEST.md). The design theory and research it cites are graded in [references/science.md](plugins/mansions/skills/atelier/references/science.md). A third-party tool comes in only through [docs/INTAKE.md](docs/INTAKE.md): vet it without running it, check its licence, copy only small pure code, strip the rest, test it, credit it.
 
 ## Contributing and licence
 

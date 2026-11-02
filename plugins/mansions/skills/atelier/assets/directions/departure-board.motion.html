@@ -19,17 +19,17 @@
 .db .logo { right: 70px; bottom: 60px; }
 </style>
 <section class="page db">
-  <h1 data-role="hook">Three jobs left. One is still&nbsp;waiting.</h1>
+  <h1 data-role="hook" data-read="hook">Three jobs left. One is still&nbsp;waiting.</h1>
   <div class="board">
-    <div class="bh"><span>SERVICE</span><span>ROUTE</span><span>STATUS</span></div>
+    <div class="bh" data-read="columns"><span>SERVICE</span> <span>ROUTE</span> <span>STATUS</span></div>
     <div class="br" id="rows"></div>
   </div>
-  <p class="note">Sample content. The automated jobs ran overnight. The one that needs a person is the one that waits.</p>
+  <p class="note" data-read="note">Sample content. The job that needs a person&nbsp;waits.</p>
   <img class="logo" data-role="logo" src="data:," alt=""><!-- logo slot, empty by default: compose.py scaffold points it at the brand file's --logo, or removes it -->
 </section>
 <script>
-// Frame 0 already shows the hook (muted autoplay). Rows flip in one after another; the last tile
-// to settle is the accent (NONE). Something new every 1 to 2 s; final hold from 6 s.
+// Frame 0 already shows the hook (muted autoplay). Rows flip in one after another; the note comes in at 3.2 s, so it is
+// whole for its reading time, and the last row to land holds the accent (WAIT). Something new every 1 to 2 s; final hold from 5.2 s.
 const rows = [["INVOICES","LEDGER","DONE","lit"],["REPORT","INBOX","DONE","lit"],["BACKUP","STORAGE","DONE","lit"],["APPROVAL","MANAGER","WAIT","off"]];
 const W = [8, 9, 6], ABC = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789->";
 const tiles = [];
@@ -49,6 +49,17 @@ rows.forEach((row, r) => {
   board.appendChild(br);
 });
 const note = document.querySelector(".note");
+// Words to read (references/motion.md): the hook, the column heads and the note carry data-read. The flaps roll through
+// letters, so each row reports its settled words with window.texts(t), from the moment its last tile lands.
+const rowsDone = [...board.querySelectorAll(".br")].map((br, r) => ({ br, id: `row-${r + 1}`, text: rows[r].slice(0, 3).join(" "),
+  at: Math.max(...tiles.filter((s, i) => Math.floor(i / 23) === r).map((s) => s.settle)) }));
+window.texts = (t) => {
+  const P = document.querySelector("section.page").getBoundingClientRect();
+  return rowsDone.filter((d) => t >= d.at).map((d) => {
+    const b = d.br.getBoundingClientRect();
+    return { id: d.id, text: d.text, x0: b.left - P.left, y0: b.top - P.top, x1: b.right - P.left, y1: b.bottom - P.top };
+  });
+};
 window.POSTER_T = 7;
 window.seek = (t) => {
   for (const s of tiles) {
@@ -59,7 +70,7 @@ window.seek = (t) => {
     s.f.classList.toggle("off", s.acc && left <= 0);
     s.f.style.transform = left > 0 && left <= 0.9 ? `scaleY(${0.86 + 0.14 * Math.abs(Math.cos(left * 24 * Math.PI))})` : "";
   }
-  const p = M.spring(t - 5.4, 120, 22);
+  const p = M.spring(t - 3.2, 120, 22);
   note.style.opacity = M.clamp(p);
   note.style.transform = `translateY(${(1 - p) * 30}px)`;
 };

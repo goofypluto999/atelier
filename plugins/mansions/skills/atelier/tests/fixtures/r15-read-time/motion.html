@@ -1,0 +1,78 @@
+<!doctype html><meta charset="utf-8">
+<!-- Test fixture: words on screen for the reading-time check (tests/test_readcheck.py renders it at 10 fps, 480x900, 6 s).
+     Five pieces are planted to fail: the note is whole 1.5 s and needs 3.9 s (8 words); the Chinese line is whole 2.6 s and needs
+     3.7 s (10 characters; as one "word" it would pass); the edge label is cut by the frame; the canvas line is reported by
+     window.texts for 1.0 s and needs 2.7 s; in "kids" the second word stays transparent until 4.0 s, so the block is whole only
+     2.0 s and needs 2.1 s. Nine pass: the hook; the counter's two texts (new text under one id is a new piece); a line rising out of
+     a clipping box, marked itself (mask) or marked on its box (box); a clip-path reveal (clip); a block whose parent fades (parent);
+     a block that blinks out once and returns (blink: its longest stretch counts); a block cut for one frame by a shake (shake: the
+     gap is bridged). Two marked blocks are never drawn (visibility hidden, display none) and get no entry. With FIX true every piece
+     passes. Times sit half a frame before each 0.1 s step, so no edge falls on a frame. -->
+<style>
+body { margin: 0; }
+.page { position: relative; width: 480px; height: 900px; overflow: hidden; background: #f3eee6; color: #1d1a16; font-family: sans-serif; font-size: 24px; }
+.page > * { position: absolute; left: 30px; margin: 0; line-height: 1.2; }
+h1 { top: 20px; font-size: 40px; line-height: 1.1; }
+.note { top: 120px; font-size: 20px; }
+.zh { top: 170px; font-size: 28px; }
+.edge { top: 220px; left: -40px; }
+.count { top: 270px; font-size: 32px; font-weight: 700; }
+.mask, .box { width: 400px; height: 40px; overflow: hidden; }
+.mask { top: 330px; }
+.box { top: 440px; }
+.mask div, .box div { font-size: 28px; line-height: 40px; }
+.kids { top: 390px; }
+.clip { top: 500px; }
+.fade { top: 550px; }
+.fade p { margin: 0; }
+.blink { top: 600px; }
+.shake { top: 650px; }
+.ghost { top: 700px; visibility: hidden; }
+.gone { top: 700px; display: none; }
+.bar { left: 0; bottom: 0; height: 12px; background: #8a3b2e; }
+canvas { left: 0; top: 0; }
+</style>
+<section class="page">
+  <canvas width="480" height="900"></canvas>
+  <h1 data-read="hook">A page that says enough.</h1>
+  <p class="note" data-read="note">Seven words that leave the screen too soon.</p>
+  <p class="zh" data-read="zh">这句话需要更长的时间</p>
+  <p class="edge" data-read="edge">Cut off at the edge</p>
+  <p class="count" data-read="count">Before</p>
+  <div class="mask"><div data-read="mask">Rises out of a mask</div></div>
+  <p class="kids" data-read="kids">Two <span>halves</span></p>
+  <div class="box" data-read="box"><div>Inside the box</div></div>
+  <p class="clip" data-read="clip">Clipped reveal line</p>
+  <div class="fade"><p data-read="parent">Faded by its parent</p></div>
+  <p class="blink" data-read="blink">Here, gone, back again</p>
+  <p class="shake" data-read="shake">Held through one shake</p>
+  <p class="ghost" data-read="ghost">Ghost words</p>
+  <p class="gone" data-read="gone">Never laid out</p>
+  <div class="bar"></div>
+</section>
+<script>
+const FIX = false;
+const $ = (s) => document.querySelector(s);
+const ctx = $("canvas").getContext("2d");
+const drawn = (t) => FIX || t < 0.95;
+const rise = (t) => (t < 1.45 ? 1 : 0);   // hidden, then whole from 1.5 s: a jump, so no machine's font metrics move the frame
+if (FIX) $(".edge").style.left = "30px";
+window.texts = (t) => (drawn(t) ? [{ id: "canvas", text: "Drawn on a canvas", x0: 30, y0: 742, x1: 330, y1: 780 }] : []);
+window.seek = (t) => {
+  $(".note").style.opacity = t < 0.45 ? 0 : t < 0.95 ? 0.5 : FIX || t < 2.45 ? 1 : 0;
+  $(".zh").style.opacity = (FIX ? t >= 0.95 : t >= 1.95 && t < 4.55) ? 1 : 0;
+  $(".count").textContent = t < 2.95 ? "Before" : "After";
+  $(".mask div").style.transform = `translateY(${(40 * rise(t)).toFixed(2)}px)`;
+  $(".box div").style.transform = `translateY(${(40 * rise(t)).toFixed(2)}px)`;
+  $(".kids span").style.opacity = FIX || t >= 3.95 ? 1 : 0;
+  $(".clip").style.clipPath = `inset(0 ${(100 * rise(t)).toFixed(1)}% 0 0)`;
+  $(".fade").style.opacity = t < 0.95 ? 0.5 : 1;
+  $(".blink").style.opacity = t >= 0.45 && t < 0.95 ? 0 : 1;
+  $(".shake").style.opacity = t >= 1.45 && t < 4.55 ? 1 : 0;
+  $(".shake").style.transform = t >= 2.95 && t < 3.05 ? "translateX(-300px)" : "";
+  $(".bar").style.width = `${((480 * t) / 6).toFixed(1)}px`;
+  ctx.clearRect(0, 0, 480, 900);
+  if (drawn(t)) { ctx.fillStyle = "#1d1a16"; ctx.font = "28px sans-serif"; ctx.fillText("Drawn on a canvas", 30, 770); }
+};
+window.seek(0);
+</script>

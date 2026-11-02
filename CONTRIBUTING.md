@@ -80,7 +80,7 @@ python -m py_compile $S/scripts/*.py $S/vendor/huashu-design/scripts/design_lint
 ```
 
 ### 7. The checks catch every planted flaw
-CI covers the original planted flaws: in check.yml each negative check is written `if <check>; then exit 1; fi`, so the step fails when a check stops catching its flaw. (A line that starts with `!` would not do this under `bash -e`.) The newer fixtures below are not in CI yet, so run this list too. Each line prints `ok` or `MISS` with the exit code it got and the one it expects, and the last line must say `PLANTED miss=0`. The fixtures in `tests/fixtures` and `evals/anchors/src` each hold one planted case.
+CI covers the original planted flaws: in check.yml each negative check is written `if <check>; then exit 1; fi`, so the step fails when a check stops catching its flaw. (A line that starts with `!` would not do this under `bash -e`.) The newer fixtures below are not in CI yet (CI runs test_readcheck.py, the last line), so run this list too. Each line prints `ok` or `MISS` with the exit code it got and the one it expects, and the last line must say `PLANTED miss=0`. The fixtures in `tests/fixtures` and `evals/anchors/src` each hold one planted case.
 ```
 S=plugins/mansions/skills/atelier
 F=$S/tests/fixtures
@@ -132,8 +132,11 @@ expect 0 grep -q "faint mark:" $T/r13-faint-mark/audit.json        # empty slots
 expect 0 node $S/scripts/render.mjs $F/r13-thin-script/visual.html --audit --out $T/r13-thin-script
 expect 0 grep -q "thin stroke:" $T/r13-thin-script/audit.json      # a script hook whose strokes are 1.6 px on a phone
 
-# Drawn films (needs ffmpeg): vendored blob hashes, no spawned installers, a fixed-seed film twice, a still stretch under grain, a blocked request
+# Drawn films (needs ffmpeg): vendored blob hashes, no spawned installers, a fixed-seed film twice, a still stretch under grain, a blocked request, a page box at a fractional offset
 expect 0 python $S/tests/test_motion.py
+
+# The reading-time check (CI runs this too): a planted film with five faults, the rule, captions, a film with no marks
+expect 0 python $S/tests/test_readcheck.py
 
 echo "PLANTED miss=$miss"
 ```

@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8">
+<!-- tests/test_motion.py: a 1 s film at 360x450 whose page box sits 26.8 px down. The heading's top margin (0.67em of 40 px)
+     collapses through the page and the body, so the box starts between two pixel rows. An element screenshot rounds that box out
+     to whole pixels, 451 rows for a 450 px box, and H.264 in yuv420p refuses an odd height. -->
+<style>
+body { margin: 8px; background: #111; }
+.page { position: relative; width: 360px; height: 450px; background: #e3d8d1; color: #32261d; }
+h1 { margin: 0.67em 0 0; font: 600 40px/1 sans-serif; }
+</style>
+<section class="page"><h1 data-role="hook">Half a row down</h1></section>
+<script>
+window.seek = (t) => { document.querySelector("h1").style.transform = `translateX(${Math.round(t * 40)}px)`; };
+window.seek(0);
+</script>
