@@ -14,7 +14,7 @@
 //           It checks: that the page loaded (a missing file, an image of zero width, a stylesheet that did not apply,
 //           text in the browser's default font: hard fails, printed first), type floors (32px, 36px for condensed type),
 //           WCAG contrast (over a gradient or hatch it samples the rendered pixels), the hook is the biggest type on
-//           the cover, text clipped by the page or overlapping other text, shapes and images painted over text,
+//           the cover, text clipped by the page or overlapping other text, text set sideways, mirrored or turned more than 30 degrees, shapes and images painted over text,
 //           text inside platform UI zones (--safe reels or story, for 9:16), and AI-look tells (eyebrow labels,
 //           glows, gradients, "A · B · C" chains, trailing arrows, too many sizes, faces, words or centred text).
 //           Design-doctrine warnings (never a fail; data-allow="..." on the element or a parent marks a deliberate use):
@@ -41,9 +41,9 @@
 //           A rule through text is a hard fail: a border (a table's, a cell's, a box's) or a thin bar (an hr, a div drawn as a line) that crosses
 //           the middle of a line of text and shows on the render (data-allow="over" marks a deliberate strike).
 //           A motion page (window.seek, ART.film or CSS animations): every check above runs on the page as loaded, its first frame. Then
-//           every hard rule (not the cover's hook rule, no warnings) runs again every half second of the film (0.5 s, 1 s, 1.5 s ...)
-//           and at the poster time, seeked there as motion.mjs seeks. The length comes from --seconds, else ART.film, else the end of the
-//           CSS animations; --poster T as for motion.mjs (default: 3 s, or half the length if that is less). A seek page of unknown length
+//           every hard rule (not the cover's hook rule or the turned-text rule, no warnings) runs again every half second of the film (0.5 s, 1 s, 1.5 s ...)
+//           and at the poster time, seeked there as motion.mjs seeks. The length comes from --seconds, else timeline.json next to the
+//           page (whose beats are set as motion.mjs sets them), else ART.film, else the end of the CSS animations; --poster T as for motion.mjs (default: 3 s, or half the length if that is less). A seek page of unknown length
 //           is checked at its first frame only, and the audit says so. A fail found at a later time is printed as "at 4 s: ...", and
 //           audit.json gives each page's "times", and boxes.json adds the labelled boxes at the poster time as page "poster", which
 //           attention.py and cvd.py read with poster.png.
@@ -88,6 +88,16 @@ const sIdx = args.indexOf("--size");
 const [W, H] = (sIdx >= 0 ? args[sIdx + 1] : "1080x1350").split("x").map(Number);
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
+// a film timed by timeline.json next to the page (references/sound.md) is loaded as motion.mjs loads it: window.TIMELINE, the
+// --beat-<id> variables, and the audit's film length from the timeline when --seconds is not given
+const tlFile = path.join(path.dirname(path.resolve(file)), "timeline.json");
+let timeline = null;
+if (fs.existsSync(tlFile)) {
+  try { timeline = JSON.parse(fs.readFileSync(tlFile, "utf8")); } catch (err) { console.log(`warn timeline.json next to the page is not valid JSON, so it is not used: ${err.message}`); }
+}
+const beats = (timeline?.beats || []).filter((b) => /^[a-z0-9][a-z0-9-]*$/.test(String(b.id)) && Number.isFinite(Number(b.at)));
+if (beats.length < (timeline?.beats || []).length) console.log('warn timeline.json: a beat needs an id of lower case letters, digits and dashes and a time "at"; the others are not set');
+if (timeline) await page.addInitScript((tl) => { window.TIMELINE = tl; }, timeline);
 // everything the page asks for and does not get: a wrong relative link renders in Times New Roman with no other sign
 const missed = new Map();
 const miss = (url, why) => { if (!/^(data|blob|about):/.test(url)) missed.set(url, missed.get(url) || why); };
@@ -95,6 +105,7 @@ page.on("requestfailed", (r) => { const e = r.failure()?.errorText || "failed"; 
 page.on("response", (r) => { if (r.status() >= 400) miss(r.url(), `HTTP ${r.status()}`); });
 await page.goto(pathToFileURL(path.resolve(file)).href, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
+if (beats.length) await page.evaluate((bs) => { for (const b of bs) document.documentElement.style.setProperty(`--beat-${b.id}`, `${Number(b.at)}s`); }, beats);
 const sections = await page.$$("section.page");
 if (!sections.length) throw new Error("no <section class=\"page\"> found");
 
@@ -213,6 +224,34 @@ if (want("--audit")) {
       return Math.round(k * 1000) / 1000;
     };
     const sizeOf = (el, cs, k = scaleOf(el)) => Math.round(parseFloat(cs.fontSize) * k * 100) / 100;
+    // how text is turned from level: { tilt (degrees, 0 to 180), mirrored }, from the rotate, scale and transform of every box above it,
+    // composed in the order CSS applies them. null when the text is not there to read: hidden, under a running animation (a film's first
+    // frame can be mid-move), or a back face turned away. Transforms do not apply to inline boxes, so those are skipped.
+    const angleOf = (v) => { const n = parseFloat(v); return /grad$/.test(v) ? n * 0.9 : /rad$/.test(v) ? n * 180 / Math.PI : /turn$/.test(v) ? n * 360 : n; };
+    const rotateOf = (v) => {
+      const p = v.trim().split(/\s+/), deg = angleOf(p.pop());
+      const [x, y, z] = p.length === 3 ? p.map(Number) : p[0] === "x" ? [1, 0, 0] : p[0] === "y" ? [0, 1, 0] : [0, 0, 1];
+      return new DOMMatrix().rotateAxisAngle(x, y, z, deg);
+    };
+    const tiltOf = (el) => {
+      for (let e = el; e; e = e.parentElement) {
+        const cs = getComputedStyle(e);
+        if (Number(cs.opacity) === 0 || cs.visibility === "hidden" || e.getAnimations().length) return null;
+      }
+      let m = new DOMMatrix(), back = false;
+      if (el instanceof SVGElement) { const c = el.getScreenCTM && el.getScreenCTM(); if (c) m = DOMMatrix.fromMatrix(c); }
+      else for (let e = el; e; e = e.parentElement) {
+        const cs = getComputedStyle(e);
+        if (cs.display === "inline" || cs.display === "contents") continue;
+        let box = cs.rotate && cs.rotate !== "none" ? rotateOf(cs.rotate) : new DOMMatrix();
+        if (cs.scale && cs.scale !== "none") { const [sx, sy = sx] = cs.scale.split(" ").map(Number); box = box.scale(sx, sy); }
+        m = box.multiply(new DOMMatrix(cs.transform)).multiply(m);
+        if (cs.backfaceVisibility === "hidden") back = true;
+      }
+      const det = m.a * m.d - m.b * m.c;
+      if (back && det < 0) return null;
+      return { tilt: Math.round(Math.abs(Math.atan2(m.b, m.a) * 180 / Math.PI)), mirrored: det < 0 };
+    };
     const condensed = (cs) => parseFloat(cs.fontStretch) < 100 || +(cs.fontVariationSettings.match(/["']wdth["']\s+([\d.]+)/) || [])[1] < 100 || /condensed|narrow|compressed/i.test(cs.fontFamily);
     // the worst-case (5th percentile) contrast of a colour against the rendered pixels in some boxes
     const sampled = (ctx, rects, fg) => {
@@ -388,7 +427,17 @@ if (want("--audit")) {
         if (!own) continue;
         const k = scaleOf(el), size = sizeOf(el, cs, k);
         const fine = !!el.closest("[data-role=fine]");
-        out.texts++; out.words += own.split(/\s+/).length; out.chars += own.length;
+        // a word holds a letter or a digit, so a lone "." or "/" after an inline span is not counted
+        out.texts++; out.words += own.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length; out.chars += own.length;
+        // text set sideways, steeply slanted, upside down or mirrored is hard to read on a phone: judged on the page as loaded
+        const turn = cover && !el.closest("[data-allow~=rotate]") ? tiltOf(el) : null;
+        if (turn) {
+          const quote = own.slice(0, 28), keep = ' (set it level; mark data-allow="rotate" if deliberate)';
+          if (/^(vertical|sideways)/.test(cs.writingMode)) out.fails.push(`text set sideways (writing-mode: ${cs.writingMode}): "${quote}"${keep}`);
+          else if (turn.mirrored) out.fails.push(`text mirrored: "${quote}"${keep}`);
+          else if (turn.tilt > 30) out.fails.push(`text turned ${turn.tilt} degrees: "${quote}"${keep}`);
+          else if (turn.tilt > 10) out.warns.push(`text turned ${turn.tilt} degrees: "${quote}" (check it still reads on a phone)`);
+        }
         if (/\S\s[·•|]\s\S.*\s[·•|]\s\S/.test(own)) chains++;
         if (/(→|->)\s*$/.test(own)) arrows++;
         // this element's own text only (the boxes its children draw are theirs), as drawn
@@ -744,7 +793,7 @@ if (want("--audit")) {
   const film = await page.evaluate(() => ({ moving: typeof window.seek === "function" || document.getAnimations().length > 0, art: (window.ART && window.ART.duration) || 0,
     css: Math.max(0, ...document.getAnimations().map((a) => (a.effect ? a.effect.getComputedTiming().endTime : 0)).filter(Number.isFinite)) / 1000 }));
   const lenIdx = args.indexOf("--seconds"), posterIdx = args.indexOf("--poster");
-  const length = lenIdx >= 0 ? Number(args[lenIdx + 1]) : film.art || film.css;
+  const length = lenIdx >= 0 ? Number(args[lenIdx + 1]) : Number(timeline?.seconds) || film.art || film.css;
   const times = [], poster = posterIdx >= 0 ? Number(args[posterIdx + 1]) : Math.min(3, length / 2);
   if (film.moving && length > 0) {
     for (let k = 1; k / 2 < length; k++) times.push(k / 2);   // every half second: a fault on screen for a second or less still shows

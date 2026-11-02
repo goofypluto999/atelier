@@ -1,0 +1,18 @@
+{
+ "seconds": 8,
+ "beats": [{"id": "hook", "at": 0}, {"id": "turn", "at": 2.5}, {"id": "land", "at": 4.5}],
+ "sound": {
+  "bed": {"chord_hz": [110, 164.81, 220], "gain_db": -18, "end": 6.0, "fade_in": 0.2, "fade_out": 1.0},
+  "voice": [
+   {"file": "voice-1.wav", "at": 0.3, "text": "Every film gets the same checks."},
+   {"file": "voice-2.wav", "at": 3.0, "text": "Sound is measured too."}
+  ],
+  "cues": [
+   {"beat": "turn", "fx": "rise", "gain_db": -14},
+   {"beat": "turn", "fx": "tick", "gain_db": -6},
+   {"beat": "land", "fx": "whoosh", "offset": -0.3, "gain_db": -12},
+   {"beat": "land", "fx": "thump", "gain_db": -4},
+   {"at": 5.2, "fx": "chime", "gain_db": -10}
+  ]
+ }
+}

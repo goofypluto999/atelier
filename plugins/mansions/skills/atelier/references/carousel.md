@@ -8,7 +8,7 @@
 | Instagram feed | 1080 x 1350 (4:5) | the profile grid shows a taller-than-square crop of each post (check the current ratio); keep the key content away from the top and bottom edges |
 | Stories, Reels, TikTok, Shorts | 1080 x 1920 (9:16) | keep text out of the top 220 px, the bottom 320 px and the right 140 px (buttons and captions overlay); `render.mjs --audit --safe reels` checks it |
 | X | 1080 x 1350 or 1600 x 900 | |
-| Slides (16:9) | 1920 x 1080 | same rules, wider measure |
+| Slides (16:9) | 1920 x 1080 | references/slides.md: one claim a slide, body 48 px, fine print 32 px |
 Render any size with `node scripts/render.mjs file.html --size 1080x1920`.
 
 ## Anatomy of a carousel (5 to 9 pages)

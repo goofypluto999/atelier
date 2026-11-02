@@ -80,7 +80,7 @@ python -m py_compile $S/scripts/*.py $S/vendor/huashu-design/scripts/design_lint
 ```
 
 ### 7. The checks catch every planted flaw
-CI covers the original planted flaws: in check.yml each negative check is written `if <check>; then exit 1; fi`, so the step fails when a check stops catching its flaw. (A line that starts with `!` would not do this under `bash -e`.) The newer fixtures below are not in CI yet (CI runs test_readcheck.py, the last line), so run this list too. Each line prints `ok` or `MISS` with the exit code it got and the one it expects, and the last line must say `PLANTED miss=0`. The fixtures in `tests/fixtures` and `evals/anchors/src` each hold one planted case.
+CI covers the original planted flaws: in check.yml each negative check is written `if <check>; then exit 1; fi`, so the step fails when a check stops catching its flaw. (A line that starts with `!` would not do this under `bash -e`.) The newer fixtures below are not in CI yet (CI runs test_readcheck.py; test_audio.py, test_slides.py and test_pairwise.py, the last lines, are not in CI), so run this list too. Each line prints `ok` or `MISS` with the exit code it got and the one it expects, and the last line must say `PLANTED miss=0`. The fixtures in `tests/fixtures` and `evals/anchors/src` each hold one planted case.
 ```
 S=plugins/mansions/skills/atelier
 F=$S/tests/fixtures
@@ -138,6 +138,15 @@ expect 0 python $S/tests/test_motion.py
 # The reading-time check (CI runs this too): a planted film with five faults, the rule, captions, a film with no marks
 expect 0 python $S/tests/test_readcheck.py
 
+# Films with sound (not in CI): sound.py on a planted film, thirteen planted sound faults, the clipping edge, and timeline.json timing the picture and the audit
+expect 0 python $S/tests/test_audio.py
+
+# Slides (not in CI): slide floors scaled to the width, the worked deck, a planted deck with five faults
+expect 0 python $S/tests/test_slides.py
+
+# Both orders (not in CI): a preference must survive the swap, and reasons must quote or locate
+expect 0 python $S/tests/test_pairwise.py
+
 echo "PLANTED miss=$miss"
 ```
 Two lines expect exit 0 on purpose. `g2-local-alias` declares a page font with `@font-face` whose source is an installed system font (`local()`); the audit must not call that a fallback font. `g3-object-accent` has an accent block a hair ahead of the drawn object on the cover; attention.py compares an accent with the best hook, number or object, so it passes and prints a note instead of a FAIL.
@@ -159,7 +168,7 @@ git archive --format=zip --prefix=atelier/ -o dist/atelier-skill.zip HEAD:plugin
 git archive --format=zip --prefix=humanizer/ -o dist/humanizer-skill.zip HEAD:plugins/mansions/skills/humanizer
 ls -l dist
 ```
-`atelier-skill.zip` holds the skill folder with its LICENSE and CREDITS.md. It leaves out what claude.ai cannot use: `tests/`, `evals/` (calibration needs the critic agents, which the zip does not hold) and the rendered video, PDF and contact sheets of the two examples (their sources and page PNGs stay). SKILL.md and references still mention `evals/` and `tests/` in passing, as history. Built this way from the branch head on 31 Oct 2026, the zip is about 6.76 MB (the same `git archive` without the excludes gives 9.10 MB), and unpacks to about 11.1 MB. Anthropic publishes no size limit for a claude.ai skill zip that we could find: the support article "Use skills in Claude" lists "ZIP file exceeds size limits" as an upload error and gives no figure, and the Skills API guide says "Total upload size must be under 30 MB (uncompressed)" (read 30 Oct 2026). Keep the zip small. Attach both zips to the GitHub release:
+`atelier-skill.zip` holds the skill folder with its LICENSE and CREDITS.md. It leaves out what claude.ai cannot use: `tests/`, `evals/` (calibration needs the critic agents, which the zip does not hold) and the rendered videos, PDFs and contact sheets of the examples (their sources and page PNGs stay). SKILL.md and references still mention `evals/` and `tests/` in passing, as history. Built this way from the branch head on 2 Nov 2026, the zip is about 7.35 MB (the same `git archive` without the excludes gives 10.73 MB), and unpacks to about 11.8 MB. Anthropic publishes no size limit for a claude.ai skill zip that we could find: the support article "Use skills in Claude" lists "ZIP file exceeds size limits" as an upload error and gives no figure, and the Skills API guide says "Total upload size must be under 30 MB (uncompressed)" (read 30 Oct 2026). Keep the zip small. Attach both zips to the GitHub release:
 ```
 gh release create v1.2.0 dist/atelier-skill.zip dist/humanizer-skill.zip --title "Atelier 1.2.0" --notes-file CHANGELOG.md
 ```

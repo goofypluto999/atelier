@@ -1,8 +1,8 @@
 ---
 name: atelier
-description: Use when making or critiquing a designed social post or image (LinkedIn, Instagram), carousel, infographic, poster, slide, story or short motion video, or a brand's visual system for them, and it must look authored, not AI-generated. Not for app UI, web pages or charts in code.
+description: Use when making or critiquing a designed social post or image (LinkedIn, Instagram), carousel, infographic, poster, slide deck, story, short motion video or film with sound, or a brand's visual system for them, and it must look authored, not AI-generated. Not for app UI, web pages or charts in code.
 license: MIT (see LICENSE in this folder; fonts under SIL OFL 1.1; brand logos are trademarks of their owners)
-compatibility: Rendering and checks need Node 20+ with Playwright 1.63.0 (npm i -D playwright@1.63.0, npx playwright install chromium), Python 3.10+ with Pillow 10.3+, and ffmpeg for video. Without them the skill still guides design and critique, but cannot render or measure.
+compatibility: Rendering and checks need Node 20+ with Playwright 1.63.0 (npm i -D playwright@1.63.0, npx playwright install chromium), Python 3.10+ with Pillow 10.3+, and ffmpeg for video and sound. Without them the skill still guides design and critique, but cannot render or measure.
 ---
 
 # Atelier
@@ -27,15 +27,24 @@ Use this for a single image or a one-off post. Quick scope has four stages (atom
 
 Run the full pipeline below for a carousel or a series, for client work, and for anything published under a brand where a weak angle costs more than the extra stages.
 
+## Pick the mode
+Read the ask and the platform, then pick one mode. Every mode runs `render.mjs --audit`, `copy_lint.py` and `cvd.py`, plus its own checks below. If the ask fits two modes, take the one the platform plays (a LinkedIn PDF is a carousel, a talk is slides); if it is still unclear, ask one question.
+| The ask or platform | Mode and reference | Size | Its own checks | Critics |
+|---|---|---|---|---|
+| one image, a feed post, an infographic | single image: the quick path above | 1080x1350 (4:5); 1080x1080; 1600x900 for X | `attention.py`, `layout_memory.py check` | art-director |
+| a poster: one claim with its proof | poster: an image dealt format `i-poster` | 1080x1350 for a feed; print sizes, bleed and resolution are not checked | as a single image | art-director |
+| a swipe post, a LinkedIn document | carousel: the full pipeline, references/carousel.md | 1080x1350 a page, `render.mjs --pdf` | `attention.py` on every page, `layout_memory.py`, `contact_sheet.py` | story-editor, copy-critic, art-director |
+| a talk, a pitch, a shared screen | slides: references/slides.md | 1920x1080 | `render.mjs --size 1920x1080 --pdf`, `deck_check.py`, `attention.py` | story-editor, copy-critic, art-director |
+| a story or a reel cover | story: references/carousel.md (UI safe zones) | 1080x1920, `--safe reels` | as a single image | art-director |
+| a short film for a muted feed | motion film: references/motion.md; a drawn film with a camera, references/art-motion.md | 1080x1350 or 1080x1920 | `motion.mjs`, `render.mjs --audit --seconds N`, `video_check.py`, `attention.py` on frame0.png | art-director on contact.png and phone.png |
+| a film people will hear | film with sound: references/sound.md | as a motion film | `timeline.json`, `sound.py`, then `video_check.py` adds the sound checks | as a motion film; no critic judges the sound |
+
 ## When to use which part
 | You are... | Read | Run |
 |---|---|---|
 | starting any piece | references/composer.md, references/process.md, references/brief.md | `compose.py new`, then `compose.py next <slug>` at every step |
 | seeing the directions | references/directions.md, assets/directions/directions.png | `node S/scripts/specimens.mjs` |
 | laying out pages | references/composition.md, type.md, colour.md | `compose.py scaffold`, `render.mjs <file> --audit` |
-| making a carousel or image post | references/carousel.md | `attention.py <folder>`, `layout_memory.py check <cover>` |
-| making a slide or a story | references/carousel.md (sizes, UI safe zones) | `render.mjs <file> --size 1920x1080`, `--size 1080x1920 --safe reels` |
-| making motion | references/motion.md; for a drawn film with a camera and a film finish, references/art-motion.md | `motion.mjs <file> --seconds 20 --sub 2`, `video_check.py <folder>` |
 | showing numbers | references/dataviz.md | |
 | using photographs | references/imagery.md | `render.mjs <file> --audit` (it samples text over a CSS background image) |
 | writing words on the design | references/copy.md | `copy_lint.py <file>` (it also warns on repeated words) |
@@ -44,7 +53,7 @@ Run the full pipeline below for a carousel or a series, for client work, and for
 | reviewing anything | references/tells.md, references/critique.md | `contact_sheet.py <folder> --out <file>` |
 | setting up a brand | references/brand.md, assets/brands/TEMPLATE.css | `brand_extract.mjs <url>`, `get_font.py "<Family>"` |
 | going deeper on a craft | vendor/MANIFEST.md | `python S/vendor/huashu-design/scripts/design_lint.py check <file.html>` (needs Python Playwright 1.63.0) |
-| wanting a worked example | examples/ledger-carousel (6 pages), examples/the-dot-reel (9:16 motion) | |
+| wanting a worked example | examples/ledger-carousel (6 pages), examples/scoring-deck (5 slides), examples/the-dot-reel (9:16 motion), examples/the-run (4:5 film with sound) | |
 | trusting a critic | references/critique.md (calibration) | `calibrate.py prepare`, then `score` |
 | asked "why does this work" | references/science.md (graded evidence) | |
 
@@ -63,7 +72,7 @@ Run it through the composer: `compose.py` deals lenses, play operators and the g
 5. **Thumbnails.** For a cover or a key frame, build 3 to 6 quick variants in the dealt direction and pick the one strongest at 360 px wide. Only then build every page.
 6. **Build and measure (Gate 3).** Start from `compose.py scaffold`: for an image or a carousel it writes a composition start on the grid, each page set up for its dealt layout word, never the specimen's page. In full and design scope, a dealt direction without a specimen gives a plain start, and scaffold says so: build that direction from references/directions.md. Pages are `<section class="page">`; motion is a pure function of time with `window.seek(t)`. Mark `data-role` on the hook, the number or object, any accent, the logo and fine print. Then run the scripts in the table above. Every FAIL is fixed before anyone reviews. The scripts state facts; you do not argue with them.
 7. **Critique (Gate 4).** An independent critic reviews the rendered images, never the code (references/critique.md). Scores with caps; the three worst problems, each with a concrete fix; one thing to keep.
-8. **Fix the three worst, re-render, re-measure.** At most three rounds. If it is still under the bar, say so plainly and offer a simpler format.
+8. **Fix the three worst, re-render, re-measure.** At most three rounds. Before keeping a revision, compare it with the best earlier render in both orders: `pairwise.py prepare <best.png> <new.png> --out <dir>`, a fresh art-director for each sheet, then `pairwise.py judge`; keep the new one only if it wins in both orders. If it is still under the bar, say so plainly and offer a simpler format.
 9. **Deliver.** Files (PNG pages, PDF for document carousels, MP4 with poster frame and captions), the contact sheet, alt text, the material idea in one line, and what you would improve with more time. `compose.py deliver <slug>` appends the piece to `.atelier/history.jsonl` and adds the cover to the layout memory. In design scope (`--scope design`, inside a host system), deliver only after the host has approved the piece.
 
 ## Hard rules

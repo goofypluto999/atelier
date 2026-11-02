@@ -11,6 +11,7 @@ One subject, one claim, one path for the eye. Before placing anything, decide th
 - Write positions in percentages or grid units, not one-off pixel nudges, so pages in a set stay consistent.
 - Take every gap from one spacing scale (for example multiples of 8 px on a 1080 px canvas). A gap off the scale is a nudge, and the eye reads it as a mistake.
 - A rule, a border or a table line never runs through text: a row too short for its text lets the next rule strike it. render.mjs --audit fails it (data-allow="over" marks a deliberate strike).
+- Text reads level on a phone. render.mjs --audit fails text set sideways (a vertical or sideways writing-mode), mirrored, or turned more than 30 degrees, and warns above 10 degrees; a stamp at a few degrees is fine. data-allow="rotate" marks a deliberate spine label.
 
 ## Hierarchy: how importance is made
 In order of strength: size, then contrast (light against dark), then weight, then colour, then position (top and left read first in left-to-right languages), then isolation (space around it). Use two or three of these for the top element; use one at most for the rest.

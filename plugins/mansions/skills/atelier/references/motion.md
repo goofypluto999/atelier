@@ -10,7 +10,7 @@ A film is a pure function of time. `window.seek(t)` paints the exact frame for t
 - The page loads local files only: motion.mjs blocks any other request and fails the render.
 - A drawn film (objects on a canvas, a camera that pushes, glides and pulls, springs, a film finish) uses `ART.film` from assets/lib/art-motion.js under the same contract: references/art-motion.md.
 
-Worked examples: assets/directions/departure-board.motion.html (8 s, 4:5, split-flap) and examples/the-dot-reel (10 s, 9:16, a dot on a curve with a rolling counter and a named peak). Both pass video_check.py.
+Worked examples: assets/directions/departure-board.motion.html (8 s, 4:5, split-flap), examples/the-dot-reel (10 s, 9:16, a dot on a curve with a rolling counter and a named peak) and examples/the-run (12 s, 4:5, a film with sound timed by timeline.json). All three pass video_check.py.
 
 ## Springs, not curves
 Cheap motion slides from A to B on a fixed curve. Expensive motion has weight: it accelerates, overshoots a hair and settles, which is a damped spring. `M.spring(t, k, d)` in assets/lib/motion.js is closed-form, so any frame can be computed directly. When a value changes target several times (a cursor, a box resizing), add one spring per change (`M.track`), so the motion stays smooth.
@@ -45,7 +45,7 @@ Write the beat sheet with times and locked copy before any code. Every paused fr
 - One signature move per film, repeated with variation, is better than ten different effects.
 
 ## Sound
-Most feeds play muted, so the film must work without sound. If sound is used: licensed or code-made music only, effects on the beat, loudness about -14 LUFS for social.
+Most feeds play muted, so the film must work without sound. If sound is used, references/sound.md: one timeline.json times the picture and the sound, voice and music are the user's licensed files, effects are code-made and land on beats, `sound.py` mixes to -14 LUFS in two passes and writes captions from the voice lines, and video_check.py checks the track.
 
 ## Checks
 `python scripts/video_check.py <folder> --seconds 20` writes contact.png (one frame per second) and phone.png (360 px wide), and fails on: duration off by more than 2%, a still stretch of 3 s or more (a dead beat), black frames, a first caption later than 0.5 s, captions too short to read, and marked words on screen held too briefly or cut (texts.json from motion.mjs). Then `python scripts/attention.py <folder>/frame0.png` for the first frame. The critic reviews contact.png and phone.png, never the code.

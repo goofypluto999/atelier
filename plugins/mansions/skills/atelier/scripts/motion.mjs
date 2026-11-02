@@ -20,6 +20,10 @@
 // window.texts(t) = [{id, text, x0, y0, x1, y1}] (page pixels). motion.mjs then writes texts.json: for each piece, its longest
 // stretch whole on screen (every word at opacity 0.9 or more, every line inside the page, each overflow box and each clip-path
 // inset) and when it starts. The same id with new text is a new piece. video_check.py judges the reading time (references/motion.md).
+// A film with sound: timeline.json next to the HTML holds the beats, the voice lines and the effect cues (references/sound.md).
+// motion.mjs sets each beat as a CSS variable --beat-<id> (seconds) on the root, for animation-delay, and as window.TIMELINE,
+// for window.seek; --seconds defaults to the timeline's "seconds". So one file times the picture and sound.py the sound.
+// With --out, timeline.json is copied there for sound.py and video_check.py.
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import fs from "node:fs";
@@ -47,7 +51,9 @@ if (!file) {
   console.error("usage: node motion.mjs <motion.html> --seconds 20 [--fps 30] [--sub 4] [--poster 3.5] [--size 1080x1350] [--out <dir>]");
   process.exit(2);
 }
-const seconds = Number(opt("--seconds", "20"));
+const tlFile = path.join(path.dirname(path.resolve(file)), "timeline.json");
+const timeline = fs.existsSync(tlFile) ? JSON.parse(fs.readFileSync(tlFile, "utf8")) : null;
+const seconds = Number(opt("--seconds", String(timeline?.seconds ?? 20)));
 const fps = Number(opt("--fps", "30"));
 const sub = Math.max(1, Number(opt("--sub", "1")));
 const posterAt = Number(opt("--poster", String(Math.min(3, seconds / 2))));
@@ -59,6 +65,7 @@ fs.mkdirSync(dir, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
 // local files only: a film never fetches from the network, so its frames cannot change with a remote server
+if (timeline) await page.addInitScript((tl) => { window.TIMELINE = tl; }, timeline);
 const blocked = [];
 await page.route("**/*", (r) => (/^(file|data|blob):/.test(r.request().url()) ? r.continue() : (blocked.push(r.request().url()), r.abort())));
 await page.goto(pathToFileURL(path.resolve(file)).href, { waitUntil: "networkidle" });
@@ -68,6 +75,11 @@ if (blocked.length) {
   process.exit(1);
 }
 await page.evaluate(() => document.fonts.ready);
+if (timeline) {
+  const bad = (timeline.beats || []).filter((b) => !/^[a-z0-9][a-z0-9-]*$/.test(String(b.id)) || !Number.isFinite(Number(b.at)));
+  if (bad.length) throw new Error(`timeline.json: a beat needs an id of lower case letters, digits and dashes and a time "at": ${JSON.stringify(bad[0])}`);
+  await page.evaluate((beats) => { for (const b of beats) document.documentElement.style.setProperty(`--beat-${b.id}`, `${Number(b.at)}s`); }, timeline.beats || []);
+}
 const el = await page.$("section.page");
 if (!el) throw new Error('no <section class="page"> found');
 // Each frame is the page box, measured again at every step, so a page box that moves is followed. An element screenshot
@@ -198,4 +210,6 @@ if (fs.existsSync(capFile)) {
   fs.writeFileSync(path.join(dir, "captions.srt"),
     caps.map((c, i) => `${i + 1}\n${ts(c.start)} --> ${ts(c.end)}\n${c.text}\n`).join("\n"));
 }
-console.log(`motion: ${out} (${seconds}s at ${fps} fps${sub > 1 ? `, ${sub} blended steps per frame` : ""}, no audio) + poster.png + frame0.png${reads ? " + texts.json" : ""}`);
+if (timeline && dir !== src) fs.copyFileSync(tlFile, path.join(dir, "timeline.json"));
+console.log(`motion: ${out} (${seconds}s at ${fps} fps${sub > 1 ? `, ${sub} blended steps per frame` : ""}, no audio) + poster.png + frame0.png${reads ? " + texts.json" : ""}` +
+  (timeline?.sound ? `\nmotion: timeline.json declares sound: next, python sound.py ${dir}` : ""));

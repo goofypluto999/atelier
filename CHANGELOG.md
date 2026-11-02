@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.4.0 (2026-11-02)
+
+What you get
+- Films with sound. One `timeline.json` times the picture and the sound: `motion.mjs` turns each beat into `--beat-<id>` and `window.TIMELINE`, and `sound.py` places code-made effects on the beats, under your own voice and music files, mixes to -14 LUFS in two passes, and writes captions from the voice lines. Local only: no network, no model, no voice bundled (references/sound.md).
+- `video_check.py` checks a film that declares sound: the track, its length, loudness within 1 LU, true peak, clipping, silence at the start, and a caption for every voice line.
+- Slides as their own mode: `deck_check.py` measures slide floors scaled to the width (48 px, fine print 32 px at 1920), a title on every slide, one title line, three families or fewer, and the PDF's page count (references/slides.md).
+- `pairwise.py` compares two renders in both orders; a preference counts only if it survives the swap and its reasons quote the page or name a place.
+- SKILL.md picks the mode from the ask and the platform: single image, poster, carousel, slides, story, motion film or film with sound, each with its size, checks and critics.
+- A landing page, docs/index.html, and a new README: the film with sound, one example per mode, three diagrams made with Atelier's own render pipeline, the design system, the scoring and why TRIBE v2 is not used, every tool credited, and limits.
+
+The detail follows.
+- New worked examples: examples/the-run (12 s, 4:5, sample sound bed and ten effect cues on its beats) and examples/scoring-deck (5 slides; each claim cites the file that proves it).
+- New planted-flaw tests, run from CONTRIBUTING step 7 and not in CI: tests/test_audio.py (thirteen planted sound faults, near misses included, and the beat timing), tests/test_slides.py (a deck with five faults) and tests/test_pairwise.py.
+- The slide specimen moves to the slide floors: body 48 px, fine print 32 px.
+- docs/media holds fresh renders of the reel and the departure board, with metadata stripped; the two older GIFs are gone. docs/fonts holds the three bundled fonts and their licences for the landing page.
+- docs/diagrams: the run, the team and the scoring, each a page that passes `render.mjs --audit`.
+
+From a clean-machine test of 1.2.0 on Windows 11 (2 Nov 2026):
+- The audit fails text set sideways (a vertical or sideways `writing-mode`), mirrored text, and text turned more than 30 degrees, and warns above 10 degrees. It composes rotate, scale and transform in the order CSS applies them, skips inline boxes, and leaves out text under a running animation; it judges the page as loaded. Mark `data-allow="rotate"` where it is deliberate. A command set sideways had passed with no word.
+- The audit counts a word only if it holds a letter or a digit. A period after an inline span had counted as a word.
+- The quick start installs the Python Playwright with Pillow, so huashu-design's `design_lint.py` runs.
+- The README says where the skill folder is when the marketplace was added from a local clone.
+- New planted-flaw test in tests/test_composer.py: tests/fixtures/r17-sideways.
+
+Closed from the 1.4.0 report's open list:
+- A film's visual stage is graded only on video_check.py's PASS for that very video: `video_check.py` writes `video_check.json` with the video's sha256, and `compose.py grade` refuses a film without it, with a FAIL in it, or with a result for another video (test_composer.py, film gate).
+- `render.mjs --audit` reads `timeline.json` next to the page, as motion.mjs does: the beats, `window.TIMELINE` and the film's length (test_audio.py step 3). A broken timeline.json is a warning, not a crash. compose.py's audit line leaves out `--seconds 8` when a timeline times the film, and scaffold prints the video_check.py line.
+- The clipping rule has a near-miss test on a lossless track: a run of 2 samples at full scale is not counted, a run of 3 is (test_audio.py step 2).
+
 ## 1.3.0 (2026-11-02)
 
 What you get

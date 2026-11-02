@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier: designed posts, slides and films, checked before they ship</title>
+<meta name="description" content="Atelier is a Claude Code plugin that designs social images, carousels, slides and films in HTML, renders them on your machine, measures them with scripts and has a critic agent judge the render.">
+<!-- No external request of any kind: fonts, images and films load from this folder. The diagrams are inline copies of
+     docs/diagrams/*.svg.html, which render.mjs --audit renders and checks as pages. -->
+<style>
+@font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(fonts/Archivo-VF-latin.woff2) format("woff2"); }
+@font-face { font-family: "Instrument Sans"; font-weight: 400 700; font-stretch: 75% 100%; font-display: swap; src: url(fonts/InstrumentSans-VF-latin.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400 700; font-display: swap; src: url(fonts/JetBrainsMono-latin-tDbv2o-flE.woff2) format("woff2"); }
+:root { --paper: #f1f2f4; --paper-2: #e1e3e5; --ink: #1c1e23; --ink-2: #464a51; --house: #143ca1; --night: #181b20; --cream: #f3f4f6; --cream-2: #c9ccd1; --lit: #75a3f9; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.55 "Archivo", system-ui, sans-serif; overflow-wrap: anywhere; }
+a { color: var(--house); text-underline-offset: 3px; }
+h1, h2, h3 { font-family: "Instrument Sans", system-ui, sans-serif; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 16px; }
+h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 650; }
+h3 { font-size: 22px; font-weight: 650; letter-spacing: -0.01em; }
+p { margin: 0 0 14px; max-width: 68ch; }
+code, pre { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 15px; font-variant-ligatures: none; }
+pre { background: var(--night); color: var(--cream); padding: 16px; border-radius: 6px; white-space: pre-wrap; word-break: break-all; margin: 0 0 16px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; border-top: 1px solid var(--paper-2); }
+.lede { font-size: 20px; color: var(--ink-2); }
+.muted { color: var(--ink-2); }
+.hero { background: var(--night); color: var(--cream); padding: 56px 0 64px; }
+.hero h1 { font-size: clamp(48px, 9vw, 104px); font-weight: 650; letter-spacing: -0.035em; margin-bottom: 20px; }
+.hero p { color: var(--cream-2); font-size: 20px; }
+.hero a { color: var(--lit); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 48px; align-items: start; }
+.film video { width: 100%; height: auto; display: block; border-radius: 6px; background: #000; }
+.film figcaption { font-size: 15px; color: var(--cream-2); margin-top: 10px; }
+.btn { font: 600 17px/1 "Archivo", system-ui, sans-serif; padding: 14px 18px; border-radius: 6px; border: 2px solid var(--lit); background: transparent; color: var(--cream); cursor: pointer; margin-top: 12px; }
+.btn:focus-visible, a:focus-visible { outline: 3px solid var(--lit); outline-offset: 3px; }
+nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 28px 0 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 28px; margin-top: 28px; }
+.card img, .card video { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--paper-2); }
+.card h3 { margin: 14px 0 6px; }
+.card p { font-size: 16px; color: var(--ink-2); }
+.diagrams { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 28px; }
+.diagrams figure { margin: 0; background: var(--paper); flex: 1 1 480px; max-width: 560px; }
+.diagrams svg { width: 100%; height: auto; display: block; border: 1px solid var(--paper-2); }
+.diagrams figcaption { font-size: 16px; color: var(--ink-2); margin-top: 10px; }
+.cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; margin-top: 24px; }
+.tools { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.tools li { border-top: 2px solid var(--ink); padding-top: 10px; font-size: 16px; }
+.tools b { font-size: 18px; }
+.tools span { display: block; color: var(--ink-2); }
+ul.plain { padding-left: 20px; }
+ul.plain li { margin-bottom: 8px; max-width: 72ch; }
+footer { background: var(--night); color: var(--cream-2); padding: 40px 0; font-size: 16px; }
+footer a { color: var(--lit); }
+.dg-h { font: 650 72px/1 "Instrument Sans", sans-serif; letter-spacing: -0.03em; fill: var(--ink); }
+.dg-b { font: 700 44px/1 "Archivo", sans-serif; font-stretch: 88%; fill: var(--ink); }
+.dg-n { font: 500 36px/1 "Archivo", sans-serif; fill: var(--ink-2); }
+.dg-k { font: 700 40px/1 "Archivo", sans-serif; fill: var(--house); }
+.dg-box { fill: none; stroke: var(--ink-2); stroke-width: 3; }
+.dg-acc { fill: none; stroke: var(--house); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.dg-rule { stroke: var(--ink-2); stroke-width: 3; }
+@media (max-width: 820px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } .wrap { padding: 0 16px; } section { padding: 52px 0; } }
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Atelier</h1>
+      <p>A design studio inside one Claude Code skill. It makes social images, carousels, slides and short films in HTML and renders them locally. Scripts measure every page. Then a critic agent that did not make the piece judges the render.</p>
+      <p>Each new piece is dealt a design away from the ones before it, so the feed does not repeat itself.</p>
+      <nav aria-label="Sections"><ul>
+        <li><a href="#makes">What it makes</a></li><li><a href="#how">How it works</a></li><li><a href="#system">The design system</a></li>
+        <li><a href="#scoring">The scoring</a></li><li><a href="#built-on">Built on</a></li><li><a href="#limits">Limits</a></li><li><a href="#start">Quick start</a></li>
+      </ul></nav>
+    </div>
+    <figure class="film" style="margin:0">
+      <video id="hero-film" data-auto muted loop playsinline controls preload="metadata" width="1080" height="1350" poster="media/the-run-poster.webp" aria-label="A 12 second film: the seven stages of an Atelier run land one by one on a rail, each on a beat, and PASS lands last.">
+        <source src="media/the-run.mp4" type="video/mp4">
+      </video>
+      <button class="btn" id="sound" type="button" aria-pressed="false">Play with sound</button>
+      <figcaption>Made with Atelier: motion.mjs rendered the frames, sound.py made the sound from the same timeline, and video_check.py passed the picture and the sound. The bed and the effects are code-made sample sound.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<section id="makes"><div class="wrap">
+  <h2>What it makes</h2>
+  <p class="lede">It picks the mode from the ask and the platform: single image, poster, carousel, slides, story, motion film or film with sound. Each mode has its own sizes, checks and critics.</p>
+  <div class="cards">
+    <article class="card"><img src="media/single-image.webp" width="720" height="900" loading="lazy" alt="A 4:5 post: the line &quot;Nineteen surgical checks, seven at a time.&quot; over three rows of nine slots against a raspberry wall"><h3>Single image</h3><p>From a real run of the quick path. It passed the art-director at 7.5 on its second attempt, with a made-up sample brand.</p></article>
+    <article class="card"><img src="media/poster.webp" width="720" height="900" loading="lazy" alt="The editorial-poster direction: one very large number on a full colour field with a short claim"><h3>Poster</h3><p>One claim with its proof. The editorial-poster specimen, with sample content. Print sizes are not checked.</p></article>
+    <article class="card"><img src="media/carousel.webp" width="1128" height="936" loading="lazy" alt="Six carousel pages side by side, on the hours spent assembling a monthly report"><h3>Carousel</h3><p>Six pages as PNGs and one PDF for a LinkedIn document. Every page passes the audit in CI. Sample content.</p></article>
+    <article class="card"><img src="media/slides.webp" width="1128" height="440" loading="lazy" alt="Five 16:9 slides on how Atelier scores, each with a one-line claim, one large number and its source file"><h3>Slides</h3><p>Five 16:9 slides. Each claim cites the file that proves it. They pass the audit and deck_check.py.</p></article>
+    <article class="card"><img src="media/story.webp" width="540" height="960" loading="lazy" alt="A 9:16 story page with its text kept clear of the top and bottom zones where the app draws its controls"><h3>Story</h3><p>9:16, with text kept out of the zones where the platform draws its buttons. Sample content.</p></article>
+    <article class="card"><video data-auto muted loop playsinline controls preload="none" width="720" height="1280" poster="media/the-dot-reel-poster.webp" aria-label="A 10 second vertical film: a dot traces a line chart night by night while a counter rolls, then the peak night is named."><source src="media/the-dot-reel.mp4" type="video/mp4"></video><h3>Motion film</h3><p>10 s, 9:16. A dot traces the week and a counter rolls, then settles. It passes video_check.py. Sample numbers.</p></article>
+    <article class="card"><video data-auto muted loop playsinline controls preload="none" width="720" height="900" poster="media/departure-board-poster.webp" aria-label="An 8 second split-flap departure board settles on three DONE rows and one WAIT."><source src="media/departure-board.mp4" type="video/mp4"></video><h3>Animation</h3><p>An 8 s split-flap board, drawn by window.seek(t) and stepped frame by frame. It passes video_check.py. Sample content.</p></article>
+    <article class="card"><img src="media/the-run-poster.webp" width="720" height="900" loading="lazy" alt="The last frame of the film with sound: seven stages on a rail and PASS"><h3>Film with sound</h3><p>The film at the top of this page; its words are about Atelier, its sound is code-made sample sound. One timeline file times the picture, the effects and any voice captions. <a href="#top">Play it with sound</a>.</p></article>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>How it works</h2>
+  <p class="lede">It runs like a small studio with a gate at every step. The maker builds. Scripts measure. Critics who did not build the piece judge it. Memory keeps the next piece from repeating the last.</p>
+  <div class="diagrams">
+    <figure><svg class="dg" viewBox="0 0 1080 1350" width="1080" height="1350" role="img" aria-label="The run: brief, direction, composition, render, script checks, critic agents, revision, memory. Revision loops back to render, at most three attempts."><text x="80" y="140" class="dg-h" data-role="hook">One run, brief to memory</text><rect class="dg-box" x="80" y="230" width="900" height="104" rx="6"/><text x="112" y="292" class="dg-b">Brief</text><text x="430" y="292" class="dg-n">one idea, swap-tested</text><line class="dg-rule" x1="140" y1="334" x2="140" y2="364"/><rect class="dg-box" x="80" y="364" width="900" height="104" rx="6"/><text x="112" y="426" class="dg-b">Direction</text><text x="430" y="426" class="dg-n">dealt away from memory</text><line class="dg-rule" x1="140" y1="468" x2="140" y2="498"/><rect class="dg-box" x="80" y="498" width="900" height="104" rx="6"/><text x="112" y="560" class="dg-b">Composition</text><text x="430" y="560" class="dg-n">HTML pages on a grid</text><line class="dg-rule" x1="140" y1="602" x2="140" y2="632"/><rect class="dg-box" x="80" y="632" width="900" height="104" rx="6"/><text x="112" y="694" class="dg-b">Render</text><text x="430" y="694" class="dg-n">to PNG, PDF or MP4</text><line class="dg-rule" x1="140" y1="736" x2="140" y2="766"/><rect class="dg-box" x="80" y="766" width="900" height="104" rx="6"/><text x="112" y="828" class="dg-b">Script checks</text><text x="430" y="828" class="dg-n">measure the pixels</text><line class="dg-rule" x1="140" y1="870" x2="140" y2="900"/><rect class="dg-box" x="80" y="900" width="900" height="104" rx="6"/><text x="112" y="962" class="dg-b">Critic agents</text><text x="430" y="962" class="dg-n">judge the render only</text><line class="dg-rule" x1="140" y1="1004" x2="140" y2="1034"/><rect class="dg-box" x="80" y="1034" width="900" height="104" rx="6"/><text x="112" y="1096" class="dg-b">Revision</text><text x="430" y="1096" class="dg-n">fix the worst three</text><line class="dg-rule" x1="140" y1="1138" x2="140" y2="1168"/><rect class="dg-box" x="80" y="1168" width="900" height="104" rx="6"/><text x="112" y="1230" class="dg-b">Memory</text><text x="430" y="1230" class="dg-n">the next piece differs</text><path class="dg-acc" data-role="accent" d="M980 1086 H1036 V684 H995"/><path class="dg-acc" d="M1015 666 L995 684 L1015 702"/></svg><figcaption>The run. A revision goes back to the render, at most three times; then it goes to a person. <a href="media/diagram-run.png">Full size</a>.</figcaption></figure>
+    <figure><svg class="dg" viewBox="0 0 1080 1350" width="1080" height="1350" role="img" aria-label="The team: the main agent builds; scripts measure as inspectors; fresh critic agents judge (art-director, copy-critic, story-editor); compose.py gates each stage; .atelier remembers every piece and cover layout."><text x="80" y="140" class="dg-h" data-role="hook">Who does what</text><line class="dg-rule" x1="80" y1="220" x2="1000" y2="220"/><text x="80" y="286" class="dg-b">Builds</text><text x="370" y="286" class="dg-n">The main agent with the skill:</text><text x="370" y="336" class="dg-n">brief, deal, pages, renders</text><line class="dg-rule" x1="80" y1="384" x2="1000" y2="384"/><text x="80" y="450" class="dg-b">Measures</text><text x="370" y="450" class="dg-n">Scripts as inspectors: audit,</text><text x="370" y="500" class="dg-n">attention, copy, colour vision,</text><text x="370" y="550" class="dg-n">film, sound and deck checks</text><line class="dg-rule" x1="80" y1="598" x2="1000" y2="598"/><text x="80" y="664" class="dg-k">Judges</text><text x="370" y="664" class="dg-n">Fresh critic agents:</text><text x="370" y="714" class="dg-n">art-director (the render),</text><text x="370" y="764" class="dg-n">copy-critic (the words),</text><text x="370" y="814" class="dg-n">story-editor (angle, order)</text><line class="dg-rule" x1="80" y1="862" x2="1000" y2="862"/><text x="80" y="928" class="dg-b">Gates</text><text x="370" y="928" class="dg-n">compose.py: no next stage</text><text x="370" y="978" class="dg-n">without a grade and its evidence</text><line class="dg-rule" x1="80" y1="1026" x2="1000" y2="1026"/><text x="80" y="1092" class="dg-b">Remembers</text><text x="370" y="1092" class="dg-n">.atelier/: every piece</text><text x="370" y="1142" class="dg-n">and every cover layout</text><line class="dg-rule" x1="80" y1="1190" x2="1000" y2="1190"/></svg><figcaption>The team. The scripts are inspectors: they measure pixels, frames and words, and exit non-zero on a fault. <a href="media/diagram-team.png">Full size</a>.</figcaption></figure>
+    <figure><svg class="dg" viewBox="0 0 1080 1350" width="1080" height="1350" role="img" aria-label="The scoring: measured facts first; six criteria scored 1 to 10, idea and hook weighted 1.5, pass at 7.5; every finding located; two versions compared in both orders; critics calibrated on 10 labelled covers; TRIBE v2 not used."><text x="80" y="140" class="dg-h" data-role="hook">How a score is earned</text><line class="dg-rule" x1="80" y1="196" x2="1000" y2="196"/><text x="80" y="252" class="dg-b">Measured first</text><text x="80" y="300" class="dg-n">the scripts&#x27; results reach the critic</text><text x="80" y="344" class="dg-n">as measured facts, before it looks</text><line class="dg-rule" x1="80" y1="384" x2="1000" y2="384"/><text x="80" y="440" class="dg-b">Six criteria, 1 to 10</text><text x="80" y="488" class="dg-n">idea and hook count 1.5 times;</text><text x="80" y="532" class="dg-n">the pass mark is 7.5; caps apply</text><line class="dg-rule" x1="80" y1="572" x2="1000" y2="572"/><text x="80" y="628" class="dg-b">Located</text><text x="80" y="676" class="dg-n">every finding names a page,</text><text x="80" y="720" class="dg-n">a place or a quote</text><line class="dg-rule" x1="80" y1="760" x2="1000" y2="760"/><text x="80" y="816" class="dg-k">Both orders</text><text x="80" y="864" class="dg-n">two versions as 1|2, then 2|1, to</text><text x="80" y="908" class="dg-n">fresh critics: a flip is no winner</text><line class="dg-rule" x1="80" y1="948" x2="1000" y2="948"/><text x="80" y="1004" class="dg-b">Calibrated</text><text x="80" y="1052" class="dg-n">10 labelled covers: 7 of 7 flaws</text><text x="80" y="1096" class="dg-n">caught, 3 of 3 strong passed</text><line class="dg-rule" x1="80" y1="1136" x2="1000" y2="1136"/><text x="80" y="1192" class="dg-b">Not used: TRIBE v2</text><text x="80" y="1240" class="dg-n">non-commercial licence; no published</text><text x="80" y="1284" class="dg-n">test links it to social performance</text></svg><figcaption>The scoring. Why each step is there is on this page, under <a href="#scoring">The scoring</a>. <a href="media/diagram-scoring.png">Full size</a>.</figcaption></figure>
+  </div>
+  <p class="muted" style="margin-top:20px">These three diagrams are pages too: Atelier's render.mjs drew them and its audit passed them, with a word-count warning on each, since a diagram carries more words than a post.</p>
+</div></section>
+
+<section id="system"><div class="wrap">
+  <h2>The design system</h2>
+  <p class="lede">Removing the tells of AI design is not enough: a page with every cliche removed and nothing in its place is empty and polite. Every piece needs a material idea, a direction dealt on purpose, and proof that it works, measured on the render.</p>
+  <div class="cols">
+    <div><h3>Process</h3><p>Sourced facts first, then one angle, then a dealt design: direction, register, type, colour plan, hook and layout. Eight stages each have a rubric and a pass mark. <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/process.md">process.md</a>, <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/composer.md">composer.md</a></p></div>
+    <div><h3>Preferences</h3><p>One subject and one claim per page. One accent, under 5% of the page. Real numbers only, with sources. Replace, never just remove. <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/SKILL.md">SKILL.md, Hard rules</a></p></div>
+    <div><h3>Styles</h3><p>Art directions with specimen pages, type pairings, colour plans in OKLCH and eight film styles. A brand file keeps the brand's hues. <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/directions.md">directions.md</a>, <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/colour.md">colour.md</a>, <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/film-styles.md">film-styles.md</a></p></div>
+    <div><h3>Review rules</h3><p>Type floors measured as drawn, contrast of 4.5:1, no text over text, the first glance led by the hook, the number or the object. Films: something new every 2 to 4 seconds and words held long enough to read. <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/critique.md">critique.md</a>, <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/motion.md">motion.md</a>, <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/sound.md">sound.md</a>, <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/slides.md">slides.md</a></p></div>
+  </div>
+</div></section>
+
+<section id="scoring"><div class="wrap">
+  <h2>The scoring, and why</h2>
+  <p class="lede">A score from a model is only worth something if the model cannot be flattered and has been tested on known answers.</p>
+  <ul class="plain">
+    <li><b>Measured first.</b> The scripts' results reach the critic as facts. A model that reviewed video alone found 3 of 14 dead stretches; given the measured freeze data it found all 14 (huashu-design, cited in critique.md).</li>
+    <li><b>The render, not the code.</b> The art-director agent has two tools, Read and Glob. It is told to judge the PNGs only, never the HTML or the maker's notes.</li>
+    <li><b>Six criteria, 1 to 10.</b> Idea and hook count 1.5 times. The pass mark is 7.5. A FAIL never passes, and compose.py refuses scores that differ from the critic's verdict file.</li>
+    <li><b>Both orders.</b> Model judges favour the first option shown (Zheng et al. 2023). So when a revision competes with an earlier attempt, pairwise.py shows the two as 1|2 and then 2|1 to fresh critics. A preference that flips with the order is no winner.</li>
+    <li><b>Located.</b> Every finding names a page, a place or a quote. pairwise.py refuses a preference whose reasons do neither.</li>
+    <li><b>Calibrated.</b> On 30 Oct 2026 the art-director judged 10 labelled covers blind: it caught 7 of 7 planted flaws and passed 3 of 3 strong covers.</li>
+  </ul>
+  <h3 style="margin-top:28px">Why not a brain-response score?</h3>
+  <p>Meta's TRIBE v2 predicts brain responses to media, and it is sometimes suggested as a "neuro" score for content. Atelier does not use it. As of October 2026 its licence is non-commercial (CC BY-NC 4.0), and no published test links its predictions to social performance.</p>
+  <p>Atelier uses the evidence such tools try to imitate: a table of studies graded strong, medium or weak, rules measured on the render, a simple attention model it calls a rough guide, and critics tested on known answers. <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/references/science.md">science.md</a></p>
+</div></section>
+
+<section id="built-on"><div class="wrap">
+  <h2>Built on</h2>
+  <p class="lede">Atelier combines the work of others. Each project below is credited with its author and licence; vendored files are pinned to a commit in <a href="https://github.com/goofypluto999/atelier/blob/main/plugins/mansions/skills/atelier/vendor/MANIFEST.md">vendor/MANIFEST.md</a>.</p>
+  <ul class="tools">
+    <li><b><a href="https://github.com/leonxlnx/taste-skill">taste-skill</a></b><span>Leonxlnx, MIT</span>Dealing a direction instead of a default, the swap test, AI-look tells, critique with caps. Vendored: its library data and references.</li>
+    <li><b><a href="https://github.com/alchaincyf/huashu-design">huashu-design</a></b><span>alchaincyf, MIT</span>Layout memory, giving the reviewer measured facts, every frame is a cover. Vendored: design_lint.py and references.</li>
+    <li><b><a href="https://github.com/alchaincyf/huashu-art-motion">huashu-art-motion</a></b><span>alchaincyf, MIT</span>Drawn films as one canvas under a camera moved by time. Vendored: five drawing files.</li>
+    <li><b><a href="https://github.com/lemomo-ai/lemo-opuscar">lemo-opuscar</a></b><span>LemoLab (lemomo-ai), MIT</span>The idea of a reading-time check for words on screen, rewritten. Vendored: its licence file only.</li>
+    <li><b><a href="https://github.com/obra/superpowers">superpowers</a></b><span>Jesse Vincent, MIT</span>Evidence before claims, independent review. Vendored: three skills.</li>
+    <li><b><a href="https://github.com/blader/humanizer">humanizer</a></b><span>blader, MIT</span>Signs of AI writing. Ships as the humanizer skill for long copy.</li>
+    <li><b><a href="https://github.com/latent-spaces/brag">brag</a></b><span>Shunit Haviv Hakimi (latent-spaces), MIT</span>Read the real project first; video from a browser and ffmpeg. Vendored: the skill text. Its music is not used.</li>
+    <li><b><a href="https://github.com/cyxzdev/Uncodixfy">Uncodixfy</a></b><span>cyxzdev, MIT</span>Fake product chrome and pill overload as tells. Ideas rewritten; no text included.</li>
+    <li><b><a href="https://github.com/yihui-dev/awesome-opus5-5-videos">awesome-opus5-5-videos</a></b><span>yihui-dev and the creators it lists, MIT for the list</span>Patterns in strong motion briefs, paraphrased; no prompt text included.</li>
+    <li><b>"How to Build a Motion Design Studio With Opus 5.5"</b><span>Ray C., community guide, licence not stated</span>The seek(t) render contract, springs, motion blur by sub-frames. Ideas only.</li>
+    <li><b>frontend-design and canvas-design</b><span>Anthropic, Apache 2.0</span>The clusters generated design falls into; ground the design in the subject. Vendored: the two skill texts.</li>
+    <li><b>Archivo, Instrument Sans, JetBrains Mono</b><span>Omnibus-Type, Instrument, JetBrains; SIL OFL 1.1</span>The bundled fonts, also used on this page. Licences: <a href="fonts/OFL-archivo.txt">Archivo</a>, <a href="fonts/OFL-instrumentsans.txt">Instrument Sans</a>, <a href="fonts/OFL-jetbrainsmono.txt">JetBrains Mono</a>.</li>
+  </ul>
+  <p class="muted" style="margin-top:24px">The render tools are installed separately, not bundled: Playwright and Chromium, ffmpeg, Python with Pillow, and Node. The full list with what each project taught: <a href="https://github.com/goofypluto999/atelier/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <h2>Limits</h2>
+  <ul class="plain">
+    <li>The critic was calibrated on 10 cover images. There is no calibration set for slides, films or sound yet.</li>
+    <li>No film has passed a real critic run in the kept evidence: the one drawn film in the worked run failed all three attempts.</li>
+    <li>Sound is measured for level, peak, clipping, timing and captions. No critic listens to it. Voice and music are the user's own licensed files.</li>
+    <li>The both-orders comparison is new in 1.4.0 and has no kept run yet.</li>
+    <li>attention.py is a simple model of the first glance, not a measurement of eyes.</li>
+    <li>Posters are checked as screen images. Print size, bleed and resolution are not checked.</li>
+    <li>Rendering and the checks need Node, Playwright, Python with Pillow, and ffmpeg on the same machine. Without them the skill gives guidance and critique only.</li>
+    <li>Platforms change their sizes, safe zones and loudness. Check their help pages before a launch.</li>
+  </ul>
+</div></section>
+
+<section id="start"><div class="wrap">
+  <h2>Quick start</h2>
+  <p>It needs Claude Code, Node 20 or newer and Python 3.10 or newer. In Claude Code:</p>
+<pre><code>/plugin marketplace add goofypluto999/atelier
+/plugin install atelier@mansions</code></pre>
+  <p>Then, in the project folder for the image:</p>
+<pre><code>npm i -D playwright@1.63.0
+npx playwright install chromium
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -U "pillow>=10.3" playwright==1.63.0</code></pre>
+  <p>Then ask Claude: <code>Use Atelier to make one image about [your topic]. Use only these facts: [facts, with sources].</code> Windows steps, the manual path and the claude.ai zip: <a href="https://github.com/goofypluto999/atelier#quick-start-one-image">the README</a>.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p>Atelier is MIT licensed. Fonts: SIL Open Font License 1.1. Made by <a href="https://themansions.agency">The Mansions Agency</a>. Source: <a href="https://github.com/goofypluto999/atelier">github.com/goofypluto999/atelier</a>.</p>
+</div></footer>
+
+<script>
+// Films start only for viewers who have not asked for reduced motion, and only when on screen. Sound plays only on a click.
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var films = Array.prototype.slice.call(document.querySelectorAll("video[data-auto]"));
+  var seen = new Map();
+  function sync() {
+    films.forEach(function (v) {
+      if (reduce.matches || !seen.get(v)) { if (!v.paused && v.muted) v.pause(); }
+      else if (v.paused && v.muted) { v.play().catch(function () {}); }
+    });
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen.set(e.target, e.isIntersecting); });
+      sync();
+    }, { threshold: 0.25 });
+    films.forEach(function (v) { io.observe(v); });
+  }
+  if (reduce.addEventListener) reduce.addEventListener("change", sync);
+  var hero = document.getElementById("hero-film"), btn = document.getElementById("sound");
+  btn.addEventListener("click", function () {
+    if (hero.muted) {
+      hero.muted = false; hero.currentTime = 0; hero.play().catch(function () {});
+      btn.textContent = "Mute"; btn.setAttribute("aria-pressed", "true");
+    } else {
+      hero.muted = true; btn.textContent = "Play with sound"; btn.setAttribute("aria-pressed", "false");
+    }
+  });
+})();
+</script>
+</body>
+</html>

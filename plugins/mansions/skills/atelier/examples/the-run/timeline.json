@@ -1,0 +1,31 @@
+{
+ "seconds": 12,
+ "beats": [
+  {"id": "hook", "at": 0},
+  {"id": "brief", "at": 1.2},
+  {"id": "direction", "at": 2.2},
+  {"id": "render", "at": 3.2},
+  {"id": "checks", "at": 4.2},
+  {"id": "critic", "at": 5.4},
+  {"id": "revision", "at": 6.4},
+  {"id": "memory", "at": 7.4},
+  {"id": "pass", "at": 9.0}
+ ],
+ "sound": {
+  "target_lufs": -14,
+  "true_peak_db": -1.0,
+  "bed": {"chord_hz": [110, 164.81, 220], "gain_db": -20, "fade_in": 0.3, "fade_out": 2.0},
+  "cues": [
+   {"beat": "brief", "fx": "tick", "gain_db": -8},
+   {"beat": "direction", "fx": "tick", "gain_db": -8},
+   {"beat": "render", "fx": "tick", "gain_db": -8},
+   {"beat": "checks", "fx": "tick", "gain_db": -8},
+   {"beat": "critic", "fx": "whoosh", "offset": -0.1, "gain_db": -14},
+   {"beat": "critic", "fx": "thump", "gain_db": -3},
+   {"beat": "revision", "fx": "tick", "gain_db": -8},
+   {"beat": "memory", "fx": "tick", "gain_db": -8},
+   {"beat": "pass", "fx": "rise", "gain_db": -18},
+   {"beat": "pass", "fx": "chime", "gain_db": -6}
+  ]
+ }
+}

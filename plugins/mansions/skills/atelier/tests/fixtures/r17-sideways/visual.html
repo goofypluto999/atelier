@@ -1,0 +1,46 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="../../../assets/tokens.css">
+<!-- Test fixture (tests/fixtures/r17-sideways): two faults from a clean-machine test on 2 Nov 2026. A command set with writing-mode: vertical-rl
+     at 36 px passed the audit with no word, and a period after an inline span counted as a word. Seven FAILs: text set sideways
+     (vertical-rl and sideways-lr), turned 90 degrees by transform and by the rotate property, SVG text upside down, text mirrored,
+     and text turned 45 degrees by rotate then a skew (CSS applies rotate before transform). One warning: a note turned 20 degrees.
+     Nothing for: a stamp turned 6 degrees, a spine marked data-allow="rotate", a transform on an inline span (CSS does not apply it),
+     and text held at 90 degrees by a running animation (a film's first frame can be mid-move). The period and the slash after a span
+     are not words: the page holds 28. Sample content. -->
+<style>
+.sw { --ground: var(--paper); --text: var(--ink); background: var(--ground); color: var(--text); }
+.sw p, .sw h1 { position: absolute; margin: 0; font: 700 44px/1.1 var(--body); }
+.sw h1 { left: 80px; top: 80px; font: 700 96px/1 var(--disp); }
+.sw .cmd { left: 80px; top: 260px; }
+.sw .side { left: 100px; top: 400px; writing-mode: vertical-rl; }
+.sw .slr { left: 200px; top: 400px; writing-mode: sideways-lr; }
+.sw .turn { left: 260px; top: 520px; transform: rotate(90deg); }
+.sw .prop { left: 400px; top: 520px; rotate: 90deg; }
+.sw .stamp { left: 680px; top: 400px; transform: rotate(-6deg); }
+.sw .slant { left: 680px; top: 520px; transform: rotate(20deg); }
+.sw .mirror { left: 680px; top: 660px; transform: scaleX(-1); }
+.sw .order { left: 680px; top: 780px; rotate: 45deg; transform: skewX(45deg); }
+.sw .spine { right: 40px; top: 400px; writing-mode: vertical-rl; }
+.sw .inl { left: 80px; top: 800px; }
+.sw .inl span { transform: rotate(90deg); }
+.sw .spin { left: 300px; top: 1000px; animation: held 600s linear infinite; }
+@keyframes held { from { rotate: 90deg; } to { rotate: 90deg; } }
+.sw svg { position: absolute; left: 560px; top: 900px; width: 400px; height: 160px; }
+.sw .fine { left: 80px; bottom: 80px; font: 400 40px/1.2 var(--body); }
+</style>
+<section class="page sw">
+  <h1 data-role="hook">Read it level.</h1>
+  <p class="cmd">Run <code>render.mjs</code>.</p>
+  <p class="side">install atelier</p>
+  <p class="slr">sideways lr</p>
+  <p class="turn">npx playwright</p>
+  <p class="prop">rotate property</p>
+  <p class="stamp">sample</p>
+  <p class="slant">check it</p>
+  <p class="mirror">mirror</p>
+  <p class="order">order</p>
+  <p class="spine" data-allow="rotate">spine label</p>
+  <p class="inl">level <span>span</span></p>
+  <p class="spin">spinning in</p>
+  <svg viewBox="0 0 400 160"><text x="200" y="80" text-anchor="middle" transform="rotate(180 200 80)" font-size="44" font-weight="700" fill="currentColor">upside</text></svg>
+  <p class="fine" data-role="fine">Sample content <b>here</b> /</p>
+</section>

@@ -1181,6 +1181,60 @@ def faint_twin_tests(cwd):
     print("PASS r14 faint twin: four dots on a line of their own colour do not warn; two grey empty slots and a dot on a panel of its own colour do")
 
 
+def sideways_tests(cwd):
+    """R17 (a clean-machine test, 2 Nov 2026): commands set with writing-mode: vertical-rl passed the audit, and a period after an inline span
+    counted as a word. Text set sideways (vertical-rl, sideways-lr), turned 90 degrees (transform, rotate property), upside down, mirrored, or
+    turned 45 degrees by rotate then skew fails; a 20 degree slant warns; 6 degrees, data-allow="rotate", a transform on an inline span and
+    text held turned by a running animation pass."""
+    r = render(SKILL / "tests" / "fixtures" / "r17-sideways" / "visual.html", "--no-png", "--out", str(cwd / "side"))
+    if r is None:
+        print("SKIP r17 sideways: node or Playwright is not installed")
+        return
+    a = json.loads((cwd / "side" / "audit.json").read_text(encoding="utf-8"))[0]
+    want = {'set sideways (writing-mode: vertical-rl): "install atelier"', 'set sideways (writing-mode: sideways-lr): "sideways lr"',
+            'turned 90 degrees: "npx playwright"', 'turned 90 degrees: "rotate property"', 'turned 180 degrees: "upside"',
+            'mirrored: "mirror"', 'turned 45 degrees: "order"'}
+    got = {x.split(" (set it level")[0][len("text "):] for x in a["fails"]}
+    assert r.returncode == 1 and got == want, f"fails: {sorted(got)}; expected: {sorted(want)}"
+    slant = [x for x in a["warns"] if x.startswith("text turned")]
+    assert len(slant) == 1 and 'text turned 20 degrees: "check it"' in slant[0], a["warns"]
+    assert a["words"] == 28, f"the page holds 28 words; the audit counted {a['words']}"
+    print("PASS r17 sideways: 7 sideways, turned, upside-down and mirrored texts fail; 20 degrees warns; a stamp, an allowed spine, an inline span"
+          " and an animated turn pass; a lone period is not a word (28)")
+
+
+def film_gate_tests(cwd):
+    """R17: the visual stage grades a film only on video_check.py's PASS for that very video.mp4 (up to 1.4.0 a film could be graded with no
+    video check). No video_check.json, a FAIL in it, or a result for another video is refused; a PASS for this video is taken."""
+    f = cwd / "film"
+    f.mkdir()
+    (f / "visual.html").write_text("<!doctype html><title>film</title>", encoding="utf-8")
+    time.sleep(0.02)
+    (f / "audit.json").write_text(json.dumps([{"page": 1, "fails": []}]), encoding="utf-8")
+    (f / "page-01.png").write_bytes(b"page")
+    (f / "video.mp4").write_bytes(b"film one")
+    sha = hashlib.sha256(b"film one").hexdigest()
+
+    def refused():
+        try:
+            compose.check_render({"slug": "film-gate", "medium": "video"}, str(f))
+        except SystemExit as e:
+            return str(e)
+        return ""
+    keep, compose.used_by = compose.used_by, lambda *a: None   # no other piece's memory in play here
+    try:
+        assert "video_check.json" in refused(), "a film with no video_check.json was graded"
+        for result, said in (({"video_sha256": sha, "fails": ["nothing changes from 2.0 s to 5.1 s (3.1 s): a dead beat"]}, "did not pass"),
+                             ({"video_sha256": hashlib.sha256(b"another film").hexdigest(), "fails": []}, "not for this video.mp4"),
+                             ({"video_sha256": sha, "fails": []}, "")):
+            (f / "video_check.json").write_text(json.dumps(result), encoding="utf-8")
+            got = refused()
+            assert (said in got) if said else got == "", f"expected {said or 'a pass'}, got: {got}"
+    finally:
+        compose.used_by = keep
+    print("PASS r17 film gate: no video_check.json, a FAIL in it, or a result for another video.mp4 stops the grade; a PASS for this video passes")
+
+
 def r13_next_tests(cwd, notes):
     """After scaffold wrote the page, `next` names that page and no longer says to scaffold (a second scaffold refuses with exit 1)."""
     quick_to_visual(cwd, "r13n", "a release list in three pauses, r13 next", notes, None)
@@ -1578,7 +1632,7 @@ def main():
         print("PASS quick scope: four stages, the angle graded by its author, the visual refused without the critic's file, delivered with one evidence file and scope=quick in memory")
     # every other test in a project of its own (own_project): no test deals into a memory another test filled
     for test in (guard_tests, evidence_tests, slug_tests, genome_tests, rules_tests, r4_tests, r7_tests, r9_tests, r9_render_tests,
-                 palette_sweep_tests, r10_tests, r11_tests, r12_tests, r13_tests, faint_twin_tests, r13_next_tests, next_lines_tests, attention_role_tests):
+                 palette_sweep_tests, r10_tests, r11_tests, r12_tests, r13_tests, faint_twin_tests, sideways_tests, film_gate_tests, r13_next_tests, next_lines_tests, attention_role_tests):
         with own_project(test.__name__) as cwd:
             notes = cwd / "notes"
             notes.mkdir()

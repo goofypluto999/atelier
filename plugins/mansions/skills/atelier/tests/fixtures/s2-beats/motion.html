@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8">
+<!-- Planted case for tests/test_audio.py: timeline.json next to this page times it. motion.mjs sets the beat "show" as the
+     CSS variable --beat-show (1 s; 3 s without the timeline), passes the timeline as window.TIMELINE and takes the film's
+     length (4 s) from it. render.mjs --audit must load it the same way: window.seek throws when window.TIMELINE or
+     --beat-show is missing, and the audit prints that as a FAIL. -->
+<style>
+body { margin: 0; }
+.page { position: relative; width: 320px; height: 240px; background: #181b20; color: #f3f4f6; font: 600 28px/1.1 sans-serif; }
+#word { position: absolute; left: 20px; top: 30px; margin: 0; opacity: 0; animation: in 0.1s linear both; animation-delay: var(--beat-show, 3s); }
+#count { position: absolute; left: 20px; top: 140px; margin: 0; }
+@keyframes in { to { opacity: 1; } }
+</style>
+<section class="page"><p id="word" data-read="word">On the beat</p><p id="count" data-read="count">none</p></section>
+<script>
+window.seek = () => {
+  if (!window.TIMELINE || !getComputedStyle(document.documentElement).getPropertyValue("--beat-show").trim()) throw new Error("not timed by timeline.json: window.TIMELINE or --beat-show is missing");
+  document.getElementById("count").textContent = `beats ${window.TIMELINE.beats.length}`;
+};
+</script>

@@ -27,7 +27,7 @@ critic's verdict file (--evidence): it is checked, hashed and written to memory 
 or score line. A FAIL or REVISE verdict can never pass the stage; per-criterion scores or a total in the file must equal
 the --scores typed (the author cannot grade the critic's file upward). The visual stage also needs a fresh render: audit.json
 saying PASS and page-NN.png, each newer than the page's HTML, in the folder scaffold wrote the page into (--folder is for a page built without
-scaffold). The grade stores the sha256 of the verdict file, of visual.html and of every page-NN.png; a verdict headed with another piece's slug, a
+scaffold). A film also needs video.mp4 and video_check.json from video_check.py, with no FAIL, for that very video.mp4. The grade stores the sha256 of the verdict file, of visual.html and of every page-NN.png; a verdict headed with another piece's slug, a
 verdict file another piece already used, and a page another piece was graded on are refused.
 
 Diversity scales with memory (.atelier/history.jsonl in the project):
@@ -726,9 +726,11 @@ def check_evidence(path, what, notes=None, angle=None, ids=(), best=False, slug=
 
 
 def render_cmd(html, medium):
-    """The audit line; for a film, the same length and poster time as the motion.mjs line scaffold prints, so the audit checks every half second and the poster."""
+    """The audit line; for a film, the same length and poster time as the motion.mjs line scaffold prints, so the audit checks every half second and the poster.
+    A film timed by timeline.json next to the page takes its length from the timeline, in the audit as in motion.mjs."""
     size = SIZES.get(medium)
-    return f"node {tool('render.mjs')} {q(html)} --audit" + (f" --size {size[0]}x{size[1]}" if size else "") + (" --seconds 8 --poster 7" if medium == "video" else "")
+    timed = (pathlib.Path(html).parent / "timeline.json").is_file()
+    return f"node {tool('render.mjs')} {q(html)} --audit" + (f" --size {size[0]}x{size[1]}" if size else "") + (" --seconds 8 --poster 7" if medium == "video" and not timed else "")
 
 
 def check_render(piece, folder):
@@ -758,10 +760,23 @@ def check_render(piece, folder):
     failed = [p for p in pages if p.get("fails")]
     if not pages or failed:
         sys.exit(f"audit.json in {pp(where)} does not say PASS ({len(failed)} of {len(pages)} page(s) have hard fails). {fix}")
-    need = [where / "audit.json"] + [where / f"page-{i:02d}.png" for i in range(1, len(pages) + 1)] + ([where / "video.mp4"] if piece["medium"] == "video" else [])
+    film = piece["medium"] == "video"
+    need = [where / "audit.json"] + [where / f"page-{i:02d}.png" for i in range(1, len(pages) + 1)] + ([where / "video.mp4", where / "video_check.json"] if film else [])
     old = [f.name for f in need if not f.is_file() or f.stat().st_mtime_ns < html.stat().st_mtime_ns]
     if old:
-        sys.exit(f"missing, or older than {html.name}: {', '.join(old)}. The grade must be of the page as rendered now. {fix}")
+        sys.exit(f"missing, or older than {html.name}: {', '.join(old)}. The grade must be of the page as rendered now. {fix}"
+                 + (f"\nFor a film, then run: {PY} {tool('video_check.py')} {q(where)}" if film else ""))
+    if film:   # a film is graded only on video_check.py's PASS for this very video.mp4
+        try:
+            vc = json.loads((where / "video_check.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            vc = {}
+        vc = vc if isinstance(vc, dict) else {}
+        recheck = f"Fix the film, then run: {PY} {tool('video_check.py')} {q(where)}"
+        if vc.get("video_sha256") != hashlib.sha256((where / "video.mp4").read_bytes()).hexdigest():
+            sys.exit(f"video_check.json in {pp(where)} is not for this video.mp4. {recheck}")
+        if vc.get("fails") or not isinstance(vc.get("fails"), list):
+            sys.exit(f"video_check.py did not pass this film ({len(vc.get('fails') or [])} FAIL line(s) in video_check.json). {recheck}")
     return {"html": str(html), "html_sha256": sha, "pages": {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in need if f.suffix == ".png"}}
 
 
@@ -1376,9 +1391,10 @@ def cmd_scaffold(a):
               f"display {disp}, text {text}, mono {mono}; library.css linked and {', '.join('--' + k for k in fams)} set on :root" if local else
               f"display {disp}, text {text}: NOT local, so the page keeps the house type. Run get_font.py for each family, then set --disp and --body yourself"))
     if med == "video":
-        print("  next, the film, then the audit the visual grade also needs:")
+        print("  next, the film, then the audit and the film check the visual grade also needs (with a timeline.json, leave out --seconds and --poster):")
         print(f"    node {tool('motion.mjs')} {q(out)} --seconds 8 --sub 2 --poster 7")
         print("    " + render_cmd(out, med))
+        print(f"    {PY} {tool('video_check.py')} {q(pathlib.Path(out).parent)}")
     else:
         print("  next (it writes audit.json and page-NN.png next to the page; add --pdf for carousel.pdf):")
         print("    " + render_cmd(out, med))
