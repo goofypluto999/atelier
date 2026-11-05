@@ -43,6 +43,7 @@ Read the ask and the platform, then pick one mode. Every mode runs `render.mjs -
 | You are... | Read | Run |
 |---|---|---|
 | starting any piece | references/composer.md, references/process.md, references/brief.md | `compose.py new`, then `compose.py next <slug>` at every step |
+| making an image a stranger stops for (a scene with a story) | references/art-pass.md | three makers in parallel, then the owner picks |
 | seeing the directions | references/directions.md, assets/directions/directions.png | `node S/scripts/specimens.mjs` |
 | laying out pages | references/composition.md, type.md, colour.md | `compose.py scaffold`, `render.mjs <file> --audit` |
 | showing numbers | references/dataviz.md | |
